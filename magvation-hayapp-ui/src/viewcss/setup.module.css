@@ -1,0 +1,202 @@
+.systemCheckProvisionLoading {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40vh;
+    font-size: 2.5vh;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    padding: 2vh 4vw;
+}
+
+.setup {
+    padding: 3.42vh 1.66vw 3.42vh 1.66vw;
+    display: flex;
+    flex-direction: column;
+    height: 93.14vh;
+    background-image: url("../img/backgrounds/CIRDashboardBackground.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto auto;
+    width: 88.90vw;
+}
+
+.main {
+    flex: 1;
+    margin: 2.96vh 0px;
+    border: solid 1px white;
+    border-radius: 2.08vw;
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+}
+
+.title {
+    font-size: 4.16vh;
+}
+
+.id {
+    height: 3.61vh;
+    margin: 7.87vh 0 11.11vh 0;
+    background: var(--setup-grey);
+    border-radius: 0.41vw;
+    padding: 1.48vh 1.40vw 1.48vh 1.40vw;
+    font-size: 2.96vh;
+}
+
+.subtitle {
+    font-size: 3.33vh;
+}
+
+.picker {
+    display: flex;
+    align-items:center;
+    margin-top: 3.33vh;
+}
+
+.label {
+    width: 15.15vw;
+    line-height: 7.40vh;
+    height: 7.40vh;
+}
+
+.input {
+    flex: 1;
+    height: 7.40vh;
+}
+
+.popupLabelInner {
+    margin-left: 3.85vw;
+}
+
+.popupLabelLabel {
+    height: 7.40vh;
+}
+
+.innerinner {
+    display: flex;
+    flex-direction: row;
+}
+
+.pickerDiv {
+    width: 43.22vw;
+    height: 61.29vh;
+    display: flex;
+    flex-direction: column;
+    margin: 2.68vh 2.08vw 7.31vh 3.75vw;
+
+}
+
+.pickerDiv ~ .pickerDiv {
+    margin: 2.68vh 3.75vw 7.31vh 0px;
+}
+
+.pickerTitle {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2.03vh;
+}
+
+.pickerInner {
+    width: 38.54vw;
+    height: 55.74vh;
+    display: flex;
+    flex-direction: column;
+    padding: 4.16vh 2.34vw 2.03vh 2.34vw;
+    background: #0F111F;
+    border-radius: 0.52vw;
+    font-size: 2.22vh;
+}
+
+.listSpacer2 {
+    height: 4.07vh;
+}
+
+.listSpacer {
+    height: 6.01vh;
+    margin-top: 4.16vh;
+    margin-bottom: 1.85vh;
+    font-size: 2.96vh;
+}
+
+.listItem {
+    display: flex;
+    flex-direction: row;
+    font-size: 2.22vh;
+    align-items: center;
+}
+
+.listText {
+    margin-left: 1.04vw;
+}
+
+.listName {
+    color: #47C8FF;
+}
+
+.summaryInner {
+    width: 88.54vw;
+    height: 49.07vh;
+    overflow: hidden;
+    background-color: #0F111F;
+    border-radius: 0.52vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4.16vh;
+    margin-top: 2.03vh;
+}
+
+.summaryItem {
+    display: flex;
+    flex-direction: row;
+    background-color: #1D2035;
+    width: 78.28vw;
+    height: 6.48vh;
+    padding: 0.37vh 1.09vw 0.37vh 1.09vw;
+    margin-bottom: 0.92vh;
+    border-radius: 0.41vw;
+    align-items: center;
+    font-size: 2.22vh;
+}
+
+.summaryType {
+    width: 39.84vw;
+}
+
+.summaryName {
+    flex: 1;
+    color: #9747FF;
+}
+
+.systemCheckMode {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-image: url("../img/backgrounds/CIRDashboardBackground.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.labelContainer {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    background: var(--Main-Violet, #9C42F5);
+}

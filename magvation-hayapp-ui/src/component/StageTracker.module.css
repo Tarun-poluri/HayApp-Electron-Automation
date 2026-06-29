@@ -1,0 +1,61 @@
+.stageTrackerContainer {
+    display: flex;
+    align-items: center;
+}
+
+.stageNumberContainer {
+    display: flex;
+    height: 3.52vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+}
+
+.stageNumber {
+    padding: 0 0.63vw;
+    color: var(--text-icon-light-violet, #A7A4CC);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 1.48vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.stageDot {
+    width: 0.21vw;
+    height: 0.37vh;
+    border-radius: 50%;
+    background: var(--text-icon-light-violet, #A7A4CC);
+    margin-left: 0.63vw;
+    margin-right: 0.63vw;
+}
+
+.currentStage {
+    display: flex;
+    height: 3.52vh;
+    padding: 0 0.63vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.21vw;
+    border-radius: 2.08vw;
+    background: rgba(210, 178, 255, 1);
+}
+
+.currentStageNumber {
+    color: var(--text-icon-black, #000);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.stageText {
+    color: var(--text-icon-black, #000);
+    font-family: 'Geist', sans-serif;
+    font-size: 1.30vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

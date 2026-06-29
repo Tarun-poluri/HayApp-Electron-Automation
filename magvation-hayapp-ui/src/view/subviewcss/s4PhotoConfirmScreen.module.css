@@ -1,0 +1,119 @@
+.screenContainer {
+    width: 100vw;
+    height: 100vh;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contentArea {
+    display: flex;
+    padding: 2.22vh 2.08vw;
+    padding-top: 12.5vh;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 1.56vw;
+}
+
+/* ===== Left Panel — Image ===== */
+.imagePanel {
+    width: 46.88vw;
+    height: 81.02vh;
+    border-radius: 1.30vw;
+    overflow: hidden;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capturedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholderImage {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    opacity: 0.5;
+}
+
+/* ===== Right Panel — Confirmation ===== */
+.confirmPanel {
+    width: 45.31vw;
+    height: 81.02vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.70vh;
+    border-radius: 1.30vw;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    padding: 2.78vh 2.08vw;
+    flex-shrink: 0;
+}
+
+.confirmTitle {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 1.25vw;
+}
+
+.retakeButton {
+    display: flex;
+    width: 18.75vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.48vh;
+    border: none;
+    background: rgba(119, 116, 129, 1);
+    color: #fff;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.retakeButton:hover {
+    opacity: 0.9;
+}
+
+.yesButton {
+    display: flex;
+    width: 18.75vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.48vh;
+    border: none;
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.yesButton:hover {
+    opacity: 0.9;
+}

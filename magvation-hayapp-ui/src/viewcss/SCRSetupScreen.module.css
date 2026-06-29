@@ -1,0 +1,748 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    align-items: center;
+}
+
+.innerScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 876px;
+    padding: 0 115px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.splitContentContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 81.02vh;
+    align-items: center;
+    gap: 2.60vw;
+    flex-shrink: 0;
+}
+
+.imageBackground {
+    display: flex;
+    width: 885px;
+    height: 875px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.imageContainer {
+    width: 800px;
+    height: 568px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.descriptionTextContainer {
+    display: flex;
+    width: 1400px;
+    padding: 0 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-radius: 20px;
+}
+
+.descriptionLargeText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    white-space: pre-line;
+    text-align: center;
+}
+
+.descriptionSmallText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: pre-line;
+}
+
+.instructionsContainer {
+    display: flex;
+    width: 1820px;
+    height: 875px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 50px;
+}
+
+.imageSectionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.instructionSectionContainer {
+    display: flex;
+    width: 885px;
+    padding: 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.instructionContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+}
+
+.instructionTitleText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    padding-bottom: 50px;
+}
+
+.instructionStepText {
+    flex: 1 0 0;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.stepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.singleStepContainer {
+    display: flex;
+    height: 140px;
+    padding: 20px 0;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 15px;
+}
+
+.stepNumber {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.stepNumberText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.divider {
+    height: 1px;
+    align-self: stretch;
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.bigInnerContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    padding: 250px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.failIcon {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    padding: 0 1.133px 1.131px 0;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.bigInnerTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.bigInnerTextContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.bigInnerText {
+    width: 1038px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.buttonTestInnerContainer {
+    display: flex;
+    width: 770px;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.haystackButtonContainer {
+    display: flex;
+    width: 770px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.buttonWrapper {
+    position: relative;
+}
+
+.buttonTestTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.buttonTestText {
+    width: 952px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.yesColor {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border: 8px solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+}
+
+.validateColor {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border: 8px solid var(--Main-Orange, #FF9143);
+    background: rgba(255, 145, 67, 0.10);
+}
+
+.actionColor {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border: 8px solid #FFBA39;
+    background: rgba(255, 222, 57, 0.10);
+}
+
+.noColor {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border: 8px solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+}
+
+.grayCircle {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border: 8px solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+}
+
+.haystackButtonIcon {
+    width: 70.909px;
+    height: 70.909px;
+    flex-shrink: 0;
+}
+
+.checkmarkContainer {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkmarkCircle {
+    width: 40px;
+    height: 40px;
+    border-radius: 27px;
+    border: 2px solid var(--text-icon-black, #000);
+    background: var(--Main-Light-Violet, #D2B2FF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkmark {
+    width: 26px;
+    height: 26px;
+}
+
+.actuatorImageContainer {
+    width: 800px;
+    height: 300px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.actuatorButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.actuatorButtonContent {
+    display: flex;
+    width: 770px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.actuatorTextContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.actuatorText {
+    width: 770px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.actuatorButton {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.actuatorPlusIcon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.actuatorScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    padding: 0 0 220px 0;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.litActuatorButton {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    background: var(--Gradient-Card-Active-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.45) 2.93%, rgba(255, 255, 255, 0.22) 100%));
+}
+
+.waitScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 875px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.loadingIcon {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingIconSpinner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: rotate 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.waitScreenText {
+    max-width: 1000px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.confirmCountContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    padding: 180px 0 240px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.confirmIcon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.confirmContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.confirmTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.confirmText {
+    width: 1038px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.haystackButtonContainer {
+    display: flex;
+    width: 770px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.confirmTotalNumber {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -2px;
+    margin: 20px 0;
+}
+
+.packInfoContainer {
+    display: flex;
+    width: 46.88vw;
+    height: 81.02vh;
+    padding: 4.63vh 2.60vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4.63vh;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+    border: 0.05vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.packBackground {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--Background-White, #FFF);
+}
+
+.packBackground img {
+    max-width: 20.83vw;
+    max-height: 37.04vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.packInfoTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.85vh;
+}
+
+.packInfoRow {
+    display: flex;
+    align-items: center;
+    gap: 0.42vw;
+    align-self: stretch;
+}
+
+.packInfoTitle {
+    flex: 1 0 0;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.packInfoValue {
+    width: 7.66vw;
+    color: var(--text-icon-white, #FFF);
+    text-align: right;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.tableDivider {
+    width: 41.67vw;
+    height: 0.09vh;
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.controlsContainer {
+    display: flex;
+    width: 45.31vw;
+    padding: 1.48vh 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5.56vh;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.controlsContentContainer {
+    display: flex;
+    width: 770px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.numberContainer {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: -2px;
+    border-radius: 46px;
+}
+
+.numberText {
+    width: 90px;
+    color: #FFF;
+    text-align: right;
+    font-family: 'Geist', sans-serif;
+    font-size: 140px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.confirmMismatchText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -1px;
+    white-space: pre-line;
+}
+
+.questionText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.buttonText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

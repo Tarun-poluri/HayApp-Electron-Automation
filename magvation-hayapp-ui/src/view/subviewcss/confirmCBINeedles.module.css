@@ -1,0 +1,187 @@
+.container {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    padding: 0 3.12vw 3.33vh 3.12vw;
+    gap: 2.60vw;
+    align-items: stretch;
+}
+
+/* ===== Left Panel: Image ===== */
+.imagePanel {
+    position: relative;
+    width: 46.88vw;
+    border-radius: 1.30vw;
+    overflow: hidden;
+    background: #2a2a2a;
+    flex-shrink: 0;
+}
+
+.cbiImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1.30vw;
+}
+
+/* Marker overlays */
+.needleIconWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+    width: 3.13vw;
+    height: 5.56vh;
+}
+
+.needleIconWrapper img {
+    width: 3.13vw;
+    height: 5.56vh;
+}
+
+.needleNumber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.22vh;
+    font-weight: 700;
+    color: #000;
+    z-index: 21;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+}
+
+/* Toggle button (bottom-left) */
+.toggleButton {
+    position: absolute;
+    bottom: 2.96vh;
+    left: 1.67vw;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(0.93vh);
+    -webkit-backdrop-filter: blur(0.93vh);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4.63vh;
+    padding: 1.11vh 1.56vw;
+    font-weight: 500;
+    font-size: 1.67vh;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    pointer-events: auto;
+    transition: background 0.2s ease;
+}
+
+.toggleButton:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Image info overlay (bottom-right) */
+.imageInfoOverlay {
+    position: absolute;
+    right: 1.67vw;
+    bottom: 2.96vh;
+    display: flex;
+    gap: 1.25vw;
+    border-radius: 0.63vw;
+    padding: 0.74vh 1.04vw;
+    z-index: 10;
+    align-items: center;
+}
+
+.imageInfoText {
+    color: #FFF;
+    text-shadow: 0 0.09vh 0.93vh rgba(0, 0, 0, 0.80);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* ===== Right Panel: Confirmation Card ===== */
+.confirmPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.30vw;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%);
+    backdrop-filter: blur(9.26vh);
+    -webkit-backdrop-filter: blur(9.26vh);
+}
+
+.confirmContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5.56vh;
+    padding: 0 3.12vw;
+}
+
+.questionText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.07vh;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: -0.05vw;
+    text-align: left;
+    white-space: pre-line;
+}
+
+/* ===== Yes/No Buttons ===== */
+.buttonRow {
+    display: flex;
+    gap: 1.56vw;
+    width: 100%;
+}
+
+.noButton,
+.yesButton {
+    flex: 1;
+    display: flex;
+    height: 7.41vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.83vw;
+    border-radius: 7.41vh;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.noButton {
+    border: 1px solid #FF7083;
+    color: #FF7083;
+}
+
+.noButton:hover {
+    background: rgba(255, 112, 131, 0.1);
+}
+
+.yesButton {
+    border: 1px solid #4FE2CE;
+    color: #4FE2CE;
+}
+
+.yesButton:hover {
+    background: rgba(79, 226, 206, 0.1);
+}
+
+.buttonIcon {
+    font-size: 2.59vh;
+    line-height: 1;
+}

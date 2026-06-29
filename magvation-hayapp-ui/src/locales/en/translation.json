@@ -1,0 +1,1665 @@
+﻿{
+    "main": {
+        "login": "Touch to Sign In"
+    },
+    "cstMain": {
+        "splash": "OPERATION SETUP IN PROGRESS"
+    },
+    "startup": {
+        "loadingMessage": "Starting HayApp..."
+    },
+    "login": {
+    "role": "Role",
+    "role_prompt": "Select Role",
+    "role_cir": "CIR",
+    "role_scr": "SCR",
+    "username": "Username",
+    "username_default": "Enter username",
+    "password": "Password",
+    "password_default": "Enter password",
+    "sign_in": "Sign In",
+    "invalid_password": "Invalid username or password. Try again.",
+    "confirm_logged_in": "{{user}} logged in as {{role}}."
+    },
+    "start": {
+        "blurb": "MOVING THE NEEDLE ON SURGICAL SAFETY SYSTEM",
+        "sign_out": "Sign Out",
+        "setup_case": "Setup Case"
+    },
+    "hayscanPair": {
+        "title": "Scan to Connect",
+        "title2": "HAYSCAN NOT DETECTED",
+        "subtitle": "On the HayScan device, tap 'Scan QR' and scan the QR code to connect",
+        "title_scan": "SCAN THE QR CODE",
+        "subtitle_scan": "Below to connect with the HayHub application",
+        "back": "Back",
+        "next": "Next"
+    }, 
+    "header": {
+        "title": "SETUP CASE",
+        "haystage": "HAYSTAGE",
+        "hayscan": "HAYSCAN",
+        "haystack": "HAYSTACK",
+        "haytray": "HAYTRAY",
+        "hst": "HST",
+        "lit": "LIT",
+        "scrub": "SCRUB",
+        "surgeon": "Surgeon",
+        "surgeons": "Surgeons",
+        "surgeonsLower": "surgeons",
+        "cir": "CIR",
+        "menu": {
+            "viewAllImages": "View All Images",
+            "caseLogs": "Case Logs",
+            "editCase": "Edit Case",
+            "pairDevices": "Paired Devices",
+            "sharpsSheet": "Sharps Sheet",
+            "timeoutChecklist": "Timeout Checklist",
+            "uploadCaseData": "Upload Case Data",
+            "help": "Help",
+            "resetHaystack": "Reset HayStack",
+            "enterManually": "Enter Manually",
+            "endCase": "End Case",
+            "signOut": "Sign Out"
+        }
+    },
+    "footer": {
+        "back": "Back",
+        "next": "Next",
+        "proceed": "Proceed"
+    },
+    "suture": {
+        "scannedTitle": "SCANNED SUTURE NEEDLE COUNT",
+        "confirmedTitle": "CONFIRMED SUTURE NEEDLE COUNT",
+        "unconfirmedTitle": "UNCONFIRMED SUTURE NEEDLE COUNT",
+        "starting": "Starting",
+        "added": "Added",
+        "contaminated": "Contaminated/ Incompatible",
+        "haystack": "HayStack",
+        "misplaced": "Misplaced",
+        "pendingCIR": "Pending CIR Validation",
+        "pendingAdjudication": "Pending CIR Adjudication",
+        "pendingSCR": "Pending SCR Validation",
+        "remainingOnField": "Remaining on Field",
+        "totalScanned": "Scanned Total",
+        "totalConfirmed": "Confirmed Total",
+        "totalUnconfirmed": "Unconfirmed Total"
+    },
+    "haystackCommandInterface": {"haystackCommandInterface": "HayStack Command Interface", "yes": "Yes", "no": "No", "validate": "Validate", "takeAction": "Take Action"},
+    "widgets": {
+        "addSutureTitle": "ADD NEW",
+        "addSutureDescription": "SUTURE NEEDLES",
+        "captureTitle": "CAPTURE",
+        "captureDescription": "CONTAMINATED INCOMPATIBLE",
+        "reliefTitle": "RELIEF COUNT",
+        "interimTitle": "INTERIM COUNT",
+        "closingTitle": "CLOSING COUNT",
+        "validateTitle": "VALIDATE",
+        "validateDescription": "RECOGNISED IMAGE",
+        "adjudicateTitle": "ADJUDICATE",
+        "adjudicateDescription": "UNRECOGNISED IMAGE",
+        "otherSharpsTitle": "OTHER SHARPS",
+        "finalClose": "FINAL CLOSE COUNT",
+        "reopen": "REOPEN"
+    },
+    "validation": {
+        "headerTitle": "VALIDATE",
+        "headerSubtitle": "UNRECOGNISED IMAGE",
+        "questionTitle": "ARE YOU SURE",
+        "questions": {
+            "sutureNeedle": "This is one complete suture needle?",
+            "blade": "This is a blade?",
+            "hair": "This is a hair?"
+        },
+        "actionButtons": {
+            "yes": "YES",
+            "validate": "VALIDATE",
+            "takeAction": "TAKE ACTION",
+            "no": "NO"
+        },
+        "imageInfo": {
+            "imageNumber": "Image",
+            "lastImageCaptured": "Last Image Captured",
+            "lit": "LIT",
+            "timeIcon": "Time"
+        }
+    },
+    "contaminatedNeedles": {
+        "headerTitle": "CAPTURE",
+        "headerSubtitle": "CONTAMINATED/INCOMPATIBLE",
+        "question": "Capture image of contaminated/incompatible suture needle",
+        "logo": "MAGVATION SURGICAL SAFETY SYSTEM",
+        "actionButtons": {
+            "back": "Back",
+            "proceed": "Proceed"
+        },
+        "confirm": {
+            "questionPart1": "ARE YOU SURE YOU WANT TO",
+            "questionPart2": "capture the contaminated/incompatible needles?",
+            "actionButtons": {
+                "no": "No",
+                "yes": "Yes"
+            }
+        },
+        "capture": {
+            "captureButton": "Capture the Image"
+        },
+        "counting": {
+            "question": "How many contaminated/incompatible needles are in the holding area?",
+            "actionButtons": {
+                "back": "Back",
+                "confirm": "Confirm"
+            }
+        },
+        "waiting": {
+            "message": "Awaiting Scrub Confirmation"
+        },
+        "scr": {
+            "headerTitle": "CAPTURE",
+            "headerSubtitle": "CONTAMINATED/INCOMPATIBLE",
+            "confirmationTitle": "ARE YOU SURE",
+            "questionText": "suture needle is in the holding area?",
+            "questionTextPlural": "suture needles are in the holding area?",
+            "actionButtons": {
+                "yes": "YES",
+                "validate": "VALIDATE",
+                "takeAction": "TAKE ACTION",
+                "no": "NO"
+            }
+        }
+    },
+"adjudication": {
+  "title": "Adjudication",
+  "reAdjudicationTitle": "Re-Adjudication",
+  "header": {
+    "help": "Help",
+    "batteryLabel": "HayScan"
+  },
+  "step1": {
+    "fullQuestion": "Is this exactly ONE COMPLETE Suture Needle (not broken)?",
+    "questionPartOne": "Is this exactly",
+    "one": "ONE COMPLETE",
+    "questionPartTwo": "Suture Needle (not broken)?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "step2": {
+    "question": "Which is shown?",
+    "options": {
+      "multiple": "MORE than one suture needle",
+      "broken": "Suture needle fragment (broken)",
+      "notNeedle": "NOT a Suture Needle"
+    },
+    "no": "No"
+  },
+  "step3": {
+    "multiple": {
+      "title": "How many suture needles are shown?"
+    },
+    "broken": {
+      "title": "Do you have the other suture needle piece?"
+    },
+    "notNeedle": {
+      "title": "Select item type shown",
+      "placeholder": "Not selected",
+      "options": {
+        "blade": "Blade",
+        "kWire": "K-Wire",
+        "hypo": "Hypo",
+        "other": "Other"
+      }
+    }
+  },
+  "actions": {
+    "confirm": "Confirm",
+    "edit": "Edit"
+  }
+},
+"otherSharps": {
+  "title": "OTHER SHARPS",
+  "otherSharpsLabel": "Other Sharps",
+  "categories": {
+    "blades": "Blades",
+    "hypos": "Hypos",
+    "scalpels": "Scalpels",
+    "others": "Others"
+  },
+  "returnToDashboard": "Return to Dashboard",
+  "zoomInstruction": "Double-tap the image to zoom"
+},
+
+
+    "setup": {
+        "header": {
+            "cir": "CIR",
+            "scr": "SCR",
+            "surgeon": "Surgeon",
+            "surgeons": "Surgeons",
+            "logout": "Log Out",
+            "login": "Log In"
+        },
+        "roomScan": {
+            "step1": "Link OR (Operating Room)",
+            "step2": "Select Surgeon",
+            "step3": "Select Primary Case Type",
+            "scanButton": "Scan Magvation Wall Placard",
+            "selectButton": "Select",
+            "rescanButton": "Rescan",
+            "selectAnotherButton": "Change Surgeon"
+        },
+        "selectStaff": {
+            "title": "Case Data",
+            "scrub": "Scrub",
+            "circulator": "Circulator",
+            "surgeon": "Surgeon"
+        },
+        "selectCase": {
+            "title1": "Select case type from 's",
+            "title2": "Select case type from another surgeon",
+            "prompt": "Search case type",
+            "addTypeButton": "Add New Case Type"
+        },
+        "caseSummary": {
+            "title": "Selected Case Types",
+            "headerTitle": "{{surgeonName}} Procedures",
+            "unknownSurgeon": "Unknown",
+            "addPrimary": "Add one more primary procedure",
+            "addPrimaryOneMore": "Add One More Primary Procedure",
+            "add": "Add More Secondary Procedures",
+            "primary": "primary",
+            "secondary": "secondary",
+            "addOns": "Secondary",
+            "addAddOn": "Add Secondary Procedure",
+            "confirm": "Confirm",
+            "proceed": "Proceed",
+            "confirmSelection": "Confirm Selection",
+            "deleteConfirmation": "Are you sure you want to delete this procedure for {{surgeonName}}?",
+            "selectCaseType": "Select procedures for {{surgeonName}} to proceed.",
+            "no": "No",
+            "yesDelete": "Yes, Delete",
+            "noSutureSheet": "No Suture Sheet",
+            "deletePrimary": "Delete primary procedure",
+            "removeAddOn": "Remove secondary",
+            "packs": "Packs",
+            "totalNeedles": "Total Needles",
+            "selectPrimary": "Select Primary Procedure",
+            "selectAnotherSurgeon": "Select Another Surgeon"
+        },
+        "selectedSurgeons": {
+            "selectedSurgeons": "Selected Surgeons",
+            "primary": "primary",
+            "secondary": "secondary",
+            "caseDetails": "See Procedure Details",
+            "seeCaseTypes": "See Case Types",
+            "primaryCase": "primary",
+            "secondaryCase": "secondary",
+            "remove": "Remove",
+            "addNewSurgeon": "Add New Surgeon",
+            "continue": "Continue",
+            "surgeon": "Surgeon: {{surgeonName}}",
+            "deleteConfirmation": "Are you sure you want to remove the surgeon?",
+            "no": "No",
+            "yesDelete": "Yes, Remove Surgeon",
+            "selectSurgeonToProceed": "Select surgeons to proceed with the Start Count.",
+            "selectSurgeon": "Select Surgeon"
+        },
+        "sutureSheetNotAvailable": {
+            "title": "Suture Sheet Not Available",
+            "message": "Use surgeon {{surgeonName}}'s preference list for this\nprocedure or use a suture sheet from another surgeon.",
+            "confirm": "Confirm",
+            "seeOther": "See Other Surgeons' Sheets",
+            "noSutureSheet": "No Suture Sheet",
+            "caseTypeLabel": "Procedure to view details"
+        },
+        "surgeonsView": {
+            "title": "Surgeons",
+            "help": "Help",
+            "addNewSurgeon": "Add New Surgeon",
+            "addSurgeon": "Add",
+            "primary": "Primary",
+            "secondary": "Secondary",
+            "seeCaseTypes": "See Procedure Details",
+            "change": "Change",
+            "no": "No",
+            "yesChange": "Yes, Change Surgeon",
+            "surgeonName": "Surgeon: {{surgeonName}}",
+            "areYouSure": "Are you sure you want to change the surgeon?",
+            "summarySheet": "Summary Sheet",
+            "pack": "Pack",
+            "packs": "Packs",
+            "totalNeedles": "Total Needles",
+            "deleteConfirmation": "Are you sure you want to remove surgeon {{surgeonName}} from this case?",
+            "yesRemove": "Yes, Remove Surgeon"
+        },
+        "confirmDelete": {
+            "title": "Remove Selected Case Type",
+            "no": "No",
+            "yes": "Yes"
+        },
+        "systemCheckSuccess": "Stage 0 (Setup) complete.",
+        "proceedToSetup": "Proceed to Stage 1 (Start Count)",
+        "returnToAdmin": "Redo Stage 0 (Setup)",
+        "checkingDeviceProvisioning": "Checking device configuration...",
+        "needsProvisioning": "Device needs to be provisioned",
+        "groupAccessDenied": {
+            "title": "This device cannot load group data",
+            "message": "The stored group ID does not match a facility in the cloud for this API key (device moved, wrong environment, or missing org). Tech support must sign in and provision again to load the correct group data."
+        },
+        "techSupportLogin": {
+            "title": "Tech Support Login",
+            "username": "Username",
+            "password": "Password",
+            "login": "Login",
+            "loggingIn": "Logging in...",
+            "showKeyboard": "Show Virtual Keyboard",
+            "hideKeyboard": "Hide Virtual Keyboard"
+        },
+        "provision": {
+            "title": "Provision Device",
+            "serialNumber": "Device Serial Number",
+            "provision": "Provision",
+            "provisioning": "Provisioning...",
+            "back": "Back",
+            "success": "Device provisioned successfully!\n\nSync data from the cloud to continue setup.",
+            "syncData": "Sync Data From Cloud",
+            "syncing": "Syncing...",
+            "syncFailed": "Sync failed. Try again.",
+            "syncError": "An error occurred during sync.",
+            "failed": "Provisioning failed",
+            "error": "An error occurred during provisioning"
+        },
+        "roleSelection": {
+            "header": "Choose Role.",
+            "cir": "CIR Role",
+            "scr": "SCR Role",
+            "circulator": "Circulator",
+            "scrub": "Scrub"
+        },
+        "scanBadge": {
+            "instruction": "Tap badge to log in as {{role}}",
+            "reloginInstruction": "{{role}} role needs to log in to complete the Start Count.\nTap badge to log in as {{role}}",
+            "or": "OR",
+            "manualLogin": "Log In Using Email and Password"
+        },
+        "manualLogin": {
+            "title": "Log in using email and password",
+            "email": "Email Address",
+            "password": "Password",
+            "logIn": "Log In",
+            "scanBadge": "Tap Badge to Log In as {{role}}",
+            "invalidCredentials": "Invalid email or password. Try again.",
+            "loginError": "Unable to log in right now. Try again."
+        },
+        "scanORiTrace": {
+            "title": "Start Count",
+            "subtitle": "Scan Magvation wall placard to designate OR.",
+            "headerTitle": "Start Count",
+            "errorMessage": "Magvation Wall Placard is scanned but not valid.",
+            "rescanButton": "Rescan"
+        },
+        "roomConfirm": {
+            "headerTitle": "Scan Magvation Wall Placard",
+            "confirm": "Confirm",
+            "rescan": "Rescan"
+        },
+        "selectSurgeonNew": {
+            "searchPlaceholder": "Search surgeon by name",
+            "selectedSurgeon": "Selected surgeon:",
+            "notSelected": "Not Selected",
+            "continue": "Continue",
+            "noSurgeonFound": "Surgeon not found. Add to the case anyway?",
+            "add": "Add",
+            "alreadySelected": "This surgeon has already been selected for the current case"
+        },
+        "selectCaseTypeNew": {
+            "searchPlaceholder": "Search primary procedure by CPT code or name for ",
+            "selectedCaseType": "Selected primary procedure: ",
+            "notSelected": "Not Selected",
+            "continue": "Continue",
+            "nothingFound": "Nothing found",
+            "yesCancel": "Yes",
+            "surgeon": "Surgeon: "
+        },
+        "selectAddOnCaseType": {
+            "searchPlaceholder": "Search secondary procedure by CPT code or name for ",
+            "primaryCaseType": "Primary procedure: ",
+            "selectedAddOns": "Selected secondary procedure: ",
+            "notSelected": "Not Selected",
+            "continue": "Continue",
+            "nothingFound": "Nothing found",
+            "leaveWithoutSavingTitle": "Leave without saving?",
+            "leaveWithoutSavingSubtitle": "All unsaved changes will be lost.",
+            "no": "No",
+            "yes": "Yes",
+            "save": "Save",
+            "surgeon": "Surgeon: "
+        },
+        "selectSutureSheet": {
+            "searchPlaceholder": "Search by surgeon name or CPT code",
+            "selectedSutureSheet": "Selected suture sheet:",
+            "notSelected": "Not Selected",
+            "continue": "Continue",
+            "nothingFound": "Nothing found"
+        },
+        "identifyNeedles": {
+            "openTitle": "Open Suture Needles",
+            "closingTitle": "Close Suture Needles",
+            "jitTitle": "JIT Suture Needles",
+            "confirm": "Confirm",
+            "infoOpen": "Place suture needle wrappers into the Open drawer.",
+            "infoClosing": "Place suture needle wrappers into the Closing drawer.",
+            "infoJIT": "Place suture needle wrappers into the JIT drawer."
+        },
+        "reviewRedundantNeedles": {
+            "title": "Review and Confirm Redundancy",
+            "nomenclature": "Nomenclature",
+            "needlesPerPack": "Needles per Pack",
+            "packsToOpen": "Packs\nto Open",
+            "totalNeedles": "Total Needles",
+            "sutureNeedleUse": "Suture Needle Use",
+            "sutureNeedleCategory": "Suture Needle Category",
+            "potentialRedundantPack": "Potential\nRedundant Pack",
+            "totalSuturePacks": "Total\nSuture Packs",
+            "totalNeedlesFinal": "Total Needles",
+            "moreInfo": "More Info",
+            "continue": "Confirm",
+            "pack": "Pack",
+            "packs": "Packs",
+            "confirmed": "Confirmed",
+            "edit": "Edit",
+            "skip": "Skip",
+            "intendedUse": "Intended Use:",
+            "sutureInformation": "Suture Information",
+            "length": "Length",
+            "color": "Color",
+            "style": "Style",
+            "suturesPerPack": "Sutures per Pack",
+            "needlesPerSuture": "Needles per Suture",
+            "needleInformation": "Needle Information",
+            "size": "Size",
+            "arc": "ARC",
+            "tipType": "Tip Type",
+            "adjustedPacksAmount": "Adjusted Packs Amount",
+            "confirmTotal": "Confirm Total",
+            "sutureNeedles": "Suture Needle",
+            "potentiallyRedundant": "potentially redundant",
+            "packIs": "pack is",
+            "packsAre": "packs are",
+            "proceedText": "To proceed, confirm the final quantity for each suture needle type needed for this surgery.",
+            "proceed": "Proceed",
+            "Open": "Open",
+            "Close": "Close",
+            "JIT": "JIT"
+
+        },
+        "summarySheet": {
+            "caseTypeLabel": "Procedure to view details",
+            "title": "Summary Sheet",
+            "allCaseTypes": "All Case Types",
+            "categoryOpen": "Open",
+            "categoryClosing": "Closing",
+            "categoryJIT": "JIT",
+            "nomenclature": "Nomenclature",
+            "needlesPerPack": "Suture Needles\nper Pack",
+            "packsToOpen": "Packs to Open",
+            "sutureNeedleUse": "Suture Needle Use",
+            "openNeedleCount": "Open Suture\nNeedle Count",
+            "closingNeedleCount": "Closing Suture\nNeedle Count",
+            "jitNeedleCount": "JIT Suture\nNeedle Count",
+            "moreInfo": "More Info",
+            "total": "Total",
+            "instruction": "Place suture needle wrappers into the Open, JIT, and Closing drawers according to the procedure plan.",
+            "instructionSurgeonFlow": "Place suture needle wrappers into the Open, JIT, and Closing drawers.",
+            "confirm": "Accept",
+            "collapse": "Collapse",
+            "setAsideOpen": "Set Aside Open",
+            "setAsideJit": "Set Aside JIT",
+            "setAsideClosing": "Set Aside Closing",
+            "placeInClosingDrawer": "Place in Closing Drawer",
+            "packs": "packs",
+            "pack": "pack",
+            "sutureNeedle": "suture needles",
+            "proceed": "Proceed"
+        },
+        "needleDetail": {
+            "title": "Suture Needle Pack Details",
+            "nomenclature": "Nomenclature",
+            "needlesPerPack": "Suture Needles\nper Pack",
+            "packsToOpen": "Packs\nto Open",
+            "totalNeedles": "Total Suture\nNeedles",
+            "sutureNeedleUse": "Suture Needle Use",
+            "category": "Suture Needle\nCategory",
+            "redundantPack": "Potential\nRedundant Pack",
+            "totalPacks": "Total Suture\nNeedle Packs",
+            "finalTotalNeedles": "Total Suture\nNeedles",
+            "type": "Type",
+            "gauge": "Gauge",
+            "length": "Length",
+            "color": "Color",
+            "style": "Style",
+            "parLevel": "Par level",
+            "needleType": "Type",
+            "size": "Size",
+            "arc": "ARC",
+            "tip": "TIP",
+            "manufacturer": "Manufacturer",
+            "packImageAlt": "Needle pack example"
+        },
+        "startCount": {
+            "title": "Start Count",
+            "identifyOpen1": "Identify and set aside all",
+            "identifyClosing1": "And now identify and set aside all",
+            "identifyJIT1": "Next identify and set aside all",
+            "identifyOpen2": "suture needles.",
+            "identifyOpen2Surgeon": "suture needles",
+            "identifyClosing2": "suture needles.",
+            "identifyClosing2Surgeon": "suture needles",
+            "identifyJIT2": "(Just-in-Time) suture needles.",
+            "identifyJIT2Surgeon": "(Just-in-Time) suture needles",
+            "placeOpenBox": "Place the Open suture needle wrappers into the Open Drawer.",
+            "placeOpenBox1": "Place the ",
+            "placeOpenBox2": " suture needle wrappers into the Open Drawer.",
+            "placeJitBox": "Place the JIT suture needle wrappers into the JIT Drawer.",
+            "placeJitBox1": "Place the ",
+            "placeJitBox2": " suture needle wrappers into the JIT Drawer.",
+            "placeClosingBox": "Place the Closing suture needle wrappers into the Closing Drawer.",
+            "placeClosingBox1": "Place the ",
+            "placeClosingBox2": " suture needle wrappers into the Closing Drawer.",
+            "scanClosingBox": "Scan the iTrace mark on the Closing Drawer.",
+            "verificationCompleted": "iTrace mark verification completed.",
+            "scanProcedureKit": "Scan the iTrace mark on the Case Kit.",
+            "procedureKitScanned": "Case Kit scanned successfully.",
+            "scanBadgeEntry": "Scan the badge to enter as CIR.",
+            "procedureKitScanError": "Case Kit Scan Error",
+            "procedureKitNotVerified": "The Case Kit could not be verified.",
+            "drawerScanError": "iTrace mark Scan Error.",
+            "closingDrawerNotVerified": "The Closing drawer could not be verified.",
+            "rescan": "Rescan",
+            "open": "Open",
+            "closing": "Closing",
+            "jit": "JIT",
+            "startCountInstruction": "You are signed in as {{role}}. To begin the start count, first scan the Magvation\nWall Placard, then select surgeons and choose procedures for each.",
+            "proceed": "Proceed",
+            "scanSuccess": "Scan Complete for OR 1.",
+            "scanFailed": "Magvation Wall Placard is scanned but not valid.",
+            "selectSurgeon": "Select Surgeon"
+        },
+        "abortCase": {
+            "confirmMessage": "Are you sure you want to abort this case? Your progress will be lost.",
+            "noGoBack": "No, Go Back",
+            "yes": "Yes, Abort Case"
+        },
+        "abortedCase": {
+            "message": "The case was aborted. Click the button below to start a new case.",
+            "startCase": "Start Case",
+            "returnToAdmin": "Redo Setup"
+        }
+    },
+    "common": {
+        "back": "Back",
+        "expand": "Expand",
+        "info": "Info",
+        "ok": "OK",
+        "confirm": "Confirm"
+    },
+    "components": {
+        "redundantPackCounter": {
+            "decreaseAriaLabel": "Decrease redundant pack count",
+            "increaseAriaLabel": "Increase redundant pack count"
+        },
+        "categoryBadge": {
+            "open": "Open",
+            "closing": "Closing",
+            "jit": "JIT"
+        }
+    },
+    "scanInPrep": {
+        "verify": {
+            "title": "Put the final closing suture needles into the Closing Drawer and set them aside for the following case types",
+            "and": "and",
+            "warn": "DO NOT SCAN THEM IN"
+        },
+        "closeBoxScan": {
+            "title": "I confirm that I have set aside the suture needle for closing and have not yet scanned them in.",
+            "warn": "To continue, scan the Magvation ID on the Closing Drawer."
+        },
+        "scanReady": {
+            "title": "READY TO SCAN IN",
+            "warn": "Case Suture Needle Packages"
+        },
+        "needleScanExample": {
+            "title": "Scan GUDID Digital Matrix Code on Suture Needle Packages",
+            "warn": "Note: Code may be on front or back of suture needle pack",
+            "invalid": "Invalid scan",
+            "valid": "Valid scan"
+        }
+    },
+    "scanIn": {
+        "scanin": "Scan In",
+        "scanout": "Scan Out",
+        "needlesPerPack": "NEEDLES PER PACK",
+        "size": "SIZE",
+        "sutureType": "SUTURE TYPE",
+        "needleName": "NEEDLE NAME",
+        "packsScannedIn": "PACKS SCANNED IN",
+        "needlesScannedIn": "NEEDLES SCANNED IN",
+        "sutureSheetCount": "SUTURE SHEET COUNT",
+        "totalStartCount": "TOTAL START COUNT",
+        "action": "ACTION"
+    },
+    "haystackPair": {
+        "back": "Back",
+        "next": "Next",
+        "hayStack": "HayStack",
+        "hayTray": "HayTray",
+        "connectHaystack": {
+            "title": "Connect HayStack",
+            "subtitle": "Disconnected: Connect USB-C to HayHub"
+        },
+        "connectedHaystack": {
+            "title": "Connect HayStack",
+            "subtitle": "Connected!"
+        },
+        "connectHaytray": {
+            "title": "Connect HayTray",
+            "subtitle": "Disconnected: Insert into HayStack"
+        },
+        "connectedHaytray": {
+            "title": "Connect Haytray",
+            "subtitle": "Connected!"
+        },
+        "calibrateHaystack": {
+            "title": "Calibrate HayStack",
+            "subtitle": "Press the suture needle deposit button to calibrate the HayStack"
+        }
+    },
+    "countIn": {
+        "title": "Needle Count Discrepancy",
+        "reasonAdd1": "Provide a reason for adding the ",
+        "reasonAdd2": " suture needle before proceeding",
+        "reasonRemove1": "Provide a reason for removing the ",
+        "reasonRemove2": " suture needle before proceeding",
+        "addPrompt": "Provide an explanation for the additional needle",
+        "removePrompt": "Provide an explanation for the additional needle",
+        "back": "Back",
+        "save": "Save"
+    },
+    "verify": {
+        "title": "Verify the suture needle",
+        "confirmTitle": "ARE YOU SURE YOU WANT TO",
+        "confirmSubtitle": "Update the sharps sheet?",
+        "yes": "YES",
+        "validate": "VALIDATE",
+        "takeAction": "TAKE ACTION",
+        "no": "NO",
+        "finalHeader": "CASE SUTURE NEEDLES",
+        "finalTitle": "ARE YOU SURE",
+        "finalSubtitle": "case suture needles were added to the field?"
+    },
+    "sidebar": {
+        "closeCount": "Close Count",
+        "interimCount": "Interim Count",
+        "reliefCount": "Relief Count",
+        "help": "Help",
+        "closeCase": "Close Case",
+        "abortCase": "Abort Case"
+    },
+    "interimCount": {
+        "confirmQuestion": "Do you want to start the Interim Count?",
+        "no": "No",
+        "yes": "Yes",
+        "title": "Interim Count",
+        "interimTitle": "Interim Count",
+        "initiatedTitle": "Interim Count Initiated",
+        "abortCount": "Abort Count",
+        "reasonPrompt": "Select the reason for the interim count",
+        "reasonCavityClosure": "Cavity Closure (Not Final)",
+        "reasonExternalRequest": "Somebody Is Asking to Do an Interim Count",
+        "requesterPrompt": "Who is requesting an interim count?",
+        "requesterCIR": "CIR Role",
+        "requesterSCR": "SCR Role",
+        "requesterSurgeon": "Surgeon",
+        "requesterOther": "Other",
+        "done": {
+            "completedMatch": "Interim Count completed. Numbers match.",
+            "completedMismatch": "Interim Count completed. Numbers mismatch.",
+            "systemCountLabel": "Amount of remaining suture needles\naccording to system count",
+            "scrCountLabel": "Amount of suture needles on field according to SCR count",
+            "misplaced": "misplaced",
+            "extra": "extra",
+            "ok": "OK"
+        },
+        "scrCountEntry": {
+            "instruction": "Ask SCR role to count the number of suture needles on field and enter the number here.",
+            "undo": "Undo",
+            "clearAll": "Clear All",
+            "confirm": "Confirm"
+        },
+        "scrNeedlesOnField": {
+            "instruction": "Count the number of suture needles on field and report it to CIR.",
+            "recountInstruction": "Recount the number of suture needles on field and report it to CIR.",
+            "illustrationAlt": "Sterile field tray and suture needles - report the count to CIR."
+        },
+        "scrConfirmNeedles": {
+            "loading": "Loading...",
+            "questionOne": "Do you confirm that there is 1 suture needle on field?",
+            "questionOther": "Do you confirm that there are {{count}} suture needles on field?",
+            "yes": "Yes",
+            "no": "No"
+        },
+        "waitScrConfirm": "Wait for confirmation from the SCR...",
+        "section2": {
+            "checkCBI": {
+                "titlePrefix": "Total remaining count in the system is ",
+                "titleSuffix": " less than reported by SCR.",
+                "subtitle": "Check all contaminated, broken, and incompatible needles in the CBI Box for discrepancies.",
+                "correct": "CBI Box Numbers Are Correct",
+                "mismatch": "CBI Box Numbers Do Not Match the Expected Values"
+            }
+        },
+        "section3": {
+            "checkCBI": {
+                "titlePrefix": "The number of remaining needles in the system is ",
+                "titleSuffix": " more than reported by SCR.",
+                "subtitle": "Check all contaminated, broken, and incompatible needles in the CBI Box for discrepancies.",
+                "correct": "CBI Box Numbers Are Correct",
+                "mismatch": "CBI Box Numbers Do Not Match the Expected Values"
+            }
+        }
+    },
+    "closeCount": {
+        "title": "Closing Count",
+        "confirmQuestion": "Are you sure you want to initiate the closing count?",
+        "no": "No",
+        "yes": "Yes",
+        "contaminatedTitle": "Capture Contaminated Suture Needles Image",
+        "confirmContaminatedPrefix": "Do you confirm that there is\n",
+        "confirmContaminatedHighlight": "{{count}} contaminated",
+        "confirmContaminatedSuffix": " suture needle in the CBI Box?",
+        "confirmContaminatedPluralPrefix": "Do you confirm that there are\n",
+        "confirmContaminatedPluralHighlight": "{{count}} contaminated",
+        "confirmContaminatedPluralSuffix": " suture needles in the CBI Box?",
+        "brokenTitle": "Capture Broken Suture Needles Image",
+        "confirmBrokenPrefix": "Do you confirm that there is\n",
+        "confirmBrokenHighlight": "{{count}} broken",
+        "confirmBrokenSuffix": " suture needle in the CBI Box?",
+        "confirmBrokenPluralPrefix": "Do you confirm that there are\n",
+        "confirmBrokenPluralHighlight": "{{count}} broken",
+        "confirmBrokenPluralSuffix": " suture needles in the CBI Box?",
+        "incompatibleTitle": "Capture Incompatible Suture Needles Image",
+        "confirmIncompatiblePrefix": "Do you confirm that there is\n",
+        "confirmIncompatibleHighlight": "{{count}} incompatible",
+        "confirmIncompatibleSuffix": " suture needle in the CBI Box?",
+        "confirmIncompatiblePluralPrefix": "Do you confirm that there are\n",
+        "confirmIncompatiblePluralHighlight": "{{count}} incompatible",
+        "confirmIncompatiblePluralSuffix": " suture needles in the CBI Box?",
+        "hideNumbers": "Hide Numbers",
+        "showNumbers": "Show Numbers",
+        "waitForSCRLine1": "Wait until the SCR completes",
+        "waitForSCRLine2": "pending validations...",
+        "doneMessage": "Closing count is done. Moving to Stage 4 \u2014 Final Count. Prepare the closing suture needles."
+    },
+    "extraNeedles": {
+        "titlePrefix": "You have ",
+        "extra": "extra",
+        "titleSuffixSingular": " suture needle.",
+        "titleSuffixPlural": " suture needles.",
+        "subtitle": "Ask the team to check suture needles in the sterile field.",
+        "card1": "Needle Driver",
+        "card2": "Check inside\nHayStack",
+        "card3": "Surrounding area around HayStack",
+        "card4": "Drapes",
+        "card5": "Floor",
+        "notFound": "Suture Needle Not Found",
+        "found": "Suture Needle Found",
+        "subtitleXray": "Use the X-ray machine to locate any possible suture needles.",
+        "registeredPrefixSingular": " suture needle is registered as ",
+        "registeredPrefixPlural": " suture needles are registered as ",
+        "ok": "OK"
+    },
+    "remainingNeedles": {
+        "titlePrefixSingular": " more suture needle ",
+        "titlePrefixPlural": " more suture needles ",
+        "badge": "remaining",
+        "subtitleSingular": "Look for the remaining suture needle in the sterile field.",
+        "subtitlePlural": "Look for the remaining suture needles in the sterile field.",
+        "registeredPrefixSingular": " suture needle is registered as ",
+        "registeredPrefixPlural": " suture needles are registered as ",
+        "registeredBadge": "remaining"
+    },
+    "misplacedNeedles": {
+        "titlePrefixSingular": " suture needle is registered as ",
+        "titlePrefixPlural": " suture needles are registered as ",
+        "badge": "misplaced",
+        "subtitleSingular": "Look for the misplaced suture needle in the sterile field.",
+        "subtitlePlural": "Look for the misplaced suture needles in the sterile field.",
+        "xrayTitlePrefixSingular": " suture needle is still registered as ",
+        "xrayTitlePrefixPlural": " suture needles are still registered as ",
+        "subtitleXraySingular": "Use the X-ray machine to locate the misplaced suture needle.",
+        "subtitleXrayPlural": "Use the X-ray machine to locate the misplaced suture needles.",
+        "registeredPrefixSingular": " suture needle is registered as ",
+        "registeredPrefixPlural": " suture needles are registered as ",
+        "registeredBadge": "missing"
+    },
+    "interimRemainingNeedles": {
+        "titlePrefix": "Total remaining count in the system is still ",
+        "titleSuffix": " more than reported by SCR.",
+        "subtitle": "Ask the team to look for suture needles in the sterile field."
+    },
+    "needleFound": {
+        "title": "Select the type of suture needle found:",
+        "sterile": "Sterile",
+        "contaminated": "Contaminated",
+        "broken": "Broken",
+        "incompatible": "Incompatible",
+        "sublabel": "Suture Needle (s)"
+    },
+    "section1": {
+        "checkCBI": {
+            "titlePrefix": "Confirmed count is ",
+            "titleSuffix": " more than scanned",
+            "subtitle": "Check all contaminated, broken, and incompatible suture needles in the CBI Box for discrepancies.",
+            "correct": "CBI Box Numbers Are Correct",
+            "mismatch": "CBI Box Numbers Do Not Match the Expected Values"
+        },
+        "checkWrappers": {
+            "titlePrefix": "Confirmed count is ",
+            "titleSuffix": " more than scanned.",
+            "subtitle": "Verify that the scanned pack wrappers match the confirmed count.",
+            "match": "Scanned Packs Count Is Correct",
+            "incorrect": "Scanned Packs Count Is Incorrect",
+            "viewPacks": "See All Added Packs"
+        },
+        "addedPacks": {
+            "title": "List of Added Needle Packs",
+            "nomenclature": "Nomenclature",
+            "packsOpened": "Packs Opened",
+            "suturesPerPack": "Sutures per pack",
+            "sutureUse": "Suture Use",
+            "addedCount": "Added Suture Needle Count",
+            "addedDuringCase": "Added During Case",
+            "total": "Total"
+        },
+        "cbiSelection": {
+            "instructionLine1": "Select the CBI Box compartment with",
+            "instructionLine2": "the wrong suture needles count.",
+            "no": "No",
+            "yes": "Yes",
+            "confirm": "Confirm"
+        },
+        "brokenNeedle": {
+            "title": "Count Broken Suture Needle Fragments",
+            "instructionText": "Count the suture needle fragments.\n",
+            "instructionHighlight": "Tap each fragment in the image.",
+            "undo": "Undo",
+            "clearAll": "Clear All",
+            "confirm": "Confirm"
+        },
+        "contaminatedNeedle": {
+            "title": "Count Contaminated Suture Needles",
+            "instructionText": "Confirm the number of\ncontaminated suture needles in\nthe CBI Box: ",
+            "instructionHighlight": "tap each one in the image.",
+            "undo": "Undo",
+            "clearAll": "Clear All",
+            "confirm": "Confirm"
+        },
+        "addPack": {
+            "headerTitle": "Add Suture Needles",
+            "scanPromptLine1": "Scan the Digital Matrix Code of the",
+            "scanPromptLine2": "missing suture needle wrapper.",
+            "packQuestion": "Does this match the suture needles scanned?",
+            "packImageAlt": "Suture needle pack",
+            "waiting": "Waiting for SCR confirmation...",
+            "rejectedLine1": "SCR did not confirm adding the scanned pack. Extra suture needles",
+            "rejectedLine2": "are still present in the system. Do you want to add another pack?",
+            "no": "No",
+            "yes": "Yes",
+            "viewPacks": "See All Added Packs"
+        }
+    },
+    "section2": {
+        "checkCBI": {
+            "titlePrefix": "",
+            "titleSuffixSingular": " more suture needle ",
+            "titleSuffixPlural": " more suture needles ",
+            "badge": "remaining",
+            "subtitle": "Check all contaminated, broken, and incompatible suture needles in the CBI Box for discrepancies.",
+            "correct": "CBI Box Numbers Are Correct",
+            "mismatch": "CBI Box Numbers Do Not Match the Expected Values"
+        },
+        "incompatibleNeedle": {
+            "title": "Count Incompatible Suture Needles",
+            "instructionText": "Confirm the number of\nincompatible suture needles in the\nCBI Box: ",
+            "instructionHighlight": "tap on each one in the image.",
+            "undo": "Undo",
+            "clearAll": "Clear All",
+            "confirm": "Confirm"
+        }
+    },
+    "scrClosingCount": {
+        "step1Prefix": "Closing Count initiated. Put all ",
+        "step1Highlight": "used",
+        "step1Suffix": "\nsuture needles into HayStack. Press 'Confirm'\nbutton when done.",
+        "step2Prefix": "Now put all ",
+        "step2Highlight": "unused",
+        "step2Suffix": " suture needles into\nHayStack. Press 'Confirm' button when done.",
+        "step3Prefix": "Now place all ",
+        "step3Highlight": "packed",
+        "step3Suffix": " suture needles in packs into HayStack. Press 'Confirm' button when done.",
+        "confirm": "Confirm",
+        "validate": "Validate",
+        "waitForCIR": "Wait until CIR completes the CBI Box count...",
+        "waitForCIRReview": "Wait until the CIR reviews all newly added items...",
+        "waitForCIRReAdjudication": "Wait until CIR role reviews all new items added to CIR Re-Adjudication...",
+        "waitForCIRNeedleType": "Wait while the CIR identifies the needle type...",
+        "waitForCIRScan": "Wait while CIR scans the closing suture needles and drops them into the sterile basin...",
+        "validatePending": "Now resolve all pending SCR Validation items.",
+        "validatePendingRevalidation": "The CIR has completed verifications. Now resolve all ending SCR Validation items.",
+        "section1ValidateCbi": "CIR updated CBI Box counts.\nNow resolve all pending Validation items.",
+        "s1WaitCbiBox": "Wait while CIR checks\nthe CBI Box count...",
+        "s1WaitPrefix": "Confirmed count is ",
+        "s1WaitSuffix": " more than scanned.",
+        "s1WaitSubtitle": "Wait while CIR checks the empty suture needle wrappers and compares them to the list of packs added to the system...",
+        "s1ConfirmPackText": "of these suture needles were added to the Drop Zone. Do you confirm the count?",
+        "deny": "Deny",
+        "s2WaitCbiBox": "Wait while CIR checks\nthe CBI Box count...",
+        "section2ValidateCbi": "CIR updated CBI Box counts.\nNow resolve all pending Validation items.",
+        "section3ValidateMisplaced": "The CIR has completed the reviews.\nNow resolve pending validations for the misplaced suture needles.",
+        "waitForCIRReadjudicationS3": "Wait until CIR role reviews all new items added to pending CIR Re-Adjudication...",
+        "waitForCIRCBI": "Wait while CIR checks\nthe CBI Box count...",
+        "section4ValidateCbi": "CIR updated CBI Box counts.\nNow resolve all pending Validation items.",
+        "section5ValidateRemaining": "The CIR has completed the reviews.\nNow resolve pending validations for the remaining suture needles.",
+        "waitForCIRReadjudicationS5": "Wait until CIR role reviews all new items added to pending CIR Re-Adjudication..."
+    },
+    "closeCountSteps": {
+        "prefix": "Ask SCR to place all ",
+        "suffix": " suture needles into the HayStack",
+        "step1Type": "used",
+        "step2Type": "unused",
+        "step3Type": "packed"
+    },
+    "resolvePendingItems": {
+        "instructionText": "Resolve all CIR Verification, Adjudication, and Re-Adjudication items.",
+        "resolveNow": "Resolve Now"
+    },
+    "resolveCBIItems": {
+        "instructionTextLine1": "Review the items recently",
+        "instructionTextLine2": "added to the Re-Adjudication.",
+        "reAdjudicate": "Re-Adjudicate"
+    },
+    "closingCountVerification": {
+        "sutureNeedle": "Suture Needle",
+        "notSutureNeedle": "Not Suture Needle",
+        "sutureNeedles": "Suture Needles",
+        "notSutureNeedles": "Not Suture Needles"
+    },
+    "stageTracker": {
+        "case": "Case Count",
+        "stage1": "1",
+        "stage2": "2",
+        "stage3": "3",
+        "stage4": "4",
+        "stage5": "5",
+        "stage" : "Stage"
+    },
+    "infoBar": {
+        "lit": "LIT",
+        "time": "Time",
+        "surgeon": "Surgeon",
+        "surgeons": "Surgeons",
+        "surgeonsLower": "surgeons",
+        "scr": "SCR",
+        "cir": "CIR",
+        "hayScan": "HayScan",
+        "abortCase": "Abort Case"
+    },
+    "cirDashboard": {
+        "startCount": "Start Count",
+        "sutureNeedlesAddedDuringSurgery": "Added During Surgery",
+        "addSutureNeedles": "Add Suture Needles",
+        "totalScanned": "Total Scanned",
+        "cbiBox": "CBI Box",
+        "contaminated": "Contaminated",
+        "incompatible": "Incompatible",
+        "broken": "Broken",
+        "identifyAndRecord": "Identify & Record",
+        "haystack": "HayStack",
+        "misplaced": "Misplaced",
+        "totalConfirmed": "Total Confirmed",
+        "cirVerification": "CIR Verification",
+        "cirAdjudication": "CIR Adjudication",
+        "cirReAdjudication": "CIR Re-Adjudication",
+        "scrValidation": "SCR Validation",
+        "totalRemaining": "Total Remaining",
+        "verify": "Verify",
+        "adjudicate": "Adjudicate",
+        "reAdjudicate": "Re-Adjudicate",
+        "cbiNotification": "Pick up a contaminated suture needle",
+        "brokenNotification": "Pick up a broken suture needle",
+        "incompatibleNotification": "Pick up an incompatible suture needle",
+        "misplacedNotification": "Pick up a found misplaced suture needle",
+        "foundNonSterileNotification": "Pick up a found suture needle",
+        "blade": "Blade",
+        "k-wire": "K-Wire",
+        "other": "Other",
+        "hair": "Hair",
+        "multiple": "Multiple",
+        "remove": "Remove"
+    },
+    "cirVerification": {
+        "verification": "Verification",
+        "items": "Items",
+        "help": "Help",
+        "hayscan": "HayScan",
+        "reviewImage": "Review Image",
+        "completeNeedle": "Suture Needles",
+        "notCompleteNeedle": "Not Suture Needles",
+        "imageNumber": "Image #",
+        "confirm": "Confirm",
+        "showOverlay": "Analysis Overlay",
+        "hideOverlay": "Hide Analysis Overlay",
+        "details": "Details",
+        "image": "Image",
+        "needleLength": "Needle Length",
+        "chordLength": "Chord Length",
+        "arc": "Arc",
+        "lit": "LIT",
+        "oneCompleteNeedle": "One Suture Needle",
+        "notOneCompleteNeedle": "Not One Suture Needle",
+        "warningMessage": "Leave without confirming?\nVerifications will be lost.",
+        "leave": "Leave Without Saving",
+        "stay": "Stay on Page"
+    },
+    "cbi": {
+        "hideMarkers": "Hide Numbers",
+        "showMarkers": "Show Numbers",
+        "contaminated": {
+            "title": "CBI Contaminated Needles",
+            "header": {
+                "help": "Help",
+                "batteryLabel": "HayScan"
+            },
+            "step2": {
+                "options": {
+                    "multiple": "Multiple contaminated needles"
+                }
+            },
+            "actions": {
+                "confirm": "Confirm"
+            }
+        },
+        "question": {
+            "header": "Identify Suture Needle"
+        },
+        "captureItem": {
+            "title": "Capture Item",
+            "title-2.23": "Account for Second Suture Needle Fragment",
+            "title-2.24": "Capture Suture Needle Fragment Image",
+            "titleBrokenNotification": "Account for Suture Needle Fragments",
+            "titleBrokenTwoFragments": "Account for Two Suture Needle Fragments",
+            "titleIdentifyRecord": "Identify & Record",
+            "titleContaminated": "Capture Contaminated Suture Needles Image",
+            "titleIncompatible": "Capture Incompatible Suture Needles Image",
+            "help": "Help",
+            "instructionPart1": "Place <highlight>\"Contaminated\"</highlight> suture needle into",
+            "cbiBox": "CBI box",
+            "instructionPart2": "and take a photo",
+            "captureInstruction-2.24": "Capture Image of <highlight>CBI Box \"Broken\"</highlight> compartment.",
+            "captureInstructionContaminated": "Capture image of CBI Box <highlight>\"Contaminated\"</highlight> compartment.",
+            "captureInstructionBroken": "Capture Image of CBI Box <highlight>\"Broken\"</highlight> compartment.",
+            "captureInstructionIncompatible": "Capture image of CBI Box <highlight>\"Incompatible\"</highlight> compartment.",
+            "instructionSelectInitial": "Make sure you have secured the suture needle in the correct <highlight>CBI Box</highlight> compartment before continuing.",
+
+            "captureInstructionPart1": "Capture an image of all contaminated",
+            "captureInstructionPart2": "compartment",
+            "captureInstructionHighlight": "suture needles in the <highlight>{{box}}</highlight> {{suffix}}",
+            "instructionHighlight": "the designated <highlight>{{box}}</highlight> compartment",
+            "proceed": "Proceed",
+            "proceedToReview": "Proceed to Review Image",
+            "imageNumber": "Image #"
+        },
+        "photoConfirmation": {
+            "question": "Keep this image?",
+            "retake": "Retake",
+            "yes": "Yes"
+        },
+        "countNeedles": {
+            "header": "Count {{type}} Suture Needles",
+            "instructionPart1": "Count the suture needle fragments.",
+            "instructionPart2": "Tap each fragment in the image.",
+            "instructionMisplacedContaminated": "Confirm the number of contaminated suture needles in the CBI box:",
+            "instructionContaminatedSelect": "Confirm the number of contaminated suture needles in the CBI box: <highlight>tap each one in the image.</highlight>",
+            "instructionRemoveFromCBI": "Using the new image, confirm the\nnumber of {{type}} needles in\nthe CBI Box: <highlight>tap each one in the\nimage</highlight>",
+            "undo": "Undo",
+            "clearAll": "Clear All",
+            "confirm": "Confirm"
+        },
+        "incompatible": {
+            "captureItem": {
+                "instructionPart1": "Place incompatible suture needle into",
+                "instructionInitial": "Place <highlight>\"Incompatible\"</highlight> suture needle into the designated CBI box compartment and take a photo.",
+                "captureInstructionPart1": "Capture an image of all incompatible",
+                "captureInstructionHighlight": "suture needles in the <highlight>{{box}}</highlight> {{suffix}}"
+            },
+            "countNeedles": {
+                "instructionFull": "Confirm the number of incompatible suture needles in the CBI box: <highlight>tap each one in the image.</highlight>"
+            }
+        },
+        "broken": {
+            "question": "Do you have the other suture needle piece?",
+            "no": "No",
+            "yes": "Yes",
+            "captureItem": {
+                "instructionAdjudicationPart1": "Place the second suture needle fragment into the CBI Box compartment labeled <highlight>\"Broken\"</highlight>.",
+                "instructionSelectDirect": "Place suture needle fragments into the CBI Box compartment labeled <highlight>\"Broken\"</highlight>.",
+                "instructionPart1": "Place the fragment of the broken needle into the designated",
+                "instructionPart1Plural": "Place the fragments of the broken needle into the designated",
+                "instructionSelectYes": "Place two suture needles fragments into the CBI Box compartment labeled <highlight>\"Broken\"</highlight>.",
+                "instructionSelectNo": "Place the fragment of the broken suture needle into the CBI Box compartment labeled <highlight>\"Broken\"</highlight>.",
+                "instructionMisplaced": "Place the fragment of the <highlight>\"Broken\"</highlight> suture needle into the designated CBI box compartment and take a photo.",
+                "captureInstructionPart1": "Capture an image of all broken suture needle fragments in the",
+                "instructionPart2": "and take a photo",
+                "captureInstructionPart2": "compartment",
+                "captureInstructionHighlight": "suture needle fragments in the <highlight>{{box}}</highlight> {{suffix}}",
+                "instructionHighlight": "<highlight>{{box}}</highlight> compartment and take a photo"
+            },
+            "countNeedles": {
+                "instructionPart1": "Confirm the number of broken needle fragments: "
+            }
+        },
+        "select": {
+            "title": "Select suture needle type",
+            "titleIdentify": "Identify Suture Needle",
+            "contaminated": {
+                "name": "Contaminated",
+                "label": "Suture Needle"
+            },
+            "broken": {
+                "name": "Broken",
+                "label": "Suture Needle"
+            },
+            "incompatible": {
+                "name": "Incompatible",
+                "label": "Suture Needle"
+            },
+            "misplaced": {
+                "name": "Misplaced",
+                "label": "Suture Needle"
+            }
+        }
+    },
+    "misplaced": {
+        "whatWasFound": "What was found?",
+        "completeSutureNeedle": "Complete Suture Needle",
+        "fragmentOfBrokenNeedle": "Fragment of a Broken Needle"
+    },
+    "scrDashboard": {
+        "haystackCommandInterface": "HayStack Command Interface",
+        "validate": "Validate",
+        "action": "Take Action",
+        "yes": "Yes",
+        "no": "No",
+        "blade": "Blade",
+        "k-wire": "K-Wire",
+        "hypo": "Hypo",
+        "other": "Other",
+        "hair": "Hair",
+        "multiple": "Multiple",
+        "image": "Image #",
+        "contaminatedNotification": "The request to report a contaminated suture needle was sent to the CIR role",
+        "brokenNotification": "The request to report a broken suture needle was sent to the CIR role",
+        "incompatibleNotification": "The request to report an incompatible suture needle was sent to the CIR role",
+        "misplacedNotification": "The request to report a found misplaced suture needle was sent to the CIR role"
+    },
+    "scrValidation": {
+        "scrValidation": "SCR Validation",
+        "image": "Image #",
+        "oneCompletePrompt": "Are you sure this is <0>ONE COMPLETE</0> suture needle?",
+        "brokenPrompt": "Are you sure this is one fragment of a broken suture needle?",
+        "bladePrompt": "Are you sure this is a blade?",
+        "otherPrompt": "Are you sure this is a {{customText}}?",
+        "multiplePrompt": "Are you sure these are {{count}} complete suture needles?",
+        "kwirePrompt": "Are you sure this is a K-Wire?",
+        "hypoPrompt": "Are you sure this is a hypo?",
+        "yes": "Yes",
+        "no": "No",
+        "contaminatedPromptPrefix": "Do you confirm that there is\n",
+        "contaminatedPromptHighlight": "{{count}} contaminated",
+        "contaminatedPromptSuffix": " suture needle in the CBI Box?",
+        "contaminatedPromptPluralPrefix": "Do you confirm that there are\n",
+        "contaminatedPromptPluralHighlight": "{{count}} contaminated",
+        "contaminatedPromptPluralSuffix": " suture needles in the CBI Box?",
+        "incompatiblePromptPrefix": "Do you confirm that there is\n",
+        "incompatiblePromptHighlight": "{{count}} incompatible",
+        "incompatiblePromptSuffix": " suture needle in the CBI Box?",
+        "incompatiblePromptPluralPrefix": "Do you confirm that there are\n",
+        "incompatiblePromptPluralHighlight": "{{count}} incompatible",
+        "incompatiblePromptPluralSuffix": " suture needles in the CBI Box?",
+        "cbiBrokenPromptPrefix": "Do you confirm there is\n",
+        "cbiBrokenPromptHighlight": "{{count}} broken",
+        "cbiBrokenPromptSuffix": " needle fragment in the CBI box?",
+        "cbiBrokenPromptPluralPrefix": "Do you confirm there are\n",
+        "cbiBrokenPromptPluralHighlight": "{{count}} broken",
+        "cbiBrokenPromptPluralSuffix": " needle fragments in the CBI box?",
+        "dashboard": "Back to Dashboard",
+        "hideMarkers": "Hide Markers",
+        "showMarkers": "Show Markers",
+        "removedCbi": "An object was removed from the CBI Box. Review the new image and confirm the new number of suture needles in the {{type}} compartment.",
+        "reviewRemovedBroken": "Do you confirm there are <cnt>{{num}}</cnt> <tp>{{type}}</tp> needle fragments in the CBI Box?",
+        "reviewRemovedNeedles": "Do you confirm there are <cnt>{{num}}</cnt> <tp>{{type}}</tp> needles in the CBI Box?",
+        "previousImage": "Previous Image",
+        "newImage": "New Image",
+        "contaminated": "contaminated",
+        "broken": "broken",
+        "incompatible": "incompatible"
+    },
+    "removeFromCBI": {
+        "header": "Remove Object",
+        "confirm": {
+            "question": "Are you sure you want to remove the object from the CBI Box?",
+            "no": "No",
+            "yes": "Yes"
+        },
+        "selectType": {
+            "title": "Which compartment in the CBI Box contains the object to be removed?"
+        },
+        "identifyRecord": {
+            "instruction": "Remove the object that is not a suture needle from the <highlight>\"{{type}}\"</highlight> compartment, then take a photo."
+        },
+        "compare": {
+            "instruction": "Why did the {{type}} needle\ncount decrease?",
+            "sharp": "Sharp object was removed",
+            "blade": "Blade was removed",
+            "kwire": "K-wire was removed",
+            "other": "Other",
+            "previous": "Previous Image",
+            "new": "New Image",
+            "confirm": "Confirm",
+            "provide": "Provide a reason",
+            "header": "{{type}} Suture Needles"
+        }
+    },
+    "cbiReadjudication": {
+        "title": "Re-Adjudication",
+        "image": "Image #",
+        "hideNumbers": "Hide Numbers",
+        "showNumbers": "Show Numbers",
+        "confirmContaminatedPrefix": "Do you confirm that there is\n",
+        "confirmContaminatedHighlight": "{{count}} contaminated",
+        "confirmContaminatedSuffix": " suture needle in the CBI Box?",
+        "confirmContaminatedPluralPrefix": "Do you confirm that there are\n",
+        "confirmContaminatedPluralHighlight": "{{count}} contaminated",
+        "confirmContaminatedPluralSuffix": " suture needles in the CBI Box?",
+        "confirmBrokenPrefix": "Do you confirm that there is\n",
+        "confirmBrokenHighlight": "{{count}} broken",
+        "confirmBrokenSuffix": " needle fragment in the CBI Box?",
+        "confirmBrokenPluralPrefix": "Do you confirm that there are\n",
+        "confirmBrokenPluralHighlight": "{{count}} broken",
+        "confirmBrokenPluralSuffix": " needle fragments in the CBI Box?",
+        "confirmIncompatiblePrefix": "Do you confirm that there is\n",
+        "confirmIncompatibleHighlight": "{{count}} incompatible",
+        "confirmIncompatibleSuffix": " suture needle in the CBI Box?",
+        "confirmIncompatiblePluralPrefix": "Do you confirm that there are\n",
+        "confirmIncompatiblePluralHighlight": "{{count}} incompatible",
+        "confirmIncompatiblePluralSuffix": " suture needles in the CBI Box?",
+        "no": "No",
+        "yes": "Yes",
+        "tapInstructionLine1_broken": "Count the suture needle fragments.",
+        "tapInstructionLine2_broken": "Tap each fragment in the image.",
+        "tapInstructionLine1_contaminated": "Count the contaminated suture needles.",
+        "tapInstructionLine2_contaminated": "Tap each needle in the image.",
+        "tapInstructionLine1_incompatible": "Count the incompatible suture needles.",
+        "tapInstructionLine2_incompatible": "Tap each needle in the image.",
+        "undo": "Undo",
+        "clearAll": "Clear All",
+        "confirm": "Confirm"
+    },
+    "sections": {
+        "section3Title": "Section 3",
+        "section3Desc": "A misplaced needle was found in the sterile zone",
+        "section4Title": "Section 4",
+        "section4Desc": "A misplaced needle was found in the non-sterile zone",
+        "section4CaptureTitle": "Section 4 - Capture",
+        "section4CaptureDesc": "Capture photo flow (coming soon)",
+        "section5Title": "Section 5",
+        "section5Desc": "A remaining needle was found in the sterile zone",
+        "section6Title": "Section 6",
+        "section6Desc": "A remaining needle was found in the non-sterile zone"
+    },
+    "section3": {
+        "waitForScrPlacement": "Wait while the SCR places all found misplaced suture needles into the HayStack...",
+        "scrPlaceNeedles": "Place the misplaced suture needles found in the\nsterile field into the HayStack and confirm when finished."
+    },
+    "section5": {
+        "waitForScrPlacement": "Wait while the SCR places all found remaining suture needles into the HayStack...",
+        "scrPlaceNeedles": "Place the remaining suture needles found in the\nsterile field into the HayStack and confirm when finished."
+    },
+    "section4": {
+        "titleContaminated": "Account for Contaminated Suture Needles",
+        "titleBroken": "Account for Suture Needle Fragments",
+        "titleIncompatible": "Account for Incompatible Suture Needle",
+        "instructionContaminatedPre": "Place ",
+        "highlightContaminated": "\u201cContaminated\u201d",
+        "instructionContaminatedPost": " suture needle into the\ndesignated CBI Box compartment and take a photo.",
+        "instructionBrokenPre": "Place the fragment of the ",
+        "highlightBroken": "\u201cBroken\u201d",
+        "instructionBrokenPost": " suture needle into the\ndesignated CBI Box compartment and take a photo.",
+        "instructionIncompatiblePre": "Place ",
+        "highlightIncompatible": "\u201cIncompatible\u201d",
+        "instructionIncompatiblePost": " suture needle into the\ndesignated CBI Box compartment and take a photo.",
+        "takePhoto": "Take Photo",
+        "proceed": "Proceed",
+        "captureHeaderContaminated": "Capture Contaminated Suture Needles Image",
+        "captureHeaderBroken": "Capture Suture Needle Fragment Image",
+        "captureHeaderIncompatible": "Capture Incompatible Suture Needles Image",
+        "captureInstructionPre": "Capture image of CBI Box\n",
+        "captureHighlightContaminated": "\u201cContaminated\u201d",
+        "captureHighlightBroken": "\u201cBroken\u201d",
+        "captureHighlightIncompatible": "\u201cIncompatible\u201d",
+        "captureInstructionPost": " compartment.",
+        "capture": "Capture",
+        "keepThisImage": "Keep this image?",
+        "retake": "Retake",
+        "yes": "Yes"
+    },
+    "addedNeedles": {
+        "addSutureNeedles": "Add Suture Needles",
+        "addSutureNeedlesInstructionHeader": "Add Suture Needles Instructions",
+        "addSutureNeedlesInstructions": "To add suture needles, take a suture needle pack and scan it. Then present the needles to the SCR by either placing them in the drop zone for visual confirmation or handing them over directly while maintaining positive visual contact.",
+        "help": "Help",
+        "addQuestion": "Add more suture needles?",
+        "no": "No",
+        "yes": "Yes",
+        "scanPrompt": "Scan Digital Matrix Code on Suture Needle Wrapper.",
+        "needleScanQuestion": "Do you want to add this pack?",
+        "dontTell": "Do not tell the number to SCR.",
+        "needlesPerPack": "Needles per Package",
+        "size": "Size",
+        "sutureType": "Suture Type",
+        "needleName": "Needle Name",
+        "dropZonePrompt": "Place the needles in the designated Sterile Zone and put the empty package in the wrapper collector.",
+        "confirm": "Confirm",
+        "waiting": "Waiting for SCR confirmation...",
+        "notConfirmed": "The SCR did not confirm the number or type of needles placed in the Sterile Zone. An incorrect needle package may have been introduced.",
+        "startInterim": "Start an Interim Count to resolve the discrepancy.",
+        "interimButtonText": "Start Interim Count",
+        "pressConfirm": "Press \"Confirm\" when done.",
+        "wastePrompt": "The needles in the Drop Zone need to be disposed of. Confirm that the SCR has wasted all needles properly.",
+        "viewAddedNeedles": "See All Added Packages",
+        "understood": "Understood, Continue",
+        "restartNoti": "HayScan timed out. To restart the HayScan press the button.",
+        "restartScanner": "Restart HayScan"
+    },
+    "scrAddedNeedles": {
+        "addSutureNeedles": "Add Suture Needles",
+        "needlesPerPack": "Needles per package",
+        "size": "Size",
+        "sutureType": "Suture type",
+        "needleName": "Needle name",
+        "question": "Do you confirm that 2 of these needles were added to the Drop Zone?",
+        "yes": "Yes",
+        "no": "No",
+        "confirm": "Confirm",
+        "waiting": "Waiting for CIR confirmation...",
+        "interimQuestion": "Interim Count initiated. Put all <0>used</0> suture needles into HayStack. Press 'Confirm' button when done."
+    },
+    "scrActionScreen": {
+        "menu": "Menu",
+        "help": "Help",
+        "foundMisplacedNeedle": "Found Misplaced Needle",
+        "contaminatedNeedle": "Contaminated Needle",
+        "brokenNeedle": "Broken Needle",
+        "incompatibleNeedle": "Incompatible Needle",
+        "interimCount": "Interim Count",
+        "next": "Next",
+        "backToDashboard": "Back to Dashboard",
+        "confirm": "Confirm",
+        "foundMisplacedNeedleQuestion": "Was the needle found in the sterile zone?",
+        "no": "No",
+        "yes": "Yes",
+        "hayStackPrompt": "Insert the misplaced needle into the HayStack, \nthen press the + button.",
+        "blankImage1": "Needle image is blank.",
+        "blankImage2": "Stop and immediately search until the needle is found.",
+        "sterileField": "1. Check inside HayStack",
+        "surgicalSite": "2. Needle Driver",
+        "instruments": "3. Surrounding area around HayStack",
+        "drapes": "4. Drapes",
+        "floor": "5. Floor",
+        "itemFound": "Item Found",
+        "itemNotFound": "Item Not Found"
+    },
+    "scrSetupScreen": {
+        "title": "Start Count",
+        "openKit": "Retrieve Case Kit Components.",
+        "openKitStep1": "Remove top tray of Case Kit containing the HayLoft & 2 HaySnips and place on sterile field.",
+        "openKitStep2": "Remove all contents in the bottom of the Case Kit (HayTray, Sterile Arm Drape, CBI Box).",
+        "openKitStep3": "Keep top tray of Case Kit for Labeled Drop Zone area during case.",
+        "openKitDesc": "Break the sterile seal and open the kit to expose all components.",
+        "removeHaystack": "Remove the HayStack from the sterile container.",
+        "removeHaystackDesc": "Lift HayStack out of the sterile tray using proper sterile technique.",
+        "removeHayStackStep1": "Unlatch & open top of HayBarn (Sterile Container).",
+        "removeHayStackStep2": "Remove Accessory Components from mounting surfaces inside lids (3 HayBins, 1 HayTrough).",
+        "removeHayStackStep3": "Lift HayStack vertically & remove from HayBarn.",
+        "verify": "Verify sterility before use.",
+        "drapeArm": "Instructions on How to Drape the Arm.",
+        "drapeArmStep1": "Place the sterile drape over the arm.",
+        "drapeArmStep2": "Fully cover and secure the drape.",
+        "drapeArmStep3": " Confirm the sterile field is intact.",
+        "mountHaystack": "Instructions on How to Mount HayStack onto the Arm.",
+        "mountHaystackStep1": "Position HayStack on the draped arm.",
+        "mountHaystackStep2": "Secure the device according to the mounting points.",
+        "mountHaystackStep3": "Confirm the unit is stable and remains sterile.",
+        "plugHaystack": "How to Plug the HayStack Cord into the ScrubHub.",
+        "plugHayStackStep1": "SCR is responsible for attaching HayStack power cord to the draped sterile arm and maintaining sterility.",
+        "plugHayStackStep2": "At the Last attachment point, hand cord to the CIR.",
+        "plugHayStackStep3": "CIR must plug the now unsterile end of the HayStack power cord into the PD injector on the back of the AIO monitor.",
+        "selfTest": "Running HayStack self-tests...",
+        "failed": "Device tests failed.",
+        "replace": "Replace the HayStack.",
+        "connected": "HayStack is now connected.",
+        "buttonTest": "Press all four buttons to verify they are working properly and make sure the 4 lights with icons are working.",
+        "actuatorTest": "Press the actuator buttons.",
+        "buttonTestFailed": "Some of the buttons or lights are not\nworking properly. Replace the\nHaystack",
+        "actuatorTestFailed": "Some of the buttons aren't working properly. Replace the HayStack.",
+        "hayloftInstructions": "Collect suture needles from the sterile basin, put them",
+        "hayloftInstructions2": "into the HayLoft and place it on top of the HayStack.",
+        "wait1": "Wait while CIR scans the suture needle\nwrappers and drops suture needles in the\nsterile basin...",
+        "waitCIRScanCaseKit": "Wait while CIR scans the new Case Kit...",
+        "countTypes1": "Count {{nomenclature}} suture needles and",
+        "countTypes2": "report the number to the CIR.",
+        "countTotal1": "Count all suture needles in the Sterile",
+        "countTotal2": "Field and report the number to CIR.",
+        "confirmTotal1": "Can you confirm that there are ",
+        "confirmTotal2": " suture needles on the sterile field?",
+        "yes": "Yes",
+        "no": "No",
+        "waitTimeout": "Wait for timeout to be completed...",
+        "cbiHandoff": "Remove and Hand Off the CBI Box.",
+        "cbiHandoffStep1": "Remove the CBI Box from the HayTray.",
+        "cbiHandoffStep2": "Hand it off to the CIR at the handoff point.",
+        "insertHaytray": "Instructions on How to Insert the HayTray.",
+        "insertHaytrayStep1": "Insert the HayTray into the HayStack slot.",
+        "insertHaytrayStep2": "Ensure it is fully seated and aligned.",
+        "insertHaytrayStep3": "Confirm the tray is secure before continuing.",
+        "insertHaytrayStep4": "If the tray does not seat properly or an error is detected, report the issue or indicate that the self-test should start automatically.",
+        "haytrayTest": "Running HayTray self-tests...",
+        "haytrayConnected": "HayTray connected.",
+        "haytrayFailed": "HayTray tests failed.",
+        "haytrayReplace": "Replace the HayTray.",
+        "countMismatch": "Scanned and field counts do not match.\nCheck the field for missing or extra suture needles.",
+        "noneFound": " If no suture needles are found, recount the number of {{nomenclature}}\nsuture needles and report the number to the CIR again.",
+        "mismatchConfirm1": "Can you confirm the",
+        "mismatchConfirm2": "field count reported to the CIR?",
+        "nomenclature": "Nomenclature",
+        "needlesPerPack": "Suture Needles per Pack",
+        "packsToOpen": "Packs to Open",
+        "sutureNeedleUse": "Suture Needle Use",
+        "mismatchConfirmQuestion": "of these suture needles were\nadded to the Drop Zone. Do you\nconfirm the count?",
+        "size": "Size",
+        "sutureType": "Suture Type",
+        "needleName": "Needle Name",
+        "recount1": "Recount all suture needles in the sterile",
+        "recount2": "field and report the number to CIR again.",
+        "placeholder": "Lorem ipsum",
+        "assemble": "Assemble HayStack Components",
+        "assembleStep1": "Place HayLoft on top of HayStack.",
+        "assembleStep2": "Attach HayBins to left side of HayStack using universal mounts.",
+        "assembleStep3": "Attach HayTrough on leading edge of HayStack using universal mounts.",
+        "assembleStep4": "Secure both HaySnips to universal mounts on HayTrough.",
+        "waitForSurgeonEdit": "Wait while CIR adds a new surgeon...",
+        "waitStartCount": "Wait while CIR initiates the Start Count...",
+        "waitNewHayTray": "Wait while CIR scans new Case Kit..."
+
+    },
+    "cirSetupScreen": {
+        "title": "Start Count",
+        "prepareStep1": "Present the Case Kit in the sterile fashion.",
+        "prepareStep2": "Verify sterility before use.",
+        "prepareTitle": "Prepare and Open Case Kit.",
+        "verified": "Sterility Verified",
+        "haystackTitle": "Prepare HayStack.",
+        "haystackStep1": "Present HayStack in the sterile fashion.",
+        "haystackStep2": "Verify sterility before use.",
+        "drapeTitle": "Instructions on How to Drape the Arm.",
+        "drapeStep1": "Place the sterile drape over the arm.",
+        "drapeStep2": "Fully cover and secure the drape.",
+        "drapeStep3": "Confirm the sterile field is intact.",
+        "proceed": "Proceed",
+        "mountTitle": "Instructions on How to Mount HayStack onto the Arm.",
+        "mountStep1": "Position HayStack on the draped arm.",
+        "mountStep2": "Secure the device according to the mounting points.",
+        "mountStep3": "Confirm the unit is stable and remains within the sterile field.",
+        "plugTitle": "How to Plug the HayStack Cord into the ScrubHub.",
+        "plugStep1": "Receive the cord from SCR.",
+        "plugStep2": "Remove the protective cap.",
+        "plugStep3": "Plug the connector into the ScrubHub.",
+        "scanPrompt": "Scan Digital Matrix Codes for suture\nneedle wrappers in the Open drawer.",
+        "scanPrompt2": "2. Open Suture Needle wrappers and deposit in the Drop Zone or Sterile Bin.",
+        "pickup1": "Tell SCR to pick up the suture needles from",
+        "pickup2": "the sterile basin and place into the HayLoft.",
+        "initial": "Start the initial count.",
+        "loginSuccess": "You've successfully signed in as {{role}}.",
+        "startCount": "Start Count",
+        "waitSCR": "Wait until SCR confirms the number...",
+        "countComplete": "Initial count completed. Wait for timeout...",
+        "confirmComplete": "Confirm Timeout Completed",
+        "waitSelfTest": "Wait until the HayStack self-tests are completed...",
+        "haystackFailed": "Device tests failed. Replace the HayStack.",
+        "replaceHaystack": "Replace HayStack",
+        "replaceHayTray": "Replace HayTray",
+        "cbiHandoff": "Confirm the handoff of the CBI Box.",
+        "cbiStep1": "Receive CBI box from SCR in accordance with hospital policy.",
+        "cbiStep2": "Place the CBI box into the CBI Box Caddy located on the HineSight with proper orientation",
+        "confirm": "Confirm",
+        "replaceEither": "Wait while the SCR completes the HayStack tests...",
+        "confirmHaystack": "Confirm when the replacement HayStack is available.",
+        "confirmHaytray": "Confirm when the replacement HayTray is available.",
+        "placeholder": "Lorem ipsum",
+        "assemble": "Confirm When HayStack Components Are Assembled.",
+        "confirmHayLoft": "Confirm HayLoft on HayStack",
+        "selfTest": "Running HayStack self-tests...",
+        "connected": "HayStack is now connected.",
+        "failed": "Device tests failed.",
+        "replace": "Replace the HayStack.",
+        "haytrayWait": "Wait for the SCR to\ninsert the HayTray...",
+        "haytrayTest": "Running HayTray self-tests...",
+        "haytrayConnected": "HayTray connected.",
+        "hayTrayFailed": "HayTray tests failed. Replace the HayTray.",
+        "restartScannerTitle": "HayScan timed out.\nTo restart the HayScan press the button below.",
+        "restartScanner": "Restart Scanner",
+        "scanNewCaseKit": "Scan the iTrace mark on the new Case Kit.",
+        "scanSuccess": "New Case Kit scanned successfully."
+    },
+    "scannedList": {
+        "title": "Scan Suture Needle Wrappers in the Open Category",
+        "nomenclature": "Nomenclature",
+        "suturePerPack": "Suture Needles per Pack",
+        "packsToOpen": "Packs to Open",
+        "sutureNeedleUse": "Suture Needle Use",
+        "openSutureNeedleCount": "Open Suture Needle Count",
+        "total": "Total",
+        "complete": "Complete",
+        "confirm": "Confirm",
+        "initial": "Start the initial count.",
+        "startCount": "Start Count",
+        "newProcedureTitle": "New procedure added",
+        "newProcedureMessage": "Some needles have already been added in the sterile basin or Sterile Field.\nBelow are the remaining open suture needles to complete the start count."
+    },
+    "confirmCount": {
+        "startCount": "Start Count",
+        "nomenclature": "Nomenclature",
+        "suturePerPack": "Suture Needles per Pack",
+        "packsToOpen": "Packs to Open",
+        "sutureNeedleUse": "Suture Needle Use",
+        "sutureNeedlesScanned": "suture needles scanned",
+        "askSCR": "Ask SCR for the {{nomenclature}}\ncount and confirm the number.",
+        "dontTell": "Do not tell the number to SCR.",
+        "noMatch": "Count Doesn't Match",
+        "confirm": "Confirm",
+        "mismatchTitle": "Ask SCR to check the field for missing or extra suture needles.",
+        "mismatchDescription": "If no suture needles are found, ask to recount the number of {{nomenclature}} suture needles and report the number.",
+        "fieldCount": "Field Count",
+        "waitingForSCR": "Wait for the SCR to confirm the updates..."
+    },
+    "totalCount": {
+        "startCount": "Start Count",
+        "clearAll": "Clear All",
+        "confirm": "Confirm",
+        "prompt1": "Ask the SCR to count the number of",
+        "prompt2": "suture needles in the Sterile Field and enter",
+        "prompt3": "the number here.",
+        "prompt": "Ask the SCR to count the number of suture needles in the Sterile Field and enter the number here.",
+        "scrNotConfirm": "SCR did not confirm the number.",
+        "askSCR": "Ask the SCR to state the number clearly, then enter the\nnumber they provide.",
+        "newNumber": "Enter New Number",
+        "valueDoesNotMatch": "The value doesn't match the needle field number stored in the system.",
+        "valueToo": "Your value is too ",
+        "pleaseEnter": "Enter a new number.",
+        "low": "low",
+        "high": "high",
+        "restart": "Are you sure you want to get to the previous step? You will have to restart the count from scratch.",
+        "yesRestart": "Yes, Restart Count",
+        "cancel": "Cancel"
+    },
+    "logout": {
+        "twoRoles": "Two roles must be logged in to complete Stage 1 (Start Count).",
+        "logoutUser": "Log out {{user}} ({{role}})?",
+        "logout": "Log Out",
+        "cancel": "Cancel",
+        "oneRole": "At least one role must be logged in to proceed with the Start Count.",
+        "restartCount": "Logging out will restart the count from scratch.",
+        "backToCount": "Go Back to Count",
+        "loggedOutNotification": "{{loggedOutUser}} ({{loggedOutRole}}) has logged out. {{remainingUser}} ({{remainingRole}}) is currently responsible for the Start Count setup."
+    },
+    "blankImage": {
+        "noObject1": "No object detected by HayStack. Was the Actuator",
+        "noObject2": "button pressed accidentally?",
+        "yes": "Yes",
+        "no": "No",
+        "searchText1": "Image is blank.",
+        "searchText2": "Stop and immediately search until the suture needle is found.",
+        "needleDriver": "1. Needle Driver",
+        "checkInside": "2. Check inside\nHayStack",
+        "surroundingArea": "3. Surrounding area around HayStack",
+        "drapesAndGowns": "4. Drapes and gowns",
+        "floor": "5. Floor",
+        "found": "Needle Found",
+        "notFound": "Needle Not Found",
+        "where": "Where was this suture needle found?",
+        "sterile": "Sterile Field",
+        "nonSterile": "Non Sterile Field",
+        "deposit": "Place the found suture needle in\nthe HayStack and press the Actuator button"
+    },
+    "sutureSheetHeader": {
+        "redundant": "Redundant",
+        "packs": "packs",
+        "sutureNeedles": "suture needles",
+        "skipMessage": "If you want to keep the original suture sheets skip redundancy.",
+        "skipButton": "Skip All Redundancy",
+        "help": "Help"
+    },
+    "scrWaiting": {
+        "login": "Log in to proceed\nwith the start count.",
+        "wait": "Wait while the case is being set\nup by CIR..."
+    }
+}

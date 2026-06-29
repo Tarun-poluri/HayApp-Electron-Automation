@@ -1,0 +1,123 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+references:
+ decode_gdc_environment_variable: &decode_gdc_environment_variable
+    run:
+      name: Decode ENV Variable to Config file
+      command: |
+        ENCODED_GDC=$(echo $GOOGLE_DRIVE_CREDENTIAL | base64 -d)
+        echo "$ENCODED_GDC" > ".\scripts\config.txt"
+      shell: bash.exe
+ decode_google_drive_credential: &decode_google_drive_credential
+    run:
+      name: Decode and Create Google Drive Credential File
+      command: |
+        certutil -decode .\scripts\config.txt .\scripts\google-drive-cicd-ac5b4a1bbf34.json
+
+orbs:
+  win: circleci/windows@5.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  test:
+    executor:
+      name: win/server-2022
+      size: "medium"
+
+    steps:
+      - run:
+          name: Configure git line endings
+          command: git config --global core.autocrlf false
+      - checkout
+      - run:
+          name: "install"
+          command: |
+            npm install
+            sudo apt update
+            sudo apt-get install rpm dpkg fakeroot
+            npm install --save-dev @electron-forge/maker-rpm
+
+      - run:
+          name: "pretty"
+          command: npm run pretty
+
+      - run:
+          name: "linting"
+          command: npm run lint
+
+      - run:
+          name: "test"
+          command: npx vitest
+
+  
+  build:
+    executor:
+      name: win/server-2022
+      size: "medium"
+
+    steps:
+      - run:
+          name: Configure git line endings
+          command: git config --global core.autocrlf false
+      - checkout
+      - run:
+          name: "install"
+          command: |
+            npm install
+            sudo apt update
+            sudo apt-get install rpm dpkg fakeroot
+            npm install --save-dev @electron-forge/maker-rpm
+
+      - run:
+          name: "build"
+          command: .\scripts\build-and-zip.ps1 -BuildNumber $env:CIRCLE_BUILD_NUM
+
+      - *decode_gdc_environment_variable
+      - *decode_google_drive_credential
+
+      - run:
+          name: Upload Artifacts to Google Drive
+          command: |
+            gem install google-api-client googleauth
+            $filename = (Get-ChildItem .\out\artifacts).Name
+            ruby .\scripts\uploadArtifactToGdrive.rb $filename $env:CIRCLE_BRANCH
+
+      - run:
+          name: Create and Push Tag
+          command: |
+            $appVersion = (Get-Content package.json -Raw | ConvertFrom-Json).version
+            
+            git config user.email "usi5lrceuhlm4o79uk1a8hm5ol0xq9@bots.bitbucket.org"
+            git config user.name "CircleCI Automation"
+            
+            # Add Buildnumber to the tag to prevent possibility of collision
+            $tagName = "$appVersion.$env:CIRCLE_BUILD_NUM"
+            if ($env:CIRCLE_BRANCH -eq "dev") {
+              $tagName = "dev-$tagName"
+            }
+            git tag -a $tagName $env:CIRCLE_SHA1 -m "Automated tag from CircleCI"
+
+            # 'x-token-auth' is a required literal string for Bitbucket token auth
+            git push https://x-token-auth:${env:BITBUCKET_ACCESS_TOKEN}@bitbucket.org/${env:CIRCLE_PROJECT_USERNAME}/${env:CIRCLE_PROJECT_REPONAME}.git $tagName
+
+
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  pr_and_push: # This is the name of the workflow
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      # Circle CI is configured to only run for pull requests in the project settings
+      - test
+
+      # Build EXE only after push to dev or prod
+      - build:
+          filters:
+            branches:
+              only:
+                - dev
+                - main

@@ -1,0 +1,208 @@
+/* Base — CIR layout */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 1.3vw;
+    background: rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+
+.cardCir {
+    width: 15.26vw;
+    height: 24.54vh;
+    padding: 2.59vh 1.2vw 9.35vh 1.46vw;
+    gap: 3.98vh;
+    margin-left: 2.08vw;
+}
+
+.cardScr {
+    width: 12.5vw;
+    height: 24.54vh;
+    padding: 2.59vh 0 7.59vh 0;
+    gap: 4.07vh;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.cardWithExtra {
+    overflow: visible;
+    padding-bottom: 11.5vh;
+}
+
+.cardCir.cardWithExtra {
+    padding-bottom: 11.5vh;
+}
+
+.cardScr.cardWithExtra {
+    padding-bottom: 10.5vh;
+}
+
+.titleCir {
+    width: 12.6vw;
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.titleScr {
+    width: 12.5vw;
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.numberCir {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 5.93vh;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.numberScr {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 7.41vh;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.05vw;
+}
+
+.zeroValue {
+    color: var(--text-icon-dark-gray, #8d8b8d);
+}
+
+.extraBar {
+    --band-inset: 0.35vw;
+    position: absolute;
+    left: var(--band-inset);
+    right: var(--band-inset);
+    bottom: var(--band-inset);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55vw;
+    min-height: 7.6vh;
+    padding: 2.2vh 0.85vw 1.2vh;
+    box-sizing: border-box;
+    border-radius: 0 0 calc(1.3vw - var(--band-inset)) calc(1.3vw - var(--band-inset));
+    isolation: isolate;
+    overflow: hidden;
+    background: transparent;
+}
+
+.extraBar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        -38deg,
+        #2f3038 0 0.28vh,
+        rgba(210, 45, 58, 0.88) 0.28vh 0.55vh,
+        #282930 0.55vh 0.82vh,
+        rgba(200, 40, 52, 0.78) 0.82vh 1.1vh
+    );
+    mask-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.22) 18%,
+        rgba(0, 0, 0, 0.58) 40%,
+        rgba(0, 0, 0, 0.94) 62%,
+        black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.22) 18%,
+        rgba(0, 0, 0, 0.58) 40%,
+        rgba(0, 0, 0, 0.94) 62%,
+        black 100%
+    );
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.extraBar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    box-sizing: border-box;
+    padding: 0.12vh;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(230, 52, 68, 0) 0%,
+        rgba(230, 52, 68, 0.12) 20%,
+        rgba(230, 52, 68, 0.5) 42%,
+        rgba(230, 52, 68, 0.88) 68%,
+        rgba(230, 52, 68, 0.98) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.extraBar > * {
+    position: relative;
+    z-index: 3;
+}
+
+.extraBadge {
+    position: relative;
+    display: inline-flex;
+    width: 3.15vh;
+    height: 3.42vh;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0.08vh 0.2vh rgba(0, 0, 0, 0.35));
+}
+
+.extraStar {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.extraBadgeNum {
+    position: relative;
+    z-index: 1;
+    font-family: "Geist", sans-serif;
+    font-size: 1.5vh;
+    font-weight: 600;
+    line-height: 1;
+    color: #1a1a2e;
+    margin-top: -0.08vh;
+}
+
+.extraLabel {
+    font-family: "Geist", sans-serif;
+    font-size: 1.75vh;
+    font-weight: 500;
+    line-height: 100%;
+    color: #fff;
+    text-transform: lowercase;
+}

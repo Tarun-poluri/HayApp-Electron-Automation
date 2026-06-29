@@ -1,0 +1,93 @@
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 94.79vw;
+    height: 81.02vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2.31vh;
+    gap: 2.22vh;
+    box-sizing: border-box;
+}
+
+/* Dot ring spinner — matches CloseCountStepper dotGlow pattern */
+.dotRing {
+    position: relative;
+    width: 9.26vh;
+    height: 9.26vh;
+}
+
+.dot {
+    position: absolute;
+    width: 1.39vh;
+    height: 1.39vh;
+    border-radius: 50%;
+    background: rgba(210, 178, 255, 1);
+    top: 0;
+    left: calc(50% - 0.69vh);
+    transform: rotate(calc(var(--i) * 30deg));
+    transform-origin: 50% 4.63vh;
+    opacity: 0.15;
+    animation: dotGlow 1.2s linear infinite;
+    animation-delay: calc(var(--i) * 0.1s - 1.2s);
+}
+
+@keyframes dotGlow {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0.15; }
+    92% { opacity: 0.15; }
+    100% { opacity: 1; }
+}
+
+.waitText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 3.70vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.03vw;
+    max-width: 50vw;
+    white-space: pre-line;
+}
+
+/* ===== Count badge — gray glass with purple text (matches CIR 3.36 overBadge) ===== */
+.countBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2.22vh;
+    padding: 0.74vh 1.25vw;
+    margin: 0 0.52vw;
+    color: rgba(210, 178, 255, 1);
+    font-weight: 500;
+    font-size: 3.70vh;
+}
+
+/* ===== Subtitle text — smaller instruction below main text ===== */
+.subtitleText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.96vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.03vw;
+    max-width: 50vw;
+    white-space: pre-line;
+}

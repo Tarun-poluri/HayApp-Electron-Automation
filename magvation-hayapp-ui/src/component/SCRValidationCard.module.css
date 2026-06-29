@@ -1,0 +1,63 @@
+.validationCard {
+    display: flex;
+    width: 12.50vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.41vh;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Active-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.45) 2.93%, rgba(255, 255, 255, 0.22) 100%));
+}
+
+.activeValidation {
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Orange, #FE9A34);
+    background: var(--Gradient-Card-Dark-Orange, linear-gradient(144deg, #323655 10.57%, #E6572F 63.68%, #F93 93.01%));
+}
+
+.cardContentContainer {
+    display: flex;
+    padding: 0.74vh 0.42vw 0 0.42vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.76vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.cardTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4.07vh;
+}
+
+.cardContentTitle {
+    width: 9.58vw;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cardNumberContainer {
+    display: flex;
+    width: 9.58vw;
+    height: 7.41vh;
+    align-items: center;
+    gap: 1.04vw;
+}
+
+.cardNumberText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 7.41vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.05vw;
+}

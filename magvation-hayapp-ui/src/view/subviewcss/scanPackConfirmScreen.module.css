@@ -1,0 +1,155 @@
+/* ===== Two-Panel Layout ===== */
+.panelRow {
+    display: flex;
+    gap: 1.25vw;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+/* ===== Left Panel — Product Image ===== */
+.imagePanel {
+    width: 46.88vw;
+    height: 81.02vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2.31vh;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.74vh);
+    padding: 4.63vh;
+    overflow: hidden;
+}
+
+.imageBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    border-radius: 0.56vh;
+    overflow: hidden;
+}
+
+.packImage {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* ===== Right Panel — Details + Buttons ===== */
+.detailsPanel {
+    width: 46.88vw;
+    height: 81.02vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2.31vh;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.74vh);
+    padding: 3.70vh 2.60vw;
+    overflow: hidden;
+}
+
+/* ===== Title ===== */
+.titleText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.05vw;
+    margin-bottom: 2.78vh;
+}
+
+/* ===== Detail Rows ===== */
+.detailRows {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.22vh 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detailRow:last-child {
+    border-bottom: none;
+}
+
+.detailLabel {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 400;
+}
+
+.detailValue {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 600;
+}
+
+/* ===== Button Row ===== */
+.buttonRow {
+    display: flex;
+    gap: 1.56vw;
+    margin-top: 2.78vh;
+}
+
+.noButton,
+.yesButton {
+    flex: 1;
+    display: flex;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    border-radius: 6.48vh;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.25vw;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.noButton {
+    border: 1px solid #FF7083;
+    color: #FF7083;
+}
+
+.noButton:hover {
+    background: rgba(255, 112, 131, 0.1);
+}
+
+.yesButton {
+    border: 1px solid #4FE2CE;
+    color: #4FE2CE;
+}
+
+.yesButton:hover {
+    background: rgba(79, 226, 206, 0.1);
+}
+
+.buttonIcon {
+    font-size: 1.25vw;
+    line-height: 1;
+}

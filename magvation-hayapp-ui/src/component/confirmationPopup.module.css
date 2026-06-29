@@ -1,0 +1,152 @@
+/* ===== Modal Styles ===== */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 41.09vw;
+    min-height: 41.85vh;
+    border-radius: 1.30vw;
+    padding: 4.63vh 2.60vw;
+    box-sizing: border-box;
+
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+
+    border: 0.19vh solid #FFFFFF26;
+
+    backdrop-filter: blur(9.26vh);
+    -webkit-backdrop-filter: blur(9.26vh);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.59vh;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36.46vw;
+    gap: 2.22vh;
+}
+
+.modalIcon {
+    width: 9.26vh;
+    height: 9.26vh;
+    border-radius: 50%;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.modalIcon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.modalIconImage {
+    width: 3.13vw;
+    height: 4.86vh;
+}
+
+.modalBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.56vh;
+}
+
+.badgePrimaryText {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 600;
+    color: white;
+    line-height: 130%;
+}
+
+.badgeSecondaryText {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.70);
+    line-height: 130%;
+}
+
+.modalText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.modalButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1.56vw;
+}
+
+.modalCancelButton,
+.modalConfirmButton {
+    width: 17.40vw;
+    height: 6.48vh;
+    border-radius: 2.86vw;
+    border: 0.19vh solid #000000;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.modalCancelButton {
+    background: #777481;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.modalCancelButton:hover {
+    filter: brightness(1.05);
+}
+
+.modalConfirmButton {
+    background: #ffffff;
+    color: #121212;
+}
+
+.modalConfirmButton:hover {
+    filter: brightness(0.98);
+}
+
+.modalCancelButton:active,
+.modalConfirmButton:active {
+    transform: translateY(0.09vh);
+}

@@ -1,0 +1,101 @@
+.cbiBoxContainer{
+    display: flex;
+    width: 25.83vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.31vh;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.cbiBoxInfoContainer {
+    display: flex;
+    padding: 0.74vh 0.42vw 0 0.42vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.57vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.cbiBoxText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cbiNeedleInfoContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.21vw;
+    align-self: stretch;
+}
+
+.cbiNeedleInfoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.37vh;
+    flex: 1 0 0;
+}
+
+.cbiNeedleInfoText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cardNumberText {
+    align-self: stretch;
+    color: var(--text-icon-dark-gray, #8D8B8D);
+    font-family: 'Geist', sans-serif;
+    font-size: 7.41vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.05vw;
+}
+
+.numberContainer {
+    display: flex;
+    height: 7.41vh;
+    align-items: center;
+    gap: 1.04vw;
+    align-self: stretch;
+}
+
+.halfIcon {
+    width: 2.50vw;
+    height: 4.44vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.halfIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.verticalRectangle {
+    width: 0.05vw;
+    height: 4.26vh;
+    flex-shrink: 0;
+    background: var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.3));
+}
+
+.zeroValue {
+    color: var(--text-icon-dark-gray, #8D8B8D);
+}

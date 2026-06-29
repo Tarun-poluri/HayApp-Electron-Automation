@@ -1,0 +1,200 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.78vh;
+    padding: 0 3.12vw;
+    padding-bottom: 5vh;
+}
+
+.contentAreaWithHeader {
+    composes: contentArea;
+    padding-top: 12vh;
+}
+
+/* ===== Scan Image ===== */
+.scanImage {
+    width: 71.98vw;
+    height: 57.69vh;
+    object-fit: contain;
+}
+
+/* ===== Title ===== */
+.titleText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.05vw;
+    text-align: center;
+}
+
+.rejectedText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.05vw;
+    text-align: center;
+    margin-top: 2vh;
+}
+
+/* ===== Pack Details Card ===== */
+.packDetailsCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.48vh;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    border-radius: 1.30vw;
+    padding: 2.22vh 2.08vw;
+    min-width: 30vw;
+}
+
+.packDetailRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.packDetailLabel {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+}
+
+.packDetailValue {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 600;
+}
+
+/* ===== Button Row ===== */
+.buttonRow {
+    display: flex;
+    gap: 2.08vw;
+    justify-content: center;
+    margin-top: 1.85vh;
+}
+
+.noButton,
+.yesButton {
+    display: flex;
+    width: 26.04vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.83vw;
+    border-radius: 6.48vh;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.noButton {
+    border: 1px solid #FF7083;
+    color: #FF7083;
+}
+
+.noButton:hover {
+    background: rgba(255, 112, 131, 0.1);
+}
+
+.yesButton {
+    border: 1px solid #4FE2CE;
+    color: #4FE2CE;
+}
+
+.yesButton:hover {
+    background: rgba(79, 226, 206, 0.1);
+}
+
+.buttonIconImg {
+    width: 2.59vh;
+    height: 2.59vh;
+}
+
+.buttonIcon {
+    font-size: 2.04vh;
+    line-height: 1;
+}
+
+/* ===== Dot Ring Spinner ===== */
+.dotRing {
+    position: relative;
+    width: 9.26vh;
+    height: 9.26vh;
+}
+
+.dot {
+    position: absolute;
+    width: 1.39vh;
+    height: 1.39vh;
+    border-radius: 50%;
+    background: rgba(210, 178, 255, 1);
+    top: 0;
+    left: calc(50% - 0.69vh);
+    transform: rotate(calc(var(--i) * 30deg));
+    transform-origin: 50% 4.63vh;
+    opacity: 0.15;
+    animation: dotGlow 1.2s linear infinite;
+    animation-delay: calc(var(--i) * 0.1s - 1.2s);
+}
+
+@keyframes dotGlow {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0.15; }
+    92% { opacity: 0.15; }
+    100% { opacity: 1; }
+}
+
+.rejectedIcon {
+    width: 36.56vw;
+    height: 40.93vh;
+    object-fit: contain;
+    margin-top: 14vh;
+}
+
+/* ===== View Packs Button ===== */
+.viewPacksLink {
+    display: flex;
+    width: 18.75vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 9.26vh;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.25vw;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    padding-left: 1.82vw;
+    padding-right: 1.56vw;
+    margin-top: auto;
+    transition: background 0.2s ease;
+}
+
+.viewPacksLink:hover {
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.22) 2.93%, rgba(255, 255, 255, 0.12) 100%);
+}

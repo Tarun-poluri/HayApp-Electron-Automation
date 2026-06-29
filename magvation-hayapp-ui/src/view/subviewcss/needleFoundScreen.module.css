@@ -1,0 +1,197 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.70vh;
+    padding: 0 3.12vw;
+    padding-bottom: 5vh;
+}
+
+/* ===== Title ===== */
+.title {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 3.70vh;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05vw;
+    text-align: center;
+    margin: 0;
+}
+
+/* ===== Card Row ===== */
+.cardRow {
+    display: flex;
+    gap: 3.12vw;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ===== Card (shared) ===== */
+.card {
+    width: 19.27vw;
+    height: 41.67vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vh;
+    border-radius: 1.30vw;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.12) 2.93%, rgba(255, 255, 255, 0.06) 100%);
+    overflow: visible;
+    padding: 3vh 0 2.5vh 0;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    border: none;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: calc(1.30vw + 5px);
+    padding: 3px;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card:hover {
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+/* ===== Per-card border colors (gradient from bottom) ===== */
+.borderSterile::before {
+    background: linear-gradient(144.5deg, #323655 10.57%, #EDC16F 63.68%, #DAED6F 93.01%);
+}
+
+.borderContaminated::before {
+    background: linear-gradient(144.5deg, #323655 10.57%, #47CE76 63.68%, #36FFC6 93.01%);
+}
+
+.borderBroken::before {
+    background: linear-gradient(144.5deg, #323655 10.57%, #B97730 52.18%, #FFDA62 93.01%);
+}
+
+.borderIncompatible::before {
+    background: linear-gradient(144.5deg, #323655 10.57%, #44F4EE 63.68%, #6FC7ED 93.01%);
+}
+
+/* ===== Shape Containers (shared) ===== */
+.shapeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    margin-top: auto;
+    margin-bottom: 2vh;
+}
+
+/* --- Kite (SVG shape) --- */
+.kite {
+    width: 12.04vh;
+    height: 12.04vh;
+    position: relative;
+    background: none;
+}
+
+.cardIconKite {
+    transform: none;
+}
+
+/* --- Convex Triangle (SVG shape) --- */
+.triangle {
+    width: 11vh;
+    height: 11vh;
+    position: relative;
+    background: none;
+}
+
+.triangle .cardIcon {
+    position: relative;
+    top: 0.5vh;
+}
+
+.shapeImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* --- Circle --- */
+.circle {
+    width: 11vh;
+    height: 11vh;
+    border-radius: 50%;
+    background: linear-gradient(315.48deg, rgba(255, 255, 255, 0.15) 9.88%, rgba(255, 255, 255, 0.075) 98.17%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Rounded Square --- */
+.square {
+    width: 11vh;
+    height: 11vh;
+    border-radius: 1.8vh;
+    background: linear-gradient(315.48deg, rgba(255, 255, 255, 0.15) 9.88%, rgba(255, 255, 255, 0.075) 98.17%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Card Icon ===== */
+.cardIcon {
+    width: 6.2vh;
+    height: 6.2vh;
+    object-fit: contain;
+}
+
+/* ===== Card Label ===== */
+.cardLabel {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+}
+
+/* ===== Card Sublabel ===== */
+.cardSublabel {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.85vh;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+    margin-top: -1vh;
+}
+
+/* ===== Arrow Icon ===== */
+.arrowIcon {
+    width: 3.70vh;
+    height: 3.70vh;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    margin-top: auto;
+}
+
+.card:hover .arrowIcon {
+    opacity: 1;
+}

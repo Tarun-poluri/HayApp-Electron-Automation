@@ -1,0 +1,165 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    box-sizing: border-box;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+}
+
+.cameraArea {
+    width: auto;
+    height: 55vh;
+    display: block;
+    margin-top: 2vh;
+}
+
+.startCountImage {
+    width: 1666px;
+    height: 535px;
+    display: block;
+}
+
+.loginSuccessImage {
+    width: 1100px;
+    height: 600px;
+    display: block;
+}
+
+.procedureKitImage {
+    display: block;
+    object-fit: contain;
+}
+
+.icon {
+    width: 4.17vw;
+    height: 7.41vh;
+    opacity: 0.5;
+}
+
+.instruction {
+    max-width: 90vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.09vh;
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    white-space: pre-line;
+}
+
+.instructionNoMarginTop {
+    margin-top: 0;
+}
+
+.buttonArea {
+    height: 7.41vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proceedButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.11vh;
+    width: 41.67vw;
+    height: 6.48vh;
+    padding-left: 1.82vw;
+    padding-right: 1.56vw;
+    background: white;
+    border: 2px solid white;
+    border-radius: 5.09vh;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    color: #1A1A2E;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-sizing: border-box;
+}
+
+.proceedButton:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.proceedButton:active {
+    transform: scale(0.98);
+}
+
+.arrowIcon {
+    width: 2vh;
+    height: 2vh;
+}
+
+.labelContainer {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    background: var(--Main-Violet, #9C42F5);
+}
+
+.labelContainerOpen {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    background: #9C42F5;
+}
+
+.labelContainerClosing {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    background: #3782C8;
+}
+
+.labelContainerJIT {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    background: #5C5C6B;
+}
+
+.textContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 70px;
+}
+
+.closingDrawerImage {
+    width: 1353px;
+    height: 715px;
+    margin-left: 100px;
+}

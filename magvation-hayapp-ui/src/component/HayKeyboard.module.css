@@ -1,0 +1,33 @@
+.wrapper {
+    width: 1383px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+.wrapper.extended {
+    width: 1705px;
+}
+
+.row {
+    display: flex;
+}
+
+.key {
+    flex-grow: 1;
+    height: 75px;
+    border-radius: 8px;
+    background: #858585;
+    margin: 2px 2px;
+    position: relative;
+}
+
+.keyInner {
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+
+.selected {
+    background: grey;
+}

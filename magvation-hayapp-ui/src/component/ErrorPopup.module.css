@@ -1,0 +1,56 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.70);
+    backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.31vh;
+    padding: 3.70vh 2.08vw;
+    border-radius: 1.48vh;
+    border: 0.09vh solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(50px);
+    min-width: 41.67vw;
+    text-align: center;
+    box-sizing: border-box;
+}
+.message {
+    margin-bottom: 0;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.85vh;
+    font-weight: 400;
+    line-height: 130%;
+    color: white;
+    white-space: pre-line;
+}
+.closeButton {
+    width: 41.67vw;
+    height: 6.48vh;
+    border-radius: 3.24vh;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.85vh;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.2s ease;
+    margin-top: 0.46vh;
+}
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.closeButton:active {
+    transform: scale(0.98);
+}

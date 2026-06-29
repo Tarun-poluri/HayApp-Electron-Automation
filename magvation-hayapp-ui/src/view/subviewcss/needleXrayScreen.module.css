@@ -1,0 +1,114 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2.78vh;
+    padding: 3vh 3.12vw 5vh;
+}
+
+/* ===== X-ray Image ===== */
+.xrayImage {
+    width: 36vw;
+    height: 50vh;
+    object-fit: contain;
+    position: relative;
+    left: -3vw;
+}
+
+/* ===== Title ===== */
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05vw;
+    text-align: center;
+}
+
+.extraBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(144.5deg, #323655 10.57%, #E32E3C 63.68%, #FE3265 93.01%);
+    border: none;
+    border-radius: 2.22vh;
+    padding: 0.74vh 1.25vw;
+    margin: 0 0.52vw;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 4.44vh;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.96vh;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
+}
+
+/* ===== Action Buttons ===== */
+.buttonRow {
+    display: flex;
+    gap: 2.08vw;
+    justify-content: center;
+    margin-top: 1.85vh;
+}
+
+.notFoundButton,
+.foundButton {
+    display: flex;
+    width: 19.22vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.83vw;
+    border-radius: 6.48vh;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.notFoundButton {
+    border: 1px solid #FF7083;
+    color: #FF7083;
+}
+
+.notFoundButton:hover {
+    background: rgba(255, 112, 131, 0.1);
+}
+
+.foundButton {
+    border: 1px solid #4FE2CE;
+    color: #4FE2CE;
+}
+
+.foundButton:hover {
+    background: rgba(79, 226, 206, 0.1);
+}
+
+.buttonIcon {
+    font-size: 2.04vh;
+    line-height: 1;
+}

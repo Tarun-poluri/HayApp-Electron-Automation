@@ -1,0 +1,152 @@
+.screenContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+    background: rgba(0, 0, 0, 0.70);
+    backdrop-filter: blur(25px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorContainer {
+    display: flex;
+    width: 789px;
+    padding: 50px;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    backdrop-filter: blur(50px);
+}
+
+.iconCircle {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 55px;
+    border: 1px solid var(--Gradient-Card-Default-Card, #FFF);
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+}
+
+.contentContainer {
+    display: flex;
+    width: 700px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 50px;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.logoutNameContainer{
+    display: flex;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.logoutNameText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.logoutText {
+    width: 700px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.logoutButton {
+    display: flex;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.logoutButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cancelButton {
+    display: flex;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-Gray, #777481);
+}
+
+.cancelButtonText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

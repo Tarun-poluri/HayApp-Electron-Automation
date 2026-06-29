@@ -1,0 +1,27 @@
+.hayButton {
+    text-align: center;
+    border-radius: 8px;
+    border: var(--purple) solid 1px;
+    padding: 23px;
+    position: relative;
+}
+
+.inner {
+    height: 100%;
+    width: 100%;
+    align-content: center;
+}
+
+.pressed {
+    color: var(--secondary-color);
+}
+
+.shade {
+    opacity: .5;
+}
+
+.selected {
+    background-color: var(--purple);
+    color: white;
+  }
+  

@@ -1,0 +1,546 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 12vh 50px 0 45px;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Main Content */
+.mainContent {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.56vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.tableWrapper {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 12vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tableWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Category Rows Container */
+.categoryRows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.85vh;
+    padding-top: 25px;
+}
+
+/* Row Styles */
+.rowContentContainer {
+    display: flex;
+    padding: 25px;
+    align-items: flex-end;
+    gap: 25px;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.rowImageContainer {
+    display: flex;
+    width: 114px;
+    height: 220px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: transparent;
+}
+
+.rowImage {
+    max-width: 114px;
+    max-height: 220px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: white;
+}
+
+.rowTableContainer {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.rowTableTopContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.rowTableTitleContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rowTableTitleContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowTableTitleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableCode {
+    display: flex;
+    padding: 4px 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.rowTableCodeText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-overflow: ellipsis;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-clamp: 1;
+}
+
+.rowTableUseContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.rowTableUseTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableUse {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.rowTableUseText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableBottomContainer {
+    display: flex;
+    height: 101px;
+    align-items: flex-end;
+    gap: 34px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.rowSutureInfoTableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.rowSutureInfoTitleText {
+    align-self: stretch;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableSutureInfoTable {
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.sutureInfoTableCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.cellHeaderText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cellTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTable {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
+}
+
+.needleInfoTopTable {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.needleInfoTopCell {
+    display: flex;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.needleInfoTopNumber {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTopText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoPacksCell {
+    display: flex;
+    width: 90px;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-radius: 12px;
+}
+
+.needleInfoPacksNumber {
+    align-self: stretch;
+    color: #000;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoPacksText {
+    color: #000;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.needleInfoBottomTitle {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTableContent {
+    display: flex;
+    padding: 15px 20px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.needleInfoBottomCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.tipTypeContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tipTypeIcon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 12.69vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 0.09vh solid rgba(255, 255, 255, 0.08);
+    padding: 0 6.67vh calc(env(safe-area-inset-bottom)) 6.67vh;
+    z-index: 120;
+    box-sizing: border-box;
+    border-top: 1px solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+    background: rgb(8, 9, 24);
+}
+
+.confirmButton {
+    height: 5.93vh;
+    min-width: 21.88vw;
+    padding: 0 3.12vw;
+    background: #ffffff;
+    color: #111111;
+    border: none;
+    border-radius: 52.03vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 2.22vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1.48vh 4.07vh rgba(0, 0, 0, 0.42);
+    transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.confirmButton:hover {
+    filter: brightness(0.98);
+}
+
+.confirmButton:active {
+    transform: translateY(0.09vh);
+}
+
+/* Scrollbar Wrapper */
+.scrollbarWrapper {
+    width: 4.38vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 7vh;
+    padding-bottom: 1.5vh;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* Scrollbar Styles (from reviewRedundantNeedles) */
+.scrollIndicators {
+    width: 4.38vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2.22vh;
+    padding-bottom: 14vh;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.scrollRail {
+    width: 3.33vw;
+    height: 100%;
+    border-radius: 2.08vw;
+    padding: 1.11vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.30vh;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(0.74vh);
+}
+
+.scrollRailDisabled {
+    opacity: 0.45;
+}
+
+.scrollArrow {
+    width: 2.60vw;
+    height: 4.63vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.09vh solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+
+.scrollArrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.scrollArrow:active {
+    transform: translateY(0.09vh);
+}
+
+.scrollArrowDisabled,
+.scrollArrow:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.2);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    transform: none;
+}
+
+.scrollTrack {
+    position: relative;
+    width: 2.29vw;
+    flex: 1;
+    min-height: 14.81vh;
+    border-radius: 52.03vw;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.06);
+    padding: 0.74vh 0;
+    box-sizing: border-box;
+}
+
+.scrollTrackDisabled {
+    cursor: default;
+}
+
+.scrollThumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.56vw;
+    height: 7.78vh;
+    border-radius: 52.03vw;
+    background: rgba(255, 255, 255, 0.18);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 6px 14px rgba(0, 0, 0, 0.30);
+    cursor: grab;
+    touch-action: none;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
+
+.scrollThumbDisabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.infoIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.footerText {
+    flex: 1 0 0;
+    color: #FFF;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.infoContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+}

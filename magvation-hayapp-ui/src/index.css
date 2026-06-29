@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+/* body {
+  font-family: 'Geist', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+} */
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.startup-loading-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, #1b232f 0%, #0c1117 58%, #05070a 100%);
+  color: #eef5ff;
+  gap: 18px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.startup-dot-ring {
+  position: relative;
+  width: 9.26vh;
+  height: 9.26vh;
+}
+
+.startup-dot {
+  position: absolute;
+  width: 1.39vh;
+  height: 1.39vh;
+  border-radius: 50%;
+  background: rgba(210, 178, 255, 1);
+  top: 0;
+  left: calc(50% - 0.69vh);
+  transform-origin: 50% 4.63vh;
+  opacity: 0.15;
+  animation: startup-dot-glow 1.2s linear infinite;
+}
+
+.startup-loading-text {
+  margin: 0;
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 3.70vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.03vw;
+  max-width: 50vw;
+  white-space: pre-line;
+}
+
+@keyframes startup-dot-glow {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  33% {
+    opacity: 0.15;
+  }
+
+  92% {
+    opacity: 0.15;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

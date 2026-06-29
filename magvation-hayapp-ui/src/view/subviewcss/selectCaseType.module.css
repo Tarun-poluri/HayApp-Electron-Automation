@@ -1,0 +1,692 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.backButton {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 29px;
+    border: 1px solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.backButton img {
+    width: 2.78vh;
+    height: 2.50vh;
+}
+
+/* ===== Search ===== */
+.searchContainer {
+    display: flex;
+    width: 1920px;
+    height: 154px;
+    padding: 47px 50px;
+    align-items: center;
+    gap: 45px;
+}
+
+.warningIcon {
+    width: 2.78vh;
+    height: 2.78vh;
+    flex-shrink: 0;
+    opacity: 0.55;
+}
+
+
+
+.searchField {
+    position: relative;
+    flex: 1;
+    height: 7.87vh;
+    background: transparent;
+    border: 0.19vh solid rgba(255, 255, 255, 0.65);
+    border-radius: 1.15vw;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.magnifyIcon {
+    position: absolute;
+    left: 1.04vw;
+    width: 1.39vw;
+    height: 1.39vw;
+    pointer-events: none;
+}
+
+.closeButtonWrapper {
+    width: 5.03vw;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.closeButton {
+    width: 5.37vh;
+    height: 5.37vh;
+    border-radius: 50%;
+    border: 0.09vh solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.closeButton img {
+    width: 1.67vw;
+    height: 1.67vw;
+}
+
+.searchFieldFocused {
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.searchLabel {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.55);
+    pointer-events: none;
+    user-select: none;
+    transition: top 0.2s ease, font-size 0.2s ease, left 0.2s ease;
+    /* Default: centered in input area (placeholder style) */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.41vh;
+    font-weight: 500;
+    left: 3.28vw; /* Slightly offset to not touch cursor */
+}
+
+.searchLabelFloating {
+    /* Floated: small label at top */
+    top: 0.93vh;
+    transform: translateY(0);
+    font-size: 1.48vh;
+    font-weight: 400;
+    left: 3.13vw; /* Back to aligned position */
+}
+
+.searchText {
+    position: absolute;
+    left: 3.13vw;
+    right: 1.46vw;
+
+    height: 3.33vh;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 2.41vh;
+    font-weight: 500;
+    line-height: 3.33vh;
+    color: white;
+    box-sizing: border-box;
+    transition: top 0.2s ease, transform 0.2s ease;
+    /* Default: centered (aligned with placeholder label) */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.searchTextActive {
+    /* When typing: move to bottom position */
+    top: auto;
+    bottom: 1.30vh;
+    transform: translateY(0);
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 2vw 0 2.55vw;
+    align-items: flex-start;
+}
+
+/* Height is set inline from TSX */
+.caseTypeList {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.caseTypeList::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.caseTypeListWithRail {
+    padding-right: 1.15vw;
+    padding-bottom: 0;
+}
+
+.caseTypeListNoRail {
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+.caseTypeItem {
+    display: flex;
+    align-items: center;
+    gap: 1.67vh;
+    height: 9vh;
+    padding: 0;
+    box-sizing: border-box;
+    border-bottom: 0.09vh solid rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.caseTypeItem:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.radioButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 32px;
+    border: 1px solid var(--Background-White, #FFF);
+    background: rgba(255, 255, 255, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.radioButtonSelected {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid var(--Background-White, #FFF);
+    box-shadow: none;
+}
+
+.radioButtonSelected::after {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 31px;
+    background: var(--Main-Light-Violet, #D2B2FF);
+}
+
+.cptCode {
+    font-size: 2.22vh;
+    line-height: 1.25;
+    color: white;
+    font-weight: 400;
+    flex-shrink: 0;
+}
+
+.caseTypeName {
+    font-family: "Geist";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #AFACBC;
+    flex: 1;
+    margin-left: auto;
+    text-align: right;
+    padding-right: 1.25vw;
+}
+
+/* ===== No results ===== */
+.noResults {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.67vh;
+    user-select: none;
+    pointer-events: none;
+    text-align: center;
+}
+
+.noResultsIcon {
+    width: 4.38vw;
+    height: 7.78vh;
+    opacity: 0.95;
+}
+
+.noResultsText {
+    font-size: 2.41vh;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* ===== Scroll Rail (height driven inline) ===== */
+.scrollIndicators {
+    width: 4.38vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    box-sizing: border-box;
+    margin-right: -0.3vw;
+}
+
+.scrollRail {
+    width: 3.33vw;
+    height: 100%;
+    border-radius: 2.08vw;
+    padding: 1.11vh 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.30vh;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(0.74vh);
+}
+
+.scrollRailDisabled {
+    opacity: 0.45;
+}
+
+.scrollArrow {
+    width: 2.60vw;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.09vw solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 4px 10px rgba(0, 0, 0, 0.25);
+
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+
+.scrollArrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.scrollArrow:active {
+    transform: translateY(0.09vh);
+}
+
+.scrollArrowDisabled,
+.scrollArrow:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.2);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    transform: none;
+}
+
+.scrollTrack {
+    position: relative;
+    width: 2.29vw;
+    flex: 1;
+    min-height: 14.81vh;
+
+    border-radius: 52.03vw;
+    cursor: pointer;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.06);
+
+    padding: 0.74vh 0;
+    box-sizing: border-box;
+}
+
+.scrollTrackDisabled {
+    cursor: default;
+}
+
+.scrollThumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 1.56vw;
+    height: 7.78vh;
+    border-radius: 52.03vw;
+
+    background: rgba(255, 255, 255, 0.18);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 6px 14px rgba(0, 0, 0, 0.30);
+
+    cursor: grab;
+    touch-action: none;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
+
+.scrollThumbDisabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.bottomSection {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+
+    height: clamp(33.33vh, 50vh, 62.96vh);
+
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+.bottomBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.04vh 2.92vw 1.67vh 2.92vw;
+
+    background: rgba(50, 47, 56, 0.78);
+    backdrop-filter: blur(1.30vh);
+    border-top: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 -1.11vh 2.59vh rgba(0, 0, 0, 0.45);
+
+    flex: 0 0 auto;
+}
+
+.selectedInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.surgeonLabel {
+    color: var(--text-icon-white, #FFF);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.surgeonValue {
+    color: var(--Main-Light-Violet, #D2B2FF);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.selectedLabel {
+    font-size: 2.41vh;
+    font-weight: 500;
+    color: white;
+}
+
+.selectedValue {
+    font-size: 2.41vh;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.selectedValueActive {
+    color: #C5AFF1;
+}
+
+.placeholder {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.continueButton {
+    width: 22.92vw;
+    max-width: 45vw;
+    height: 5.37vh;
+    border-radius: 5.21vw;
+
+    background: rgba(115, 113, 125, 0.55);
+    border: 0.09vh solid rgba(0, 0, 0, 0.35);
+    color: rgba(0, 0, 0, 0.80);
+
+    font-size: 1.85vh;
+    font-weight: 500;
+
+    cursor: not-allowed;
+    transition: all 0.2s ease;
+    padding: 0 2.29vw;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.continueButtonEnabled {
+    background: #FFFFFF;
+    border: 0.09vh solid rgba(0, 0, 0, 0.10);
+    color: #000000;
+    cursor: pointer;
+    box-shadow: 0 0.19vh 0 rgba(0, 0, 0, 0.2);
+}
+
+.continueButtonEnabled:hover {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.keyboardArea {
+    width: 100%;
+    flex: 1 1 auto;
+
+    background: rgb(88, 81, 92);
+    border-top: 0.09vh solid rgba(0, 0, 0, 0.35);
+
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.keyboardArea>* {
+    width: 100%;
+    height: 100%;
+}
+/* ===== Modal Styles ===== */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(0.74vh);
+    -webkit-backdrop-filter: blur(0.74vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    width: 41.09vw;
+    height: 41.85vh;
+    border-radius: 1.15vw;
+    padding: 3.70vh 3.13vw;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(120% 160% at 30% 20%,
+            rgba(255, 255, 255, 0.10) 0%,
+            rgba(255, 255, 255, 0.05) 28%,
+            rgba(0, 0, 0, 0.08) 100%),
+        rgba(32, 32, 36, 0.60);
+
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(2.22vh);
+    -webkit-backdrop-filter: blur(2.22vh);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.78vh;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 2.78vh;
+}
+
+.modalIcon {
+    width: 9.26vh;
+    height: 9.26vh;
+    border-radius: 50%;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.modalIcon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    padding: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.modalIconImage {
+    width: 3.13vw;
+    height: 4.86vh;
+}
+
+.modalText {
+    width: 36.46vw;
+    font-size: 3.52vh;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    line-height: 1.30;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.85vh 0;
+}
+
+.modalButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3.89vh;
+}
+
+.modalCancelButton,
+.modalDeleteButton {
+    width: 17.40vw;
+    height: 6.48vh;
+    border-radius: 52.03vw;
+    border: none;
+    font-size: 2.04vh;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.modalCancelButton {
+    background: #777481;
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.modalCancelButton:hover {
+    filter: brightness(1.05);
+}
+
+.modalDeleteButton {
+    background: #ffffff;
+    color: #121212;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.modalDeleteButton:hover {
+    filter: brightness(0.98);
+}
+
+.modalCancelButton:active,
+.modalDeleteButton:active {
+    transform: translateY(0.09vh);
+}

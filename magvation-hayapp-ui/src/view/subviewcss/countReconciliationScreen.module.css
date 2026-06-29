@@ -1,0 +1,311 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 5vh;
+    box-sizing: border-box;
+}
+
+/* ===== Title Row ===== */
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    margin-bottom: 4vh;
+}
+
+.titleIcon {
+    width: 3.7vh;
+    height: 3.7vh;
+}
+
+.titleText {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 3.33vh;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.09vh;
+    color: white;
+}
+
+/* ===== Cards Row ===== */
+.cardsRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vw;
+    margin-bottom: 6vh;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 29.84vw;
+    height: 51.85vh;
+    background: linear-gradient(16.31deg, rgba(255, 255, 255, 0.0875) -21.71%, rgba(255, 255, 255, 0.25) 42.07%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0.0875) 90.53%);
+    border: 0.19vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 2.31vh;
+    padding: 2.78vh 2.60vw;
+    box-sizing: border-box;
+}
+
+.cardTop {
+    position: absolute;
+    top: 2.78vh;
+    left: 1vw;
+    right: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.70vh;
+}
+
+.cardLabel {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.59vh;
+    font-weight: 400;
+    line-height: 145%;
+    letter-spacing: 0;
+    text-align: center;
+    color: white;
+    white-space: pre-line;
+}
+
+.cardDivider {
+    width: 24.64vw;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.cardNumber {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11.85vh;
+    font-weight: 600;
+    line-height: 100%;
+    color: white;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: 3vh;
+}
+
+/* SCR card when counts differ — room for bottom band (misplaced or extra) */
+.cardScrWithBottomBand {
+    padding-bottom: 14vh;
+}
+
+/* Align big SCR count with the left card number (extra bottom padding pulls flex center up) */
+.cardScrWithBottomBand .cardNumber {
+    margin-top: 3vh;
+    transform: translateY(5.25vh);
+}
+
+/* System count > SCR — solid red wash into grey */
+.cardMisplacedBar {
+    --band-inset: 0.85vh;
+    position: absolute;
+    left: var(--band-inset);
+    right: var(--band-inset);
+    bottom: var(--band-inset);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vw;
+    min-height: 13.5vh;
+    padding: 4.25vh 2vw 1.85vh;
+    box-sizing: border-box;
+    border-radius: 0 0 calc(2.31vh - var(--band-inset)) calc(2.31vh - var(--band-inset));
+    background: linear-gradient(
+        180deg,
+        rgba(196, 18, 32, 0) 0%,
+        rgba(255, 68, 0, 0.08) 22%,
+        rgba(255, 52, 64, 0.35) 45%,
+        rgba(255, 34, 51, 0.82) 72%,
+        #c41220 100%
+    );
+}
+
+/* SCR count > system — diagonal hatch; stripes fade into card via masked ::before */
+.cardExtraBar {
+    --band-inset: 0.85vh;
+    position: absolute;
+    left: var(--band-inset);
+    right: var(--band-inset);
+    bottom: var(--band-inset);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vw;
+    min-height: 13.5vh;
+    padding: 4.25vh 2vw 1.85vh;
+    box-sizing: border-box;
+    border-radius: 0 0 calc(2.31vh - var(--band-inset)) calc(2.31vh - var(--band-inset));
+    isolation: isolate;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Fading red frame — same vertical falloff idea as the hatch (strong at bottom, invisible into grey at top) */
+.cardExtraBar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    box-sizing: border-box;
+    padding: 0.22vh;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(230, 52, 68, 0) 0%,
+        rgba(230, 52, 68, 0.12) 20%,
+        rgba(230, 52, 68, 0.5) 42%,
+        rgba(230, 52, 68, 0.88) 68%,
+        rgba(230, 52, 68, 0.98) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+}
+
+.cardExtraBar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        -38deg,
+        #2f3038 0 0.45vh,
+        rgba(210, 45, 58, 0.88) 0.45vh 0.9vh,
+        #282930 0.9vh 1.35vh,
+        rgba(200, 40, 52, 0.78) 1.35vh 1.8vh
+    );
+    mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 18%,
+        rgba(0, 0, 0, 0.55) 40%,
+        rgba(0, 0, 0, 0.92) 62%,
+        black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.12) 18%,
+        rgba(0, 0, 0, 0.55) 40%,
+        rgba(0, 0, 0, 0.92) 62%,
+        black 100%
+    );
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    pointer-events: none;
+}
+
+.cardExtraBar > * {
+    position: relative;
+    z-index: 3;
+}
+
+.misplacedBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.2vh;
+    height: 4.2vh;
+    padding: 0 0.75vh;
+    border-radius: 50%;
+    background: white;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.45vh;
+    font-weight: 600;
+    line-height: 1;
+    color: #1a1a2e;
+}
+
+.misplacedLabel {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.85vh;
+    font-weight: 500;
+    line-height: 100%;
+    color: white;
+    text-transform: lowercase;
+}
+
+/* SCR > system — InterimStar.svg with count on top */
+.extraBadge {
+    position: relative;
+    display: inline-flex;
+    width: 5.4vh;
+    height: 5.85vh;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0.15vh 0.35vh rgba(0, 0, 0, 0.35));
+}
+
+.extraStarImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.extraBadgeNumber {
+    position: relative;
+    z-index: 1;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.45vh;
+    font-weight: 600;
+    line-height: 1;
+    color: #1a1a2e;
+    margin-top: -0.15vh;
+}
+
+/* ===== Operator (= or >) ===== */
+.operator {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 5vh;
+    font-weight: 500;
+    color: rgba(210, 178, 255, 1);
+}
+
+/* ===== OK Button ===== */
+.okButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 41.67vw;
+    height: 6.48vh;
+    background: white;
+    border: 2px solid white;
+    border-radius: 5.09vh;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 100%;
+    text-align: center;
+    color: #1A1A2E;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    box-sizing: border-box;
+}
+
+.okButton:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.okButton:active {
+    transform: scale(0.98);
+}
+
+.buttonSpacer {
+    height: 6.48vh;
+}

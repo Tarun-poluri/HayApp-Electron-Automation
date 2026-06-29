@@ -1,0 +1,247 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4.63vh;
+  width: 13.91vw;
+  height: 100vh;
+  padding: 4.63vh 1.46vw;
+  flex-shrink: 0;
+  border-right: 0.10vw solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5.67vw);
+  box-sizing: border-box;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.70vh;
+  align-self: stretch;
+}
+
+.logoContainer {
+  display: flex;
+  height: 5.19vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.93vh;
+  align-self: stretch;
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.63vw;
+  width: 10.99vw;
+  height: 5.20vh;
+  flex-shrink: 0;
+}
+
+.iconLogo {
+  width: 3.46vw;
+  height: 5.20vh;
+  flex-shrink: 0;
+}
+
+.titleLogo {
+  width: 7.26vw;
+  height: 2.40vh;
+  flex-shrink: 0;
+}
+
+.menuContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.22vh;
+  align-self: stretch;
+}
+
+.rectangle {
+  height: 0.19vh;
+  align-self: stretch;
+  background: var(--Borders-Light, rgba(255, 255, 255, 0.10));
+}
+
+.menuIconContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.63vw;
+}
+
+.menuIcon {
+  display: flex;
+  padding: 0.74vh 0.42vw;
+  align-items: center;
+  gap: 0.52vw;
+  border-radius: 0.52vw;
+}
+
+.menuIcon img {
+  width: 2.19vw;
+  height: 3.89vh;
+}
+
+.menuText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.middleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.menuButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.85vh 1.04vw;
+  gap: 1.11vh;
+  align-self: stretch;
+  border-radius: 1.20vw;
+  cursor: pointer;
+}
+
+.menuButton {
+  display: flex;
+  width: 5.21vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.52vw;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+  background: var(--Gradient-Card-Default, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+  box-sizing: border-box;
+}
+
+.menuButton img {
+  width: 1.61vw;
+  height: 2.78vh;
+}
+
+.menuButtonTextContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.63vw;
+  align-self: stretch;
+}
+
+.menuButtonText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 1.11vh;
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.70vh;
+  align-self: stretch;
+}
+
+.helpContainer {
+  display: flex;
+  height: 5.09vh;
+  padding: 1.48vh 1.04vw 1.48vh 1.25vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.83vw;
+  align-self: stretch;
+}
+
+.helpIcon {
+  display: flex;
+  width: 1.25vw;
+  height: 2.22vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.helpIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.helpText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.closingCountButton {
+  border: 0.10vw solid var(--Borders-Dark-Violet, rgba(107, 136, 255, 0.60));
+  background: var(--gradient-card-dark-violet, linear-gradient(149deg, rgba(56, 105, 255, 0.24) -2.65%, rgba(56, 105, 255, 0.80) 90.96%));
+}
+
+/* Menu Dropdown Styles */
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #888793;
+  border: 0.19vh solid rgba(0, 0, 0, 0.3);
+  border-radius: 1.30vw;
+  margin-top: 0.74vh;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.menuDropdownItem {
+  width: 100%;
+  padding: 1.85vh 1.25vw;
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.menuDropdownItem:hover {
+  background: #9a9ba5;
+}
+
+.menuDropdownItem:not(:last-child) {
+  border-bottom: 0.09vh solid rgba(255, 255, 255, 0.1);
+}
+
+.menuVersionText {
+  width: 100%;
+  padding: 1.85vh 1.25vw;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.48vh;
+  font-weight: 400;
+  text-align: left;
+  border-top: 0.09vh solid rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,370 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    align-items: center;
+}
+
+.screenContainerNoHeader {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.instructionsContainer {
+    display: flex;
+    width: 1820px;
+    justify-content: flex-end;
+    height: 875px;
+    align-items: center;
+    gap: 50px;
+}
+
+.imageSectionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.instructionSectionContainer {
+    display: flex;
+    width: 885px;
+    padding: 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.instructionContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+}
+
+.instructionTitleText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    padding-bottom: 50px;
+}
+
+.instructionStepText {
+    flex: 1 0 0;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.stepContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.singleStepContainer {
+    display: flex;
+    height: 140px;
+    padding: 20px 0;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 15px;
+}
+
+.stepNumber {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.stepNumberText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.divider {
+    height: 1px;
+    align-self: stretch;
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+}
+
+.button {
+    display: flex;
+    width: 800px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.buttonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.buttonArrow {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.innerScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 876px;
+    padding: 0 115px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.imageContainer {
+    width: 800px;
+    height: 568px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.descriptionTextContainer {
+    display: flex;
+    width: 1400px;
+    padding: 0 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-radius: 20px;
+}
+
+.descriptionLargeText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -1px;
+    text-align: center;
+    white-space: pre-line;
+}
+
+.descriptionSmallText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.waitScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 875px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.waitScreenContainerNoHeader {
+    height: 980px;
+}
+
+.loadingIcon {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingIconSpinner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: rotate 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.waitScreenText {
+    max-width: 1000px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.waitButton {
+    display: flex;
+    width: 800px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.waitButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.scanImageStyle {
+    width: 1000px;
+    height: 600px;
+}
+
+.replaceButton {
+    display: flex;
+    width: 800px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Main-Light-red, #FF7083);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.replaceButtonText {
+    color: var(--Main-Light-red, #FF7083);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.replaceButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
+}
+
+.imageBackground {
+    display: flex;
+    width: 885px;
+    height: 875px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.invisibleCornerButton {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background: transparent;
+    border: none;
+    cursor: default;
+    z-index: 9999;
+}

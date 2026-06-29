@@ -1,0 +1,116 @@
+.headerContainer {
+    display: flex;
+    width: 1820px;
+    height: 155px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-shrink: 0;
+    z-index: 1000;
+}
+
+.headerContainerWithLeftPadding {
+    padding-left: 50px;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    flex: 1 0 0;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.roundButton {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 29px;
+    border: 1px solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    cursor: pointer;
+}
+
+.roundButton:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.backArrow {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.headerTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.headerText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.helpContainer {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.helpContentContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 28px;
+}
+
+.helpTextContainer {
+    display: flex;
+    height: 55px;
+    padding: 16px 0 16px 8px;
+    align-items: center;
+    gap: 12px;
+    border-radius: 15px;
+}
+
+.helpIcon {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    padding: 0.917px;
+    justify-content: center;
+    align-items: center;
+}
+
+.helpText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.verticalBar {
+    width: 44px;
+    height: 1px;
+    transform: rotate(90deg);
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}

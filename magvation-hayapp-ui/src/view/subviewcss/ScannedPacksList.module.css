@@ -1,0 +1,651 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    align-items: center;
+    gap: 24px;
+    padding-top: 178px;
+}
+
+.listContainer {
+    display: flex;
+    width: 1820px;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    overflow: hidden;
+    padding-bottom: 0;
+    max-height: calc(100vh - 200px);
+}
+
+.categoryRows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.85vh;
+    width: 100%;
+}
+
+.rowWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.packDeleteContainer {
+    position: relative;
+    width: 228.003px;
+    height: 270px;
+    flex-shrink: 0;
+    cursor: pointer;
+    margin-left: -43px;
+}
+
+.subtract {
+    width: 228.003px;
+    height: 270px;
+    display: block;
+}
+
+.trashContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    width: 125px;
+    height: 210px;
+    padding: 0 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 15px;
+    border: 1px solid var(--Main-Light-red, #FF7083);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 3;
+}
+
+.trashIcon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.removeText {
+    color: var(--Main-Light-red, #FF7083);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.mainArea {
+    display: flex;
+    flex: 1;
+    gap: 24px;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 0;
+}
+
+.leftArea {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+.scrollWrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.scrollContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 180px;
+}
+
+.scrollContent::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbarArea {
+    width: 80px;
+    max-height: calc(100vh - 350px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Category label on left side of each row */
+.rowLabelContainer {
+    display: flex;
+    width: 31px;
+    height: 270px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.rowLabelContent {
+    position: relative;
+    width: 31px;
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rowLabel {
+    position: absolute;
+    width: 31px;
+    height: 270px;
+    object-fit: fill;
+}
+
+.rowLabelTextContainer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+}
+
+.rowLabelText {
+    color: #FFF;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    display: inline-block;
+    width: 48px;
+    text-align: center;
+}
+
+.rowLabelIcon {
+    width: 15px;
+    height: 15px;
+}
+
+/* Row card styles matching SummarySheet */
+.rowContentContainer {
+    display: flex;
+    padding: 25px;
+    align-items: flex-end;
+    gap: 25px;
+    flex: 1;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.rowImageContainer {
+    display: flex;
+    width: 114px;
+    height: 220px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: transparent;
+}
+
+.rowImage {
+    max-width: 114px;
+    max-height: 220px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: white;
+}
+
+.rowTableContainer {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.rowTableTopContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.rowTableTitleContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rowTableTitleContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowTableTitleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableCode {
+    display: flex;
+    padding: 4px 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.rowTableCodeText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-overflow: ellipsis;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-clamp: 1;
+}
+
+.rowTableUseContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.rowTableUseTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableUse {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.rowTableUseText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableBottomContainer {
+    display: flex;
+    height: 101px;
+    align-items: flex-end;
+    gap: 34px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.rowSutureInfoTableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.rowSutureInfoTitleText {
+    align-self: stretch;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableSutureInfoTable {
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.sutureInfoTableCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.cellHeaderText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cellTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTable {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
+}
+
+.needleInfoTopTable {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.needleInfoTopCell {
+    display: flex;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.needleInfoTopNumber {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTopText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoPacksCell {
+    display: flex;
+    width: 90px;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-radius: 12px;
+}
+
+.needleInfoPacksNumber {
+    align-self: stretch;
+    color: #000;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoPacksText {
+    color: #000;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.needleInfoBottomTitle {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTableContent {
+    display: flex;
+    padding: 15px 20px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.needleInfoBottomCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.tipTypeContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tipTypeIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.footerContainer {
+    display: flex;
+    width: 1920px;
+    height: 137px;
+    padding: 50px;
+    align-items: center;
+    gap: 60px;
+    border-top: 1px solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+    background: rgb(8, 9, 24);
+    backdrop-filter: blur(75px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.footerContentContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 60px;
+    flex: 1 0 0;
+}
+
+.footerTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1 0 0;
+}
+
+.footerTextInnerContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footerText {
+    color: #FFF;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.chip {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.chipText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.footerButton {
+    display: flex;
+    width: 500px;
+    height: 70px;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.buttonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.newProcedureContainer {
+    display: flex;
+    width: 100%;
+    padding: 24px 390px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 25px;
+    border: 2px solid var(--Main-Light-Orange, #FFB986);
+    background: rgba(255, 145, 67, 0.10);
+}
+
+.newProcedureTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.newProcedureTitleContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.warningIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.newProcedureTitle {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.newProcedureMessage {
+    width: 872px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: pre-line;
+}

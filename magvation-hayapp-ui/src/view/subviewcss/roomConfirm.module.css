@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  width: 100%;
+  color: white;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding-top: 5.56vh;
+  padding-bottom: 7vh;
+}
+
+.icon {
+  width: 6.77vw;
+  height: 12.04vh;
+  margin-bottom: 2.78vh;
+}
+
+.roomName {
+  font-size: 3.70vh;
+  font-weight: 500;
+  margin-bottom: 3.70vh;
+  text-align: center;
+}
+
+.confirmButton {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 5.21vw;
+  width: 36.46vw;
+  height: 5.56vh;
+  font-size: 1.85vh;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.confirmButton:active {
+  transform: scale(0.98);
+}
+
+.footer {
+  margin-top: auto;
+
+  padding-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.rescanButton {
+  background: rgba(255, 255, 255, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5.21vw;
+  width: 13.02vw;
+  height: 4.63vh;
+  font-size: 1.67vh;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.rescanButton:active {
+  transform: scale(0.98);
+}

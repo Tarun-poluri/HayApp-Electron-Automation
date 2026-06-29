@@ -1,0 +1,168 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    overflow: hidden;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2vh;
+}
+
+.iconWrapper {
+    position: relative;
+    width: 5.21vw;
+    height: 9.26vh;
+    margin-bottom: 2.41vh;
+}
+
+.icon {
+    width: 5.21vw;
+    height: 9.26vh;
+    opacity: 0.95;
+    position: relative;
+    z-index: 2;
+}
+
+.iconShadow {
+    position: absolute;
+    bottom: -1.48vh;
+    right: -0.26vw;
+    width: 3.65vw;
+    height: 6.48vh;
+    z-index: 1;
+}
+
+.title {
+    font-size: 4.44vh;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02vh;
+    text-align: center;
+
+    margin-bottom: 4.63vh;
+    max-width: 50.50vw;
+}
+
+.message {
+    font-size: 2.4vh;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: center;
+    max-width: 52vw;
+    margin-top: -2vh;
+    margin-bottom: 3vh;
+    opacity: 0.92;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.proceedWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proceedButton {
+    width: 36.46vw;
+    height: 6.48vh;
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 999px;
+    font-size: 2.22vh;
+    font-weight: 500;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.83vw;
+    transition: transform 0.2s ease;
+    padding: 0;
+}
+
+.proceedButton:hover {
+    transform: scale(1.02);
+}
+
+.proceedArrow {
+    width: 1.04vw;
+    height: 1.85vh;
+}
+
+.proceedButton {
+    width: 36.46vw !important;
+}
+
+.footer {
+    margin-top: auto;
+    padding-bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.adminButton {
+    width: 17.34vw !important;
+}
+
+.skipButtonWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.04vw;
+}
+
+.skipButton {
+    width: 36.46vw;
+    height: 6.48vh;
+    background: var(--Gradient-Button-Red, linear-gradient(94deg, #CA4958 6.52%, #CC293E 98.3%));
+    color: #000000;
+    border: none;
+    border-radius: 999px;
+    font-size: 2.22vh;
+    font-weight: 500;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    padding: 0;
+}
+
+.skipButton:hover {
+    transform: scale(1.02);
+    background: var(--Gradient-Button-Red, linear-gradient(94deg, #CA4958 6.52%, #CC293E 98.3%));
+}
+
+.version {
+    position: absolute;
+    right: 2.08vw;
+    bottom: 5vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.67vh;
+    font-weight: 400;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,29 @@
+.inner {
+    margin: 31px 52px 29px 52px;
+    display:flex;
+    flex-direction: column;
+    height: 982px;
+}
+
+.title {
+    font-size: 36px
+}
+
+.buttonRow {
+    display: flex;
+    width: 100%;
+    font-size: 54px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.buttonRow .button {
+    flex: 1;
+    margin-right: 50px;
+}
+
+.buttonRow .button ~ .button {
+    margin-right: 0px;
+}

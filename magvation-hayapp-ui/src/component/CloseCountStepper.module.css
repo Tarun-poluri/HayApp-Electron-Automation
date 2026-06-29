@@ -1,0 +1,108 @@
+.stepperContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.83vw;
+}
+
+/* --- Active step: dot ring with 3-dot glow animation --- */
+.step_active {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7.41vh;
+    height: 7.41vh;
+}
+
+.dot {
+    position: absolute;
+    width: 1.11vh;
+    height: 1.11vh;
+    border-radius: 50%;
+    background: rgba(210, 178, 255, 1);
+    top: 0;
+    left: calc(50% - 0.56vh);
+    transform: rotate(calc(var(--i) * 30deg));
+    transform-origin: 50% 3.70vh;
+    opacity: 0.15;
+    animation: dotGlow 1.2s linear infinite;
+    animation-delay: calc(var(--i) * 0.1s - 1.2s);
+}
+
+@keyframes dotGlow {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    33% { opacity: 0.15; }
+    92% { opacity: 0.15; }
+    100% { opacity: 1; }
+}
+
+.stepNumber {
+    position: relative;
+    z-index: 1;
+    color: #D2B2FF;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* --- Completed step: filled purple circle with white checkmark --- */
+.step_completed {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7.41vh;
+    height: 7.41vh;
+}
+
+.step_completed::before {
+    content: '';
+    position: absolute;
+    width: 3.70vh;
+    height: 3.70vh;
+    border-radius: 50%;
+    background: #9747FF;
+}
+
+.checkIcon {
+    position: relative;
+    z-index: 1;
+    width: 1.85vh;
+    height: 1.85vh;
+}
+
+/* --- Inactive step: empty circle with border --- */
+.step_inactive {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7.41vh;
+    height: 7.41vh;
+}
+
+.step_inactive::before {
+    content: '';
+    position: absolute;
+    width: 3.70vh;
+    height: 3.70vh;
+    border-radius: 50%;
+    border: 0.19vh solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+}
+
+/* --- Connecting lines --- */
+.lineCompleted {
+    width: 15.63vw;
+    height: 0.09vh;
+    background: rgba(210, 178, 255, 1);
+}
+
+.lineInactive {
+    width: 15.63vw;
+    height: 0.09vh;
+    background: rgba(255, 255, 255, 0.15);
+}

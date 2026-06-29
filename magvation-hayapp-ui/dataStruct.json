@@ -1,0 +1,28 @@
+{
+    "user": {
+        "id": "number",
+        "firstName": "string",
+        "lastName": "string",
+        "passwordHash": "base64"
+    },
+    "wifi": {
+        "accessPoint": "string",
+        "password": "string",
+        "authType": "string"
+    },
+    "hayscan": {
+        "id": "string",
+        "operatingRoomId": "string"
+    },
+    "haystack": {
+        "id": "string"
+    },
+    "staff": {
+        "id": "number",
+        "firstName": "string",
+        "lastName": "string",
+        "staffType": [
+            "circulator", "scrub", "surgeon"
+        ]
+    }
+}

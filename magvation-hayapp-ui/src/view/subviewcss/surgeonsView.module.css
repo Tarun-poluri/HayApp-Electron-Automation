@@ -1,0 +1,649 @@
+/* Overlay container - full screen overlay for modal behavior */
+.overlayContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.loadingContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingText {
+    color: var(--Text-Primary-Text, #FFF);
+    font-family: "SF Pro Display";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 32px;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    width: 1920px;
+    height: 154px;
+    padding: 50px;
+    align-items: center;
+    gap: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.headerInnerContainer {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    flex: 1 0 0;
+}
+
+.backButton {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    border-radius: 29px;
+    border: 1px solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.backArrow {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.titleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.chipContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chip {
+    display: flex;
+    padding: 8px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.chipText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    margin-left: auto;
+}
+
+.divider {
+    width: 44px;
+    height: 1px;
+    transform: rotate(90deg);
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.helpContainer {
+    display: flex;
+    height: 55px;
+    padding: 16px 0;
+    align-items: center;
+    gap: 12px;
+}
+
+.helpIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.helpText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.addButton {
+    display: inline-flex;
+    height: 55px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border-radius: 55px;
+    border: 2px solid var(--Background-White, #FFF);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.addButtonText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.plusIcon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Main content styles */
+.mainContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    padding-top: 154px;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.surgeonsContainer {
+    display: flex;
+    width: 1429px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1;
+    min-height: 0;
+    padding-top: 50px;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+.surgeonListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    width: 1429px;
+    padding-bottom: 50px;
+}
+
+.surgeonListContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.surgeonRowContainer {
+    position: relative;
+    width: 1429px;
+    height: 154px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.surgeonRowInfoContainer {
+    display: flex;
+    width: 1320px;
+    height: 154px;
+    padding: 28px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.surgeonInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+}
+
+.surgeonName {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.caseTypeContainer {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.caseTypeText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.caseTypeDividerText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0.2;
+}
+
+.caseDetailsButton {
+    display: flex;
+    width: 240px;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-Gray, #777481);
+}
+
+.caseDetailsText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.surgeonChangeContainer {
+    position: relative;
+    width: 152.543px;
+    height: 154px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.subtract {
+    width: 152.543px;
+    height: 154px;
+    display: block;
+}
+
+.changeContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    width: 70px;
+    height: 114px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 15px;
+    border: 1px solid var(--text-icon-white, #FFF);
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 3;
+}
+
+.changeIcon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.changeText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.surgeonActionsContainer {
+    display: flex;
+    position: absolute;
+    right: -1px;
+    height: 154px;
+    z-index: 2;
+}
+
+.surgeonDeleteContainer {
+    position: relative;
+    width: 152.543px;
+    height: 154px;
+    cursor: pointer;
+    margin-right: -1px;
+}
+
+.surgeonDeleteContainer .subtract {
+    width: 152.543px;
+    height: 154px;
+    display: block;
+}
+
+.trashContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    width: 70px;
+    height: 114px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 15px;
+    border: 1px solid var(--Main-Light-red, #FF7083);
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 3;
+}
+
+.trashIcon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.removeText {
+    color: var(--Main-Light-red, #FF7083);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.surgeonNameBadge {
+    display: flex;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.badgeSurgeonName {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* Scroll rail styles */
+.scrollIndicators {
+    position: fixed;
+    right: 50px;
+    top: 204px;
+    bottom: 50px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    pointer-events: none;
+}
+
+.scrollRail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 50px;
+    pointer-events: auto;
+}
+
+.scrollRailDisabled {
+    pointer-events: none;
+}
+
+.scrollArrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.scrollArrow:hover {
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.25) 2.93%, rgba(255, 255, 255, 0.15) 100%);
+}
+
+.scrollArrow:active {
+    transform: scale(0.95);
+}
+
+.scrollArrowDisabled,
+.scrollArrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.scrollTrack {
+    width: 50px;
+    flex: 1;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%);
+    position: relative;
+    cursor: pointer;
+}
+
+.scrollTrackDisabled {
+    pointer-events: none;
+}
+
+.scrollThumb {
+    position: absolute;
+    width: 100%;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: grab;
+    transition: background 0.2s ease;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
+
+.scrollThumbDisabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
+
+.summarySheetContainer {
+    display: flex;
+    height: 154px;
+    padding: 32px 40px;
+    align-items: center;
+    gap: 38px;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 2px solid var(--text-icon-white, #FFF);
+    background: var(--Main-Light-Violet, #D2B2FF);
+}
+
+.summarySheetContent {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+}
+
+.summarySheetTitleContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+}
+
+.summarySheetIconContainer {
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 111px;
+    background: #FFF;
+}
+
+.summarySheetIcon {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1/1;
+}
+
+.summarySheetTitleText {
+    color: var(--text-icon-black, #000);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.chevronIcon {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1/1;
+}
+
+.summarySheetCountContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.countCard {
+    display: flex;
+    width: 114px;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.40);
+}
+
+.countCardNumber {
+    align-self: stretch;
+    color: var(--text-icon-black, #000);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.countCardText {
+    align-self: stretch;
+    color: var(--text-icon-black, #000);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

@@ -1,0 +1,517 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+}
+
+.screenContainerNoHeader {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContainer {
+    display: flex;
+    width: 100vw;
+    height: 14.35vh;
+    padding: 4.35vh 92.08vw 5.19vh 2.60vw;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.headerTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.25vw;
+    align-self: stretch;
+}
+
+.headerText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 3.70vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+    white-space: nowrap;
+}
+
+.contentContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 81.02vh;
+    align-items: center;
+    gap: 2.60vw;
+    flex-shrink: 0;
+}
+
+.leftContainer {
+    display: flex;
+    width: 46.88vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+}
+
+.rightContainer {
+    display: flex;
+    width: 45.31vw;
+    padding: 1.48vh 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5.56vh;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.menuContainer {
+    display: flex;
+    padding: 0 2.60vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.74vh;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 1.04vw;
+}
+
+.arrow {
+    width: 1.25vw;
+    height: 2.22vh;
+}
+
+.highlightedButton {
+    display: flex;
+    width: 41.67vw;
+    padding: 2.13vh 9.38vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    flex: 1 0 0;
+    border-radius: 1.30vw;
+    background: #FFF;
+}
+
+.highlightedButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.96vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.normalButton {
+    display: flex;
+    width: 41.67vw;
+    padding: 2.13vh 9.38vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    flex: 1 0 0;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.normalButtonText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.96vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.haystackButtonContainer {
+    display: flex;
+    width: 40.10vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4.63vh;
+}
+
+.haystackButtons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.validateColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 1.85vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3.65vw;
+    border: 0.21vw solid var(--Main-Orange, #FF9143);
+    background: rgba(255, 145, 67, 0.10);
+}
+
+.actionColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 1.85vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3.65vw;
+    border: 0.21vw solid #FFBA39;
+    background: rgba(255, 222, 57, 0.10);
+}
+
+.yesColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+}
+
+.noColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+}
+
+.haystackButtonIcon {
+    width: 3.69vw;
+    height: 6.56vh;
+    flex-shrink: 0;
+}
+
+.haystackButtonText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.grayCircle {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+}
+
+.foundMisplacedContentContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 80.65vh;
+    padding: 16.67vh 0 22.22vh 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 7.41vh;
+    border-radius: 1.30vw;
+    border: 0.05vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.questionIcon {
+    width: 4.17vw;
+    height: 7.41vh;
+    flex-shrink: 0;
+}
+
+.foundMisplacedContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.63vh;
+    align-self: stretch;
+}
+
+.foundMisplacedQuestionText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.hayStackPromptContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 80.65vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.70vh;
+    border-radius: 1.30vw;
+}
+
+.hayStackPromptTopContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 40.56vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11.93vh;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.hayStackPromptIcon {
+    display: flex;
+    width: 848px;
+    height: 455px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hayStackPromptContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.63vh;
+    align-self: stretch;
+}
+
+.hayStackPromptText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.blankImageContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 80.65vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.70vh;
+    border-radius: 1.30vw;
+}
+
+.blankImageContentContainer {
+    display: flex;
+    padding-top: 3.70vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.63vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.blankImageTopContainer {
+    display: flex;
+    width: 72.92vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.70vh;
+}
+
+.blankImageTopContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.07vh;
+}
+
+.blankImageTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blankImageText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.blankImageCardContainer {
+    display: flex;
+    width: 72.92vw;
+    height: 29.26vh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.96vh;
+}
+
+.blankImageCardContentContainer {
+    display: flex;
+    height: 23.70vh;
+    align-items: flex-start;
+    gap: 1.04vw;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.blankImageCard {
+    display: flex;
+    padding: 4.63vh 1.25vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.85vh;
+    flex: 1 0 0;
+    border-radius: 1.30vw;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.blankImageCardText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.blankImageCardIcon {
+    width: 8.33vw;
+    height: 14.81vh;
+    fill: rgba(255, 255, 255, 0.10);
+}
+
+.searchContentContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    border-radius: 25px;
+}
+
+.searchInnerContentContainer {
+    display: flex;
+    padding-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.searchTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.imageGridContainer {
+    display: flex;
+    width: 1820px;
+    height: 374px;
+    align-items: center;
+    gap: 20px;
+}
+
+.imageContainer {
+    display: flex;
+    padding-bottom: 25px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 25px;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.img {
+    padding-top: 19.313px;
+    width: 320px;
+    height: 270px;
+    object-fit: contain;
+}
+
+.imageText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: pre-line;
+}
+
+.searchContentContainer .haystackButtonContainer {
+    display: flex;
+    width: 770px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+}

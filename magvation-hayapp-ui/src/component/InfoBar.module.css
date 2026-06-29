@@ -1,0 +1,65 @@
+.infoBarContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.67vw;
+    flex: 1 0 0;
+}
+
+.verticalBar {
+    width: 2.29vw;
+    height: 0.09vh;
+    transform: rotate(90deg);
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.74vh;
+}
+
+.sectionTitleContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.63vw;
+}
+
+.sectionTitleText {
+    color: var(--text-icon-light-violet, #A7A4CC);
+    font-family: 'Geist', sans-serif;
+    font-size: 1.48vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.sectionInfoText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.42vw;
+}
+
+.abortButton {
+    display: flex;
+    height: 5.09vh;
+    padding: 0 1.56vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 5.09vh;
+    border: 0.19vh solid var(--Main-Light-red, #FF7083);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.abortText {
+    color: var(--Main-Light-red, #FF7083);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

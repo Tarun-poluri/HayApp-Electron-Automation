@@ -1,0 +1,242 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentContainer {
+    display: flex;
+    width: 1820px;
+    height: 980px;
+    padding: 180px 0 240px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.innerContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    width: 1174px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.haystackButtonContainer {
+    display: flex;
+    width: 770px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.yesColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+}
+
+.noColor {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+}
+
+.haystackButtonIcon {
+    width: 3.69vw;
+    height: 6.56vh;
+    flex-shrink: 0;
+}
+
+.haystackButtonText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.grayCircle {
+    display: flex;
+    width: 6.77vw;
+    height: 12.04vh;
+    padding: 2.74vh;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 3.65vw;
+    border: 0.42vw solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+}
+
+.searchContentContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    border-radius: 25px;
+}
+
+.searchInnerContentContainer {
+    display: flex;
+    padding-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.searchTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.imageGridContainer {
+    display: flex;
+    width: 1820px;
+    height: 374px;
+    align-items: center;
+    gap: 20px;
+}
+
+.imageContainer {
+    display: flex;
+    padding-bottom: 25px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 25px;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.img {
+    padding-top: 19.313px;
+    width: 320px;
+    height: 270px;
+    object-fit: contain;
+}
+
+.imageText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: pre-line;
+}
+
+.depositScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 980px;
+    padding: 180px 0 240px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.depositImage {
+    width: 945px;
+    height: 600px;
+    flex-shrink: 0;
+    aspect-ratio: 63/40;
+}
+
+.depositTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.depositText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    white-space: pre-line;
+}
+

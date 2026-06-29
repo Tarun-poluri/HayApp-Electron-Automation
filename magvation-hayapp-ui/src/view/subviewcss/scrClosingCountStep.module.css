@@ -1,0 +1,128 @@
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 94.79vw;
+    height: 80.65vh;
+    padding-top: 5.56vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2.31vh;
+    gap: 3.70vh;
+    box-sizing: border-box;
+}
+
+.imagePlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 41.67vw;
+    height: 28.06vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 1.39vh;
+}
+
+.placeholderIcon {
+    width: 4.69vw;
+    height: 8.33vh;
+    opacity: 0.3;
+}
+
+.instructionTextWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14.5vh;
+    max-width: 60vw;
+}
+
+.instructionTextWrapperWide {
+    composes: instructionTextWrapper;
+    max-width: 70vw;
+}
+
+.instructionText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 3.70vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.03vw;
+    white-space: pre-line;
+}
+
+.highlightText {
+    color: #D2B2FF;
+    font-weight: 700;
+}
+
+.buttonRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2.08vw;
+}
+
+.confirmColor {
+    display: flex;
+    width: 6.77vw;
+    padding: 1.54vw;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+    box-sizing: border-box;
+}
+
+.validateColor {
+    display: flex;
+    width: 6.77vw;
+    padding: 1.54vw;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Orange, #FF9143);
+    background: rgba(255, 145, 67, 0.10);
+    box-sizing: border-box;
+}
+
+.noColor {
+    display: flex;
+    width: 6.77vw;
+    padding: 1.54vw;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+    box-sizing: border-box;
+}
+
+.grayCircle {
+    display: flex;
+    width: 6.77vw;
+    padding: 1.54vw;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 0.42vw solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+    box-sizing: border-box;
+}

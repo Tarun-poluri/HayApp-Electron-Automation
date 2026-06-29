@@ -1,0 +1,99 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.roleContainer {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.roleIcon {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+}
+
+.loginTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.loginText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+    white-space: pre-wrap;
+}
+
+.waitContainer{
+    display: flex;
+    width: 1820px;
+    height: 980px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.loadingIcon {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingIconSpinner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: rotate 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.logoImage {
+    width: 320px;
+    flex-shrink: 0;
+}

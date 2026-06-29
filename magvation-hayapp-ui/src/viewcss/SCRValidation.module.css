@@ -1,0 +1,555 @@
+.validationContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/SCRValidationBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 4.63vh 2.60vw;
+}
+
+.headerContainer {
+    width: 100%;
+    height: 9.72vh;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progressBar {
+    display: flex;
+    width: 100vw;
+    height: 1.39vh;
+    align-items: flex-start;
+    gap: 0.21vw;
+    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 0.21vw solid var(--Main-Dark-Orange, #FF6D36);
+    background: var(--Main-Dark-Orange, #FF6D36);
+}
+
+.headerContentContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.67vw;
+}
+
+.headerTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.25vw;
+    align-self: stretch;
+}
+
+.headerText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 3.70vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.itemChip {
+    display: flex;
+    padding: 0.74vh 0.63vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    border-radius: 0.63vw;
+    background: rgba(255, 255, 255, 0.10);
+    white-space: nowrap;
+}
+
+.itemChipText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+}
+
+.progressBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.37vh 0.83vw;
+    border-radius: 0.52vw;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.contentContainer {
+    display: flex;
+    width: 94.79vw;
+    align-items: center;
+    gap: 2.60vw;
+}
+
+.imageContainer {
+    position: relative;
+    width: 46.88vw;
+    height: 81.02vh;
+    border-radius: 1.30vw;
+    overflow: hidden;
+    background: #2a2a2a;
+    z-index: 2;
+}
+
+.image {
+    width: 46.88vw;
+    height: 81.02vh;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 1.30vw;
+}
+
+.imageInfoOverlay {
+    position: absolute;
+    right: 1.67vw;
+    bottom: 2.96vh;
+    display: flex;
+    gap: 1.25vw;
+    border-radius: 0.63vw;
+    padding: 0.74vh 1.04vw;
+    z-index: 10;
+    align-items: center;
+}
+
+.imageInfoText {
+    color: #000;
+    text-shadow: 0 0.09vh 0.93vh rgba(255, 255, 255, 0.60);
+    font-family: "Geist", sans-serif;
+    font-size: 2.59vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.controlContainer {
+    display: flex;
+    width: 45.31vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5.56vh;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.controlContentContainer {
+    display: flex;
+    width: 40.10vw;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4.63vh;
+}
+
+.questionText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+    white-space: pre-line;
+}
+
+.haystackButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.haystackButtonIcon {
+    width: 3.69vw;
+    height: 3.69vw;
+    flex-shrink: 0;
+}
+
+.yesColor {
+    display: flex;
+    width: 6.77vw;
+    height: 6.77vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+    box-sizing: border-box;
+}
+
+.actionColor {
+    display: flex;
+    width: 6.77vw;
+    height: 6.77vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid #FFBA39;
+    background: rgba(255, 222, 57, 0.10);
+    box-sizing: border-box;
+}
+
+.noColor {
+    display: flex;
+    width: 6.77vw;
+    height: 6.77vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+    box-sizing: border-box;
+}
+
+.highlight {
+    color: var(--Main-Orange, #FF9143);
+}
+
+.buttonText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.grayCircle {
+    display: flex;
+    width: 6.77vw;
+    height: 6.77vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+    box-sizing: border-box;
+}
+
+.needleIconWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+    width: 3.13vw;
+    height: 5.56vh;
+}
+
+.needleIconWrapper img {
+    width: 3.13vw;
+    height: 5.56vh;
+}
+
+.needleIconWrapperContaminated {
+    width: 4.17vw;
+    height: 7.41vh;
+}
+
+.needleIconWrapperContaminated img {
+    width: 4.17vw;
+    height: 7.41vh;
+}
+
+.needleNumber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.22vh;
+    font-weight: 700;
+    color: #fff;
+    z-index: 21;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+}
+
+.needleIconWrapperContaminated .needleNumber {
+    top: 52%;
+    font-size: 2.22vh;
+}
+
+.markerToggleButton {
+    position: absolute;
+    top: 1.48vh;
+    right: 0.83vw;
+    z-index: 100;
+    background: #fff;
+    border: 0.05vw solid #ccc;
+    border-radius: 0.42vw;
+    padding: 0.74vh 1.04vw;
+    font-weight: 600;
+    font-size: 1.67vh;
+    cursor: pointer;
+    font-family: "Geist", sans-serif;
+    pointer-events: auto;
+}
+
+.markerToggleButton:hover {
+    background: #f0f0f0;
+}
+
+.removedCbiPromptContainer {
+    display: flex;
+    width: 1820px;
+    height: 871px;
+    padding: 220px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.20));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.removedCbiPromptContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.promptText {
+    width: 952px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.removedCbiHaystackButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.reviewScreen {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/SCRValidationBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 1.85vh;
+    padding-bottom: 50px;
+    gap: 1.48vh;
+    box-sizing: border-box;
+}
+
+.reviewImageImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.reviewImageInfoOverlay {
+    position: absolute;
+    top: 1.48vh;
+    left: 1.25vw;
+    right: 1.25vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.reviewImageInfoRight {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1.56vw;
+}
+
+.reviewImageInfoText {
+    color: var(--text-icon-white, #FFF);
+    text-shadow: 0 0.09vh 0.93vh rgba(0, 0, 0, 0.60);
+    font-family: "Geist", sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.contaminatedHighlight {
+    color: #47CE76;
+}
+
+.brokenHighlight {
+    color: #E6A62F;
+}
+
+.incompatibleHighlight {
+    color: #6FC7ED;
+}
+
+.reviewHeader {
+    display: flex;
+    width: 94.79vw;
+    padding: 1.85vh 0;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.reviewHeaderText {
+    color: var(--text-icon-white, #FFF);
+    font-family: "Geist", sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.reviewImagesContainer {
+    display: flex;
+    width: 94.79vw;
+    flex: 1;
+    align-items: stretch;
+    gap: 2.60vw;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.reviewImage {
+    flex: 1 0 0;
+    border-radius: 1.30vw;
+    border: 0.10vw solid rgba(255, 255, 255, 0.20);
+    position: relative;
+    overflow: hidden;
+    background: #2a2a2a;
+}
+
+.reviewHayStackButtonContainer {
+    display: inline-flex;
+    padding: 2.04vh 2.08vw 1.30vh 2.08vw;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.08vw;
+    border-radius: 1.30vw 1.30vw 0 0;
+    border: 0.05vw solid rgba(255, 255, 255, 0.20);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(50px);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.ewviewButtonContent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.reviewYesColor {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+    box-sizing: border-box;
+}
+
+.reviewGrayCircle {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+    box-sizing: border-box;
+}
+
+.reviewActionColor {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid #FFBA39;
+    background: rgba(255, 222, 57, 0.10);
+    box-sizing: border-box;
+}
+
+.reviewHaystackButtonIcon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.reviewNoColor {
+    display: flex;
+    width: 88px;
+    height: 88px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 0.42vw solid var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+    box-sizing: border-box;
+}
+
+.reviewButtonText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

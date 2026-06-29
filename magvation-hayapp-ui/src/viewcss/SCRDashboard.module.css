@@ -1,0 +1,610 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-direction: column;
+}
+
+.mainArea {
+    display: flex;
+    padding: 0 2.60vw 4.63vh 2.60vw;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100vw;
+    gap: 1.56vw;
+}
+
+.activeCaseMainAreaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3.70vh;
+  width: 66.56vw;
+}
+
+.activeCaseRow {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 66.56vw;
+  height: 24.54vh;
+}
+
+.defaultCard {
+    display: flex;
+    width: 12.50vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.subtractedRectangleContainer {
+  width: 0.83vw;
+  height: 19.91vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtractedRectangleContainer img {
+  height: 19.91vh;
+  width: 0.83vw;
+  display: block;
+}
+
+.addedContainer {
+  display: flex;
+  width: 47.45vw;
+  height: 24.54vh;
+  padding: 1.85vh 1.04vw;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.41vh;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+  background: var(--Gradient-Card-Default, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.addedInfo {
+  display: flex;
+  padding: 0.74vh 0.42vw 0 0.42vw;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.89vh;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.addButtonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.93vh;
+  align-self: stretch;
+}
+
+.addButton {
+  display: flex;
+  width: 13.44vw;
+  height: 5.09vh;
+  padding: 1.48vh 1.04vw 1.48vh 1.25vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  border-radius: 2.34vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-Gray, #777481);
+}
+
+.buttonText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.subtractSvg {
+  margin-left: -1.85vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 15.94vw;
+  height: 52.78vh;
+}
+
+.totalCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 12.24vw;
+  height: 24.54vh;
+  padding: 2.59vh 1.04vw 7.59vh 1.04vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.07vh;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  z-index: 2;
+  margin-left: 1.85vw;
+}
+
+.overlayContainer {
+  position: relative;
+  width: 14.06vw;
+  height: 24.54vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.totalTitle {
+  width: 12.50vw;
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.22vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.totalNumber {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 7.41vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.05vw;
+}
+
+.totalReasonRowsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.37vh;
+  margin-top: -0.93vh;
+}
+
+.totalReasonRow {
+  display: flex;
+  width: 100%;
+  gap: 0.21vw;
+}
+
+.totalReasonCell {
+  display: flex;
+  height: 2.59vh;
+  padding: 0.83vh 0.63vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.52vw;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.30vh;
+  font-weight: 500;
+  text-align: center;
+  flex: 1 1 50%;
+  max-width: 50%;
+  min-width: 0;
+}
+
+.totalReasonCell.single {
+  max-width: 100%;
+  flex-basis: 100%;
+}
+
+.totalReasonText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.30vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.totalArrow {
+  position: absolute;
+  left: 53.37vw;
+  fill: rgba(255, 255, 255, 0.10);
+  z-index: 3;
+  width: 1.35vw;
+  height: 3.89vh;
+}
+
+.minus {
+  width: 1.67vw;
+  height: 2.96vh;
+  margin-top: 3.89vh;
+  display: block;
+}
+
+.equals {
+  position: absolute;
+  left: 50%;
+  bottom: -3.24vh;
+  transform: translateX(-50%);
+  width: 1.67vw;
+  height: 2.96vh;
+  margin-top: 0;
+  display: block;
+  z-index: 3;
+}
+
+.captureButton {
+  display: flex;
+  height: 5.09vh;
+  padding: 1.48vh 1.04vw 1.48vh 1.25vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 2.34vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-Gray, #777481);
+}
+
+.cardContentTitle {
+  align-self: stretch;
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 2.04vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.cardNumberText {
+  font-family: 'Geist', sans-serif;
+  font-size: 7.41vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.05vw;
+}
+
+.verificationContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.83vw;
+}
+
+.remainingCard {
+  display: flex;
+  width: 12.50vw;
+  height: 24.54vh;
+  padding: 2.59vh 0 7.59vh 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.07vh;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: flex-end;
+  margin-left: auto;   
+}
+
+.zeroValue {
+    color: var(--text-icon-dark-gray, #8D8B8D);
+}
+
+.scrControlContainer {
+  display: flex;
+  width: 26.67vw;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.59vh;
+}
+
+.scrImageContainer {
+  display: flex;
+  height: 53.89vh;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 1.30vw;
+  border: 0.05vw solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.scrEmptyImageContainer {
+  display: flex;
+  height: 53.89vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3.70vh;
+  align-self: stretch;
+  border-radius: 1.30vw;
+  border: 0.05vw solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.scrImage {
+  display: flex;
+  height: 47.41vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.93vh;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 1.04vw 1.04vw 0 0;
+}
+
+.scrImageInfoContainer {
+  display: flex;
+  height: 6.48vh;
+  padding: 0 1.46vw;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.scrImageInfoText {
+  width: 15.57vw;
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.scrImageTimeText {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.scrCommandContainer {
+  display: flex;
+  height: 24.54vh;
+  padding: 2.96vh 0 1.48vh 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.70vh;
+  align-self: stretch;
+}
+
+.scrCommandTitle {
+  align-self: stretch;
+  color: var(--White, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.96vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.haystackButtonContainer {
+  display: flex;
+  height: 13.06vh;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.validateColor {
+  display: flex;
+  width: 4.58vw;
+  height: 8.15vh;
+  padding: 1.85vh 1.04vw;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3.65vw;
+  border: 0.21vw solid var(--Main-Orange, #FF9143);
+  background: rgba(255, 145, 67, 0.10);
+}
+
+.actionColor {
+  display: flex;
+  width: 4.58vw;
+  height: 8.15vh;
+  padding: 1.85vh 1.04vw;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3.65vw;
+  border: 0.21vw solid #FFBA39;
+  background: rgba(255, 222, 57, 0.10);
+}
+
+.grayCircle {
+  display: flex;
+  width: 4.58vw;
+  height: 8.15vh;
+  padding: 1.85vh 1.04vw;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3.65vw;
+  border: 0.21vw solid var(--text-icon-light-violet, #A7A4CC);
+  opacity: 0.6;
+}
+
+.otherSharpContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.37vh;
+  align-self: stretch;
+}
+
+.otherSharpRow {
+  display: flex;
+  align-items: center;
+  gap: 0.21vw;
+  align-self: stretch;
+}
+
+.otherSharp {
+  display: flex;
+  height: 2.59vh;
+  padding: 0.83vh 0.63vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.93vh;
+  flex: 1 0 0;
+  border-radius: 0.52vw;
+  background: rgba(255, 255, 255, 0.50);
+}
+
+.otherSharpText {
+  color: var(--text-icon-black, #000);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.30vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.activeMisplaced {
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Red, rgba(255, 80, 93, 0.50));
+    background: var(--Gradient-Card-Red, linear-gradient(144deg, #323655 10.57%, #E32E3C 63.68%, #FE3265 93.01%));
+}
+
+.numberContainer {
+  display: flex;
+  height: 7.41vh;
+  align-items: center;
+  gap: 0.63vw;
+  align-self: stretch;
+}
+
+.verticalRectangle {
+  width: 0.05vw;
+  height: 4.26vh;
+  flex-shrink: 0;
+  background: var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+}
+
+.halfIcon {
+  width: 2.50vw;
+  height: 4.44vh;
+}
+
+.notificationContainer {
+  display: flex;
+  width: 34.79vw;
+  height: 12.04vh;
+  padding: 0.28vh;
+  align-items: flex-start;
+  gap: 0.52vw;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Main-Light-green, #4FE2CE);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4.550000190734863px);
+}
+
+.notificationContainerCount {
+  display: flex;
+  width: 34.79vw;
+  height: 12.04vh;
+  padding: 0.28vh;
+  align-items: flex-start;
+  gap: 0.52vw;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--text-icon-white, #FFF);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4.550000190734863px);
+}
+
+.notificationContainerRed {
+  display: flex;
+  width: 34.79vw;
+  height: 12.04vh;
+  padding: 0.28vh;
+  align-items: flex-start;
+  gap: 0.52vw;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  background: var(--Main-Dark-red, #C52238);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4.550000190734863px);
+}
+
+.notificationInnerContainer {
+  display: flex;
+  padding: 2.04vh 1.15vw 2.04vh 0.16vw;
+  align-items: center;
+  gap: 1.15vw;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 1.25vw;
+  background: var(--Background-White, #FFF);
+}
+
+.notificationIconContainer {
+  display: flex;
+  width: 6.15vw;
+  height: 10.93vh;
+  padding: 2.69vh 1.51vw;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 1.09vw;
+  background: var(--Main-Green, #1DA593);
+}
+
+.notificationIconContainerRed {
+  display: flex;
+  width: 6.15vw;
+  height: 10.93vh;
+  padding: 2.69vh 1.51vw;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 1.09vw;
+  background: var(--Main-Dark-red, #C52238);
+}
+
+.notificationIcon {
+  width: 3.13vw;
+  height: 5.56vh;
+  flex-shrink: 0;
+}
+
+.notificationText {
+  width: 23.23vw;
+  color: var(--text-icon-black, #000);
+  font-family: 'Geist', sans-serif;
+  font-size: 2.04vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.buttonIcons {
+  width: 44px;
+  height: 44px;
+}

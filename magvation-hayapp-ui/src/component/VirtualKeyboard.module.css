@@ -1,0 +1,93 @@
+.keyboardContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    padding: 0.5vh 1vw;
+    box-sizing: border-box;
+
+    background: var(--kb-container-bg, rgb(88, 81, 92));
+
+    align-items: center;
+    min-height: 0;
+
+    --rowGap: 0.05vh;
+    --keyH: 6.5vh;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    /* Increased width from 61.46vw to 75vw for wider keys */
+    width: 75vw;
+    max-width: 95%;
+
+    height: auto;
+    flex: 0 0 auto;
+    min-height: 0;
+
+    gap: var(--rowGap);
+}
+
+.keyboardRow {
+    display: flex;
+
+    gap: 0px;
+
+    flex: 0 0 auto;
+    min-height: 0;
+}
+
+.key {
+    height: var(--keyH);
+    min-width: 0;
+
+    background: var(--kb-key-bg, rgb(20, 20, 21));
+
+    border: 0.1vh solid var(--kb-container-bg, rgb(88, 81, 92));
+
+    border-radius: var(--kb-key-radius, 0.19vh);
+    color: var(--kb-key-color, rgb(245, 245, 245));
+    font-size: var(--kb-key-font-size, 1.48vh);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 0.56vh 0.52vw;
+    position: relative;
+
+    transition: background 0.1s ease;
+    box-shadow: inset 0 0 0 0.09vh rgba(255, 255, 255, 0.05);
+}
+
+.key:hover {
+    background: var(--kb-key-hover-bg, rgb(28, 28, 30));
+}
+
+.key:active {
+    background: var(--kb-key-active-bg, rgb(36, 36, 38));
+}
+
+.keyActive {
+    background: var(--kb-key-active-bg, rgb(36, 36, 38));
+}
+
+.keyLabel {
+    font-family: var(--kb-key-font-family, inherit);
+    font-size: var(--kb-key-font-size, 1.48vh);
+    font-weight: var(--kb-key-font-weight, 500);
+    text-transform: none;
+    opacity: 0.95;
+}
+
+.keySubLabel {
+    font-size: 1.02vh;
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 0.56vh;
+    right: 0.42vw;
+}

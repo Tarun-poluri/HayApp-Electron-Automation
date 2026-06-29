@@ -1,0 +1,413 @@
+/* CIR CBI Readjudication Screen (Figma 3.10.1/3.10.2/3.10.3) */
+/* Orange SCR-validation background + NeedleTapScreen counter UI */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../img/backgrounds/SCRValidationBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 4.63vh 2.60vw;
+}
+
+.progressBar {
+    display: flex;
+    width: 100vw;
+    height: 1.39vh;
+    align-items: flex-start;
+    gap: 0.21vw;
+    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 0.21vw solid var(--Main-Dark-Orange, #FF6D36);
+    background: var(--Main-Dark-Orange, #FF6D36);
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.37vh 0.83vw;
+    margin-left: 1.67vw;
+    border-radius: 0.52vw;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* ===== Content Area (two-panel layout) ===== */
+.contentArea {
+    display: flex;
+    width: 94.79vw;
+    align-items: center;
+    gap: 2.60vw;
+    padding-top: 7.41vh;
+}
+
+/* ===== Image Panel ===== */
+.imageContainer {
+    position: relative;
+    width: 46.88vw;
+    height: 81.02vh;
+    border-radius: 1.30vw;
+    overflow: hidden;
+    background: #2a2a2a;
+    z-index: 2;
+}
+
+.imageContainerTappable {
+    cursor: crosshair;
+}
+
+.cbiImage {
+    width: 46.88vw;
+    height: 81.02vh;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 1.30vw;
+}
+
+/* ===== Marker Styles (from NeedleTapScreen) ===== */
+.markerWrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+    width: 3.70vh;
+    height: 3.70vh;
+    border-radius: 50%;
+    background: #000;
+    border: 0.28vh solid #E6A62F;
+    box-shadow: 0 0 0 0.19vh rgba(150, 150, 150, 0.7);
+}
+
+.markerWrapperIncompatible {
+    border-color: #6FC7ED;
+    border-radius: 0.93vh;
+    border-width: 0.19vh;
+}
+
+.markerWrapperContaminated {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    width: 4.17vw;
+    height: 7.41vh;
+}
+
+.triangularMarkerSvg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.markerNumber {
+    font-size: 1.85vh;
+    font-weight: 700;
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1;
+    z-index: 1;
+    text-align: center;
+}
+
+.markerWrapperContaminated .markerNumber {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.85vh;
+    font-weight: 700;
+}
+
+/* ===== Toggle Button (bottom-left) ===== */
+.toggleButton {
+    position: absolute;
+    bottom: 1.48vh;
+    left: 0.83vw;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0.05vw solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.42vw;
+    padding: 0.74vh 1.04vw;
+    font-weight: 500;
+    font-size: 1.67vh;
+    cursor: pointer;
+    font-family: "Geist", sans-serif;
+    pointer-events: auto;
+    color: #FFF;
+}
+
+.toggleButton:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ===== Image Info Overlay (bottom-right) ===== */
+.imageInfoOverlay {
+    position: absolute;
+    right: 1.67vw;
+    bottom: 2.96vh;
+    display: flex;
+    gap: 1.25vw;
+    border-radius: 0.63vw;
+    padding: 0.74vh 1.04vw;
+    z-index: 10;
+    align-items: center;
+}
+
+.imageInfoText {
+    color: #FFF;
+    text-shadow: 0 0.09vh 0.93vh rgba(0, 0, 0, 0.80);
+    font-family: "Geist", sans-serif;
+    font-size: 2.59vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* ===== Control Panel (right side) ===== */
+.controlPanel {
+    display: flex;
+    width: 45.31vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5.56vh;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+/* ===== Confirm Step (3.10.1) ===== */
+.confirmContent {
+    display: flex;
+    width: 40.10vw;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4.63vh;
+}
+
+.confirmQuestion {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+    white-space: pre-line;
+}
+
+.typeHighlight {
+    color: #FFBA39;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 1.56vw;
+    align-self: stretch;
+}
+
+.noButton,
+.yesButton {
+    display: flex;
+    width: 19.22vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 6.48vh;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.noButton {
+    border: 0.10vw solid #E85C6A;
+}
+
+.noButton:hover {
+    background: rgba(232, 92, 106, 0.15);
+}
+
+.noButtonText {
+    color: #E85C6A;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.yesButton {
+    border: 0.10vw solid #4FE2CE;
+}
+
+.yesButton:hover {
+    background: rgba(79, 226, 206, 0.15);
+}
+
+.yesButtonText {
+    color: #4FE2CE;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.pillButtonIcon {
+    width: 2.22vh;
+    height: 2.22vh;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* ===== Tap Step (3.10.2/3.10.3) ===== */
+.tapContent {
+    display: flex;
+    width: 40.10vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.78vh;
+}
+
+.tapInstruction {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.50vw;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.05vw;
+    text-align: left;
+    width: 100%;
+}
+
+.tapInstructionHighlight {
+    color: rgba(210, 178, 255, 1);
+}
+
+.tapInstructionHighlightContaminated {
+    color: rgba(158, 242, 187, 1);
+}
+
+.tapInstructionHighlightBroken {
+    color: rgba(253, 215, 142, 1);
+}
+
+.tapInstructionHighlightIncompatible {
+    color: rgba(158, 225, 254, 1);
+}
+
+.counterBox {
+    width: 40.10vw;
+    height: 40.37vh;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.83vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2.78vh;
+}
+
+.actionRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1.56vw;
+}
+
+.undoButton,
+.clearButton {
+    display: flex;
+    width: 13.02vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.42vw;
+    border-radius: 6.48vh;
+    border: none;
+    background: rgba(119, 116, 129, 1);
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.actionIcon {
+    width: 2.59vh;
+    height: 2.59vh;
+}
+
+.undoButton:disabled,
+.clearButton:disabled {
+    background: rgba(83, 81, 90, 1);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #000;
+    cursor: not-allowed;
+}
+
+.countDisplay {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -3vh;
+}
+
+.countNumber {
+    font-size: 11.85vh;
+    font-weight: 400;
+    color: rgba(141, 139, 141, 1);
+    line-height: 1;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.countNumberActive {
+    font-weight: 600;
+    color: #FFF;
+}
+
+.confirmButton {
+    display: flex;
+    width: 36.46vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.48vh;
+    background: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    color: #1A1A2E;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+}
+
+.confirmButton:hover {
+    background: rgba(255, 255, 255, 1);
+}

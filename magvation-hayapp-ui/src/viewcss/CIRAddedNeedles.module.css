@@ -1,0 +1,957 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+}
+
+.screenContainerNoHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/backgrounds/CIRDashboardBackground.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    align-items: center;
+}
+
+.headerContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 14.35vh;
+    align-items: center;
+    gap: 1.46vw;
+    flex-shrink: 0;
+}
+
+.leftHeaderContainer {
+    display: flex;
+    align-items: center;
+    gap: 2.29vw;
+    flex: 1 0 0;
+}
+
+.roundButton {
+    display: flex;
+    width: 3.13vw;
+    height: 5.56vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    aspect-ratio: 1/1;
+    border-radius: 1.51vw;
+    border: 0.05vw solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.backArrow {
+    width: 1.67vw;
+    height: 2.96vh;
+    flex-shrink: 0;
+}
+
+.headerTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.25vw;
+    align-self: stretch;
+}
+
+.headerText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 3.70vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.helpContainer {
+    display: flex;
+    align-items: center;
+    gap: 3.13vw;
+}
+
+.helpContentContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.46vw;
+}
+
+.helpTextContainer {
+    display: flex;
+    height: 5.09vh;
+    padding: 1.48vh 0 1.48vh 0.42vw;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 0.78vw;
+}
+
+.helpIcon {
+    display: flex;
+    width: 1.15vw;
+    height: 2.04vh;
+    padding: 0.08vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.helpText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.verticalBar {
+    width: 2.29vw;
+    height: 0.09vh;
+    transform: rotate(90deg);
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.contentContainer {
+    display: flex;
+    width: 1820px;
+    height: 875px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+
+.innerContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.addImage {
+    width: 1776px;
+    height: 444px;
+}
+
+.instructionText {
+    width: 1374px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.continueButton {
+    display: flex;
+    width: 700px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.continueButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.needleInfoHeaderSmallText {
+    width: 770px;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.content {
+    display: flex;
+    width: 40.10vw;
+    flex-direction: column;
+    gap: 4.63vh;
+}
+
+.contentTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.96vh;
+}
+
+.roundIcon {
+    display: flex;
+    width: 5.21vw;
+    height: 9.26vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.52vw;
+    aspect-ratio: 1/1;
+    border-radius: 2.86vw;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.contentText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.67vw;
+    align-self: stretch;
+}
+
+.noButton {
+    display: flex;
+    height: 6.48vh;
+    padding: 0 1.56vw 0 1.82vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    flex: 1 0 0;
+    border-radius: 2.86vw;
+    border: 0.10vw solid var(--Main-Light-red, #FF7083);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.noText {
+    color: var(--Main-Light-red, #FF7083);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.yesText {
+    color: var(--Main-Light-green, #4FE2CE);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.yesButton {
+    display: flex;
+    height: 6.48vh;
+    padding: 0 1.56vw 0 1.82vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    flex: 1 0 0;
+    border-radius: 2.86vw;
+    border: 0.10vw solid var(--Main-Light-green, #4FE2CE);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.buttonIcon {
+    width: 1.46vw;
+    height: 2.59vh;
+}
+
+.scanStepContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 81.02vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.59vh;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+}
+
+.scanStepContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 80px;
+    padding-bottom: 200px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.scanStepTopContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 40.56vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11.93vh;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.scanStepIcon {
+    width: 5.00vw;
+    height: 8.89vh;
+}
+
+.scanImage {
+    width: 1000px;
+    height: auto;
+}
+
+.scanStepText {
+    width: 46.67vw;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.needleInfoStepContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 81.02vh;
+    align-items: center;
+    gap: 2.60vw;
+    flex-shrink: 0;
+}
+
+.needlePackImageConatiner {
+    display: flex;
+    width: 46.88vw;
+    height: 81.02vh;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+    border: 0.05vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.needlePackBackground {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--Background-White, #FFF);
+}
+
+.needlePackBackground img {
+    max-width: 36.46vw;
+    max-height: 64.81vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.needleInfoContainer {
+    display: flex;
+    padding: 4.63vh 2.60vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.70vh;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.needleInfoContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.70vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.needleInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.70vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.needleAddText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.infoSection {
+    display: flex;
+    padding-bottom: 4.63vh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.70vh;
+    align-self: stretch;
+    border-radius: 0 1.30vw 1.30vw 0;
+}
+
+.infoTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.59vh;
+    align-self: stretch;
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    gap: 0.42vw;
+    align-self: stretch;
+}
+
+.infoRowTitle {
+    flex: 1 0 0;
+    color: var(--text-icon-dark-gray, #8D8B8D);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.infoRowValue {
+    width: 7.66vw;
+    color: var(--text-icon-white, #FFF);
+    text-align: right;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.infoTableDivider {
+    height: 0.09vh;
+    align-self: stretch;
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.needleInfoButtonContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.67vw;
+    align-self: stretch;
+}
+
+.dropZoneContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    margin-top: -100px;
+}
+
+.dropZoneDisposeContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    gap: 4.63vh;
+}
+
+.dropZoneTextAndButton {
+    gap: 4.63vh;
+    margin-top: -150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.dropZoneConfirmButton {
+    display: flex;
+    width: 41.67vw;
+    height: 6.48vh;
+    padding: 0 1.56vw 0 1.82vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 2.86vw;
+    border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.dropZoneConfirmText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.waitingContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 90.74vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.22vh;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+    border: 0.05vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.loadingIcon {
+    display: flex;
+    width: 5.21vw;
+    height: 9.26vh;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingIconSpinner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: rotate 1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.waitingText {
+    width: 100%;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.deniedStepTopContainer {
+    display: flex;
+    width: 49.06vw;
+    height: 38.98vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11.93vh;
+    align-self: stretch;
+    border-radius: 1.30vw;
+    background: rgba(255, 255, 255, 0.10);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.deniedStepContainer {
+    display: flex;
+    width: 94.79vw;
+    height: 81.02vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.59vh;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+}
+
+.deniedStepContentContainer {
+    display: flex;
+    padding-bottom: 1.11vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.63vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.deniedStepLargeText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 4.44vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.05vw;
+}
+
+.deniedStepSmallText {
+    display: flex;
+    width: 75.00vw;
+    height: 5.74vh;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.96vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.deniedStepTextContainer {
+    display: flex;
+    width: 75.00vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.48vh;
+}
+
+.deniedStepImage {
+    width: 702px;
+    height: 448px;
+}
+
+.viewAddedNeedlesButton {
+    position: absolute;
+    left: 50%;
+    top: 4.63vh;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    width: 18.75vw;
+    height: 6.48vh;
+    padding: 0 1.56vw 0 1.82vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 5.21vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    white-space: nowrap;
+}
+
+.viewAddedNeedlesText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.22vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.viewAddedNeedlesIcon {
+    width: 1.46vw;
+    height: 2.59vh;
+    flex-shrink: 0;
+}
+
+.addedNeedleContainer {
+    display: flex;
+    width: 88.54vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.22vh;
+}
+
+.addedNeedleHeaderContainer {
+    display: flex;
+    height: 7.13vh;
+    padding: 0 2.08vw;
+    align-items: center;
+    align-self: stretch;
+}
+
+.addedNeedleListSegment {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.52vw;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.addedNeedleColumnHeaderText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    flex: 1 0 0;
+}
+
+.addedNeedleRowContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.addedNeedleGrayRow {
+    display: flex;
+    width: 88.54vw;
+    height: 10.19vh;
+    padding: 0 2.08vw;
+    align-items: center;
+    border-radius: 1.30vw;
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.addedNeedleBlackRow {
+    display: flex;
+    width: 88.54vw;
+    height: 10.19vh;
+    padding: 0 2.08vw;
+    align-items: center;
+    border-radius: 0.78vw;
+}
+
+.addedNeedleRowText {
+    flex: 1 0 0;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.59vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.addedNeedleMainArea {
+    display: flex;
+    flex-direction: row;
+    width: 94.79vw;
+    height: 81.02vh;
+    align-items: stretch;
+    position: relative;
+    margin-bottom: 4.63vh;
+}
+
+.addedNeedleLeftArea {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+}
+
+.addedNeedleScrollbarArea {
+    width: 3.65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+    background: transparent;
+    z-index: 2;
+}
+
+.addedNeedleScroll {
+    flex: 1 1 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.42vw;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.addedNeedleScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.addedNeedleRowsWithScrollbar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 71.67vh;
+    gap: 2.60vw;
+}
+
+.restartScannerContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 137px;
+    padding: 0 50px;
+    align-items: center;
+    gap: 60px;
+    border-top: 2px solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+    background: linear-gradient(rgba(8, 9, 24, 0.70), rgba(8, 9, 24, 0.70)), linear-gradient(324deg, #323655 10.57%, #E32E3C 63.68%, #FE3265 93.01%);
+    backdrop-filter: blur(75px);
+    z-index: 10;
+}
+
+.restartScannerContent {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1 0 0;
+}
+
+.restartScannerLeft {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1 0 0;
+}
+
+.restartScannerIconContainer {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.restartScannerIconContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #EB3850;
+    animation: ringEcho 1s ease-out infinite;
+    opacity: 0;
+}
+
+@keyframes ringEcho {
+    0% {
+        transform: scale(1);
+        opacity: 0.55;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.redCircle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #EB3850;
+}
+
+.bellIcon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.restartScannerRing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 56px;
+    height: 56px;
+    padding: 13px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 54px;
+    border: 1px solid #C43041;
+    background: var(--Gradient-Button-Red, linear-gradient(94deg, #CA4958 6.52%, #CC293E 98.3%));
+}
+
+.restartButtonText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.restartText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.restartButton {
+    display: flex;
+    width: 360px;
+    height: 70px;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Background-White, #FFF);
+    background: rgba(255, 255, 255, 0.05);
+}

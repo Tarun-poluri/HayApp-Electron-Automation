@@ -1,0 +1,64 @@
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.48vh;
+    flex: 1 0 0;
+}
+
+.buttonCircleBase {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    padding: 29.545px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 70px;
+    border-style: solid;
+    border-width: 8px;
+    box-sizing: border-box;
+}
+
+.buttonCircle {
+    border-color: var(--text-icon-dark-gray, #8D8B8D);
+    opacity: 0.35;
+}
+
+.buttonCircleYesActive {
+    border-color: var(--Main-Light-green, #4FE2CE);
+    background: rgba(29, 165, 147, 0.10);
+}
+
+.buttonCircleValidateActive {
+    border-color: var(--Main-Orange, #FF9143);
+    background: rgba(255, 145, 67, 0.10);
+}
+
+.buttonCircleActionActive {
+    border-color: #FFBA39;
+    background: rgba(255, 222, 57, 0.10);
+}
+
+.buttonCircleNoActive {
+    border-color: var(--Main-Red, #EB3850);
+    background: rgba(255, 70, 94, 0.10);
+}
+
+.buttonImage {
+    width: 2.29vw;
+    height: 4.07vh;
+    flex-shrink: 0;
+    fill: var(--text-icon-dark-gray, #8D8B8D);
+}
+
+.buttonTitle {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

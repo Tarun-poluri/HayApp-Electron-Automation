@@ -1,0 +1,425 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1920px;
+    height: 1080px;
+    background-image: url('../../img/backgrounds/CIRDashboardBackground.svg');
+    position: relative;
+    align-items: center;
+    gap: 24px;
+}
+
+.innerScreenContainer {
+    display: flex;
+    width: 1820px;
+    height: 875px;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.leftContainer {
+    display: flex;
+    width: 900px;
+    height: 494px;
+    padding: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.imageContainer {
+    width: 800px;
+    flex: 1 0 0;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.text {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.rightContainer {
+    display: flex;
+    width: 870px;
+    height: 494px;
+    padding: 50px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    border: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.rightContainerContent {
+    display: flex;
+    width: 770px;
+    padding: 110px 260px 28px 260px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 58px;
+    flex: 1 0 0;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.20);
+}
+
+.totalText {
+    color: var(--text-icon-dark-gray, #8D8B8D);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 128px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 128px */
+}
+
+.totalTextActive {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 128px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; /* 128px */
+}
+
+.clearButton {
+    display: flex;
+    width: 250px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-Dark-grey, #53515A);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.clearButtonActive {
+    display: flex;
+    width: 250px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-Gray, #777481);
+    cursor: pointer;
+}
+
+.clearButtonActive:active {
+    background: #87858f;
+}
+
+.clearButtonActiveText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.clearText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.clearIcon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.numpadContainer {
+    display: flex;
+    width: 1920px;
+    padding: 13px 648px 20px 648px;
+    justify-content: center;
+    align-items: center;
+    background: #1A181B;
+}
+
+.numpadContentContainer {
+    display: flex;
+    width: 624px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.numpad {
+    display: flex;
+    height: 278px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.confirmButton {
+    display: flex;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+    cursor: pointer;
+}
+
+.confirmButton:active {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.confirmText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.numpadRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.numpadButton {
+    display: flex;
+    padding: 11px 0 9.5px 0;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: #696473;
+    border: none;
+    cursor: pointer;
+}
+
+.numpadButton:active {
+    background: #7a7583;
+}
+
+.numpadNumber {
+    color: #FFF;
+    font-family: "Segoe UI Variable";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blankNumpadButton {
+    flex: 1 0 0;
+    align-self: stretch;
+    background: rgba(105, 100, 115, 0.30);
+}
+
+.backNumpadButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    background: #696473;
+    border: none;
+    cursor: pointer;
+}
+
+.backNumpadButton:active {
+    background: #7a7583;
+}
+
+.mismatchContainer {
+    display: flex;
+    width: 1820px;
+    height: 876px;
+    padding: 0 115px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.mismatchInnerContainer {
+    display: flex;
+    padding-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.scrNotConfirmImage {
+    width: 566px;
+    height: 457px;
+}
+
+.mismatchContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+    align-self: stretch;
+}
+
+.mismatchTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.mismatchLargeText {
+    width: 926px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.mismatchSmallText {
+    width: 926px;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: pre-line;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.mismatchButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.newNumberButton {
+    display: flex;
+    width: 800px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.newNumberButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: Geist, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.valueContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.valueContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.valueTextContainer {
+    display: flex;
+    width: 1590px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.valueSpecialTextContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.valueBadgeContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.valueBadge {
+    display: flex;
+    padding: 4px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18px;
+    border: 1px solid var(--Borders-Violet, #BF6CFF);
+    background: var(--Gradient-Card-Violet, linear-gradient(144deg, #323655 10.57%, #6325C7 52.18%, #BB62FF 93.01%));
+}
+
+.valueText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}

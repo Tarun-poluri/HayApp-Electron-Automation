@@ -1,0 +1,1285 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 2.30vh 3.12vw;
+    gap: 1.56vw;
+}
+
+.backButton {
+    width: 5.37vh;
+    height: 5.37vh;
+    border-radius: 2.60vh;
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.backButton:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.backButton img {
+    width: 2.86vh;
+    height: 2.86vh;
+}
+
+.headerContent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 89.38vw;
+    height: 7.5vh;
+    padding: 0 1.82vw;
+    gap: 1.25vw;
+    background: transparent;
+    border: 2px solid #777481;
+    border-radius: 1.85vh;
+    box-shadow: 0px 0px 0px 2px #00000040;
+    box-sizing: border-box;
+    transition: background 0.2s ease, border-radius 0.2s ease;
+}
+
+.headerContentOpen {
+    position: relative;
+    margin-left: calc(-5.56vh - 1.56vw);
+    width: calc(89.38vw + 5.56vh + 1.56vw);
+    background: #53515A;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    z-index: 10;
+}
+
+.headerContentOpen .headerLabel {
+    display: none;
+}
+
+.headerContentOpen .itemCount {
+    order: -1;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.37vh;
+}
+
+.headerLabel {
+    font-size: 1.30vh;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 120%;
+}
+
+.headerTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.78vw;
+}
+
+.headerContentOpen .headerTitleRow {
+    gap: 1.30vw;
+}
+
+.headerTitle {
+    font-size: 2.22vh;
+    font-weight: 500;
+    color: white;
+    line-height: 120%;
+}
+
+.itemCountChip {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.itemCount {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.itemCountText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.itemCountDivider {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0.2;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 1.04vw;
+}
+
+.chevronIcon {
+    width: 2.22vh;
+    height: 2.22vh;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chevronIcon:hover {
+    opacity: 1;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: -2px;
+    right: -2px;
+    margin-top: 0;
+    background: transparent;
+    border: 2px solid #777481;
+    border-top: none;
+    border-bottom-left-radius: 1.85vh;
+    border-bottom-right-radius: 1.85vh;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dropdownItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.85vh 1.82vw;
+    background: #7A787F;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.dropdownItem::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: calc(1.82vw + 2.5vh + 1.30vw);
+    right: 1.82vw;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dropdownItem:last-child::after {
+    display: none;
+}
+
+.dropdownItem:hover {
+    background: #8A888F;
+}
+
+.dropdownItemSelected {
+    background: #6A686F;
+}
+
+.dropdownItemSelected:hover {
+    background: #7A787F;
+}
+
+.dropdownItemLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8vh;
+}
+
+.dropdownCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5vh;
+    height: auto;
+    padding: 0.5vh 1vh;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 0.93vh;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.11vh;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-align: center;
+    color: white;
+    white-space: nowrap;
+}
+
+.dropdownCaseInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.37vh;
+}
+
+.dropdownCaseName {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    color: white;
+}
+
+.dropdownCptCode {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.48vh;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.dropdownNoSheetBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.52vw;
+    padding: 0.74vh 0.625vw;
+    background: #00000026;
+    border: 1px solid #FFFFFF;
+    border-radius: 1.11vh;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.30vh;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.dropdownWarningIcon {
+    width: 1.48vh;
+    height: 1.48vh;
+    flex-shrink: 0;
+}
+
+.menuIcon {
+    width: 2.78vh;
+    height: 2.78vh;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+}
+
+.menuIcon:hover {
+    opacity: 1;
+}
+
+/* Tab Bar */
+.tabBar {
+    display: flex;
+    gap: 0;
+    padding: 0 3.12vw;
+    margin-bottom: 3.33vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tab {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    background: none;
+    border: none;
+    width: 10.42vw;
+    padding: 1.48vh 0;
+    margin-bottom: -1px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    text-align: center;
+}
+
+.tab:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.activeTab {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 500;
+    color: white;
+    background: none;
+    border: none;
+    width: 10.42vw;
+    padding: 1.48vh 0;
+    margin-bottom: -1px;
+    cursor: pointer;
+    border-bottom: 3px solid #D2B2FF;
+    text-align: center;
+}
+
+/* Main Content */
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.56vw;
+    overflow: hidden;
+    position: relative;
+    padding: 0 3.12vw;
+}
+
+.tableWrapper {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 12vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tableWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Category Section */
+.categorySection {
+    margin-bottom: 3.33vh;
+}
+
+/* Category Banner */
+.categoryBanner {
+    position: relative;
+    height: 48px;
+    align-self: stretch;
+    border-radius: 5px 12px 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 24px;
+}
+
+.categoryBannerOpen {
+    background: rgba(210, 178, 255, 0.10);
+}
+
+.categoryBannerJit {
+    background: rgba(92, 92, 107, 0.10);
+}
+
+.categoryBannerClose {
+    background: rgba(55, 130, 200, 0.10);
+}
+
+.bannerInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bannerInfoText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bannerInfoDivider {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0.2;
+}
+
+.bannerCategoryLabel {
+    position: absolute;
+    left: 4px;
+    top: -8px;
+    width: 167px;
+    height: 79px;
+}
+
+.categoryBannerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.30vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.22vh;
+    font-weight: 600;
+    color: white;
+}
+
+.categoryBannerRight {
+    display: flex;
+    align-items: center;
+    gap: 2.60vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.85vh;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.categoryIconPlaceholder {
+    width: 3.70vh;
+    height: 3.70vh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Category Rows Container */
+.categoryRows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.85vh;
+    margin-top: 1.85vh;
+}
+
+/* Row Styles */
+.rowContentContainer {
+    display: flex;
+    padding: 25px;
+    align-items: flex-end;
+    gap: 25px;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.rowImageContainer {
+    display: flex;
+    width: 114px;
+    height: 220px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: transparent;
+}
+
+.rowImage {
+    max-width: 114px;
+    max-height: 220px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: white;
+}
+
+.rowTableContainer {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.rowTableTopContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.rowTableTitleContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rowTableTitleContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowTableTitleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableCode {
+    display: flex;
+    padding: 4px 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.rowTableCodeText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-overflow: ellipsis;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-clamp: 1;
+}
+
+.rowTableUseContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.rowTableUseTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableUse {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.rowTableUseText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableBottomContainer {
+    display: flex;
+    height: 101px;
+    align-items: flex-end;
+    gap: 34px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.rowSutureInfoTableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.rowSutureInfoTitleText {
+    align-self: stretch;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableSutureInfoTable {
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.sutureInfoTableCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.cellHeaderText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cellTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTable {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
+}
+
+.needleInfoTopTable {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.needleInfoTopCell {
+    display: flex;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.needleInfoTopNumber {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTopText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.needleInfoBottomTitle {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTableContent {
+    display: flex;
+    padding: 15px 20px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.needleInfoBottomCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.tipTypeContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tipTypeIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.78vw;
+    padding: 1vh 0;
+    margin-bottom: 0.33vh;
+}
+
+/* Category Icon Containers */
+.openIconContainer {
+    width: 3.70vh;
+    height: 3.70vh;
+    flex-shrink: 0;
+    background: #D2B2FF33;
+    border-radius: 0.67vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closingIconContainer {
+    width: 3.70vh;
+    height: 3.70vh;
+    flex-shrink: 0;
+    background: #6FC7ED33;
+    border-radius: 0.67vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jitIconContainer {
+    width: 3.70vh;
+    height: 3.70vh;
+    flex-shrink: 0;
+    background: #FFFFFF33;
+    border-radius: 0.67vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.openCategoryIcon {
+    width: 1.96vh;
+    height: 2.34vh;
+    object-fit: contain;
+}
+
+.closingCategoryIcon {
+    width: 1.73vh;
+    height: 2.16vh;
+    object-fit: contain;
+}
+
+.jitCategoryIcon {
+    width: 2.16vh;
+    height: 2.38vh;
+    object-fit: contain;
+}
+
+.categoryLabel {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 3.70vh;
+    line-height: 100%;
+    letter-spacing: -0.09vh;
+    color: white;
+}
+
+.sectionCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.70vh;
+    height: 3.70vh;
+    padding: 0 0.52vw;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 0.62vw;
+    font-size: 1.48vh;
+    font-weight: 600;
+    color: white;
+}
+
+.expandIcon {
+    width: 1.85vh;
+    height: 1.85vh;
+    margin-left: auto;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+}
+
+.expandIcon:hover {
+    opacity: 1;
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.headerRow {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.30vh;
+    font-weight: 500;
+}
+
+.headerCell {
+    padding: 0 1.25vw 1.48vh 1.25vw;
+    text-align: left;
+    vertical-align: bottom;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.20vh;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #AFACBC;
+    white-space: pre-line;
+}
+
+.headerCell:first-child {
+    width: 25vw;
+    text-align: left;
+    padding-left: 1.56vw;
+}
+
+.headerCell:nth-child(2) {
+    width: 8vw;
+}
+
+.headerCell:nth-child(3) {
+    width: 8vw;
+}
+
+.headerCell:nth-child(4) {
+    width: 25.52vw;
+    vertical-align: middle;
+}
+
+.headerCell:nth-child(5) {
+    width: 9.38vw;
+}
+
+.headerCell:nth-child(6) {
+    width: 10vw;
+}
+
+.dataRow {
+    height: 9.26vh;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.74vh);
+    -webkit-backdrop-filter: blur(0.74vh);
+}
+
+.oddRow {
+    background: #FFFFFF26;
+}
+
+.evenRow {
+    background: #FFFFFF0D;
+}
+
+.firstRow td:first-child {
+    border-top-left-radius: 0.62vw;
+}
+
+.firstRow td:last-child {
+    border-top-right-radius: 0.62vw;
+}
+
+.lastRow td:first-child {
+    border-bottom-left-radius: 0.62vw;
+}
+
+.lastRow td:last-child {
+    border-bottom-right-radius: 0.62vw;
+}
+
+.topRightCell {
+    border-top-right-radius: 0.62vw;
+}
+
+.bottomRightCell {
+    border-bottom-right-radius: 0.62vw;
+}
+
+.cell {
+    height: 9.26vh;
+    padding: 0 1.5vw;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.67vh;
+    font-weight: 500;
+    color: white;
+    position: relative;
+}
+
+.numericCell {
+    font-size: 2.04vh;
+}
+
+.cell:first-child {
+    padding-left: 1.56vw;
+}
+
+.cell:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    pointer-events: none;
+}
+
+.dataRow:not(.lastRow) .cell::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.5px;
+    height: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nomenclatureCell {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.nomenclatureName {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.67vh;
+    line-height: 2.13vh;
+    letter-spacing: 0;
+    color: white;
+}
+
+.nomenclatureSubLabel {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.48vh;
+    line-height: 1.94vh;
+    letter-spacing: 0;
+    color: #AFACBC;
+    margin-top: 0.19vh;
+}
+
+.sutureUseText {
+    width: 18vw;
+    height: 4.26vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.48vh;
+    line-height: 130%;
+    letter-spacing: 0;
+    color: white;
+    text-align: left;
+}
+
+.boldCell {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 2.59vh;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.moreInfoCell {
+    text-align: center;
+}
+
+.moreInfoWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.moreInfoButton {
+    height: 5vh;
+    padding: 0 1.8vw;
+    background: rgba(119, 116, 129, 0.65);
+    border: none;
+    border-radius: 52.03vw;
+    color: white;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.5vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.05s ease;
+}
+
+.moreInfoButton:hover {
+    background: rgba(119, 116, 129, 0.85);
+}
+
+.moreInfoButton:active {
+    transform: scale(0.97);
+}
+
+/* Footer - matches caseTypeSummaryNew.module.css confirmBar */
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 12.69vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(8, 9, 24);
+    border-top: 0.09vh solid rgba(255, 255, 255, 0.08);
+    padding: 0 6.67vh calc(env(safe-area-inset-bottom)) 6.67vh;
+    z-index: 120;
+    box-sizing: border-box;
+}
+
+.footerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.48vh;
+}
+
+.totalText {
+    font-size: 2.59vh;
+    font-weight: 500;
+    color: white;
+}
+
+.totalCount {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 0.62vw;
+    padding: 0.56vh 0.83vw;
+    min-width: 1.25vw;
+    text-align: center;
+    font-size: 2.22vh;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoIcon {
+    width: 2.96vh;
+    height: 2.96vh;
+    margin-left: 1.48vh;
+}
+
+.instructionText {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 2.22vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    margin-left: 0.37vh;
+}
+
+.confirmButton {
+    display: flex;
+    height: 5.93vh;
+    min-width: 21.88vw;
+    padding: 0 3.12vw;
+    background: #ffffff;
+    color: #111111;
+    border: none;
+    border-radius: 52.03vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 2.22vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1.48vh 4.07vh rgba(0, 0, 0, 0.42);
+    transition: transform 0.08s ease, filter 0.15s ease;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.confirmArrowIcon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.confirmButton:hover {
+    filter: brightness(0.98);
+}
+
+.confirmButton:active {
+    transform: translateY(0.09vh);
+}
+
+/* Scrollbar Wrapper - for conditional positioning */
+.scrollbarWrapper {
+    flex-shrink: 0;
+    transition: padding-top 0.2s ease;
+}
+
+.scrollbarWrapperDropdownOpen {
+    padding-top: 5.28vh;
+}
+
+/* Scrollbar Styles (from reviewRedundantNeedles) */
+.scrollIndicators {
+    width: 4.38vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2.22vh;
+    padding-bottom: 1.5vh;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.scrollRail {
+    width: 3.33vw;
+    height: 100%;
+    border-radius: 2.08vw;
+    padding: 1.11vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.30vh;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(0.74vh);
+}
+
+.scrollRailDisabled {
+    opacity: 0.45;
+}
+
+.scrollArrow {
+    width: 2.60vw;
+    height: 4.63vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.09vh solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+
+.scrollArrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.scrollArrow:active {
+    transform: translateY(0.09vh);
+}
+
+.scrollArrowDisabled,
+.scrollArrow:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.2);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    transform: none;
+}
+
+.scrollTrack {
+    position: relative;
+    width: 2.29vw;
+    flex: 1;
+    min-height: 14.81vh;
+    border-radius: 52.03vw;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.06);
+    padding: 0.74vh 0;
+    box-sizing: border-box;
+}
+
+.scrollTrackDisabled {
+    cursor: default;
+}
+
+.scrollThumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.56vw;
+    height: 7.78vh;
+    border-radius: 52.03vw;
+    background: rgba(255, 255, 255, 0.18);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 6px 14px rgba(0, 0, 0, 0.30);
+    cursor: grab;
+    touch-action: none;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
+
+.scrollThumbDisabled {
+    opacity: 0.35;
+    cursor: default;
+}

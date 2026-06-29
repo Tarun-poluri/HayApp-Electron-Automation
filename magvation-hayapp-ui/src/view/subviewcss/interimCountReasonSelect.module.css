@@ -1,0 +1,118 @@
+.wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding: 1.25vh 2.5vw 2.5vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.prompt {
+    color: rgba(255, 255, 255, 0.92);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(2.1rem, 3.85vh, 3.05rem);
+    font-weight: 500;
+    margin: 0 0 1.5vh;
+    padding: 0 0.5rem;
+    align-self: center;
+    white-space: nowrap;
+}
+
+.cards {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.85vw;
+    justify-content: stretch;
+    align-items: stretch;
+    width: 100%;
+    min-height: 0;
+    max-width: none;
+}
+
+.card {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2vh;
+    padding: 2.5vh 1.75vw 2.25vh;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    min-height: 0;
+}
+
+.card:hover {
+    border-color: rgba(129, 167, 255, 0.55);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.cardSelected {
+    border-color: rgba(129, 167, 255, 1);
+    background: rgba(129, 167, 255, 0.08);
+}
+
+/* Full width of the card (into horizontal padding); height follows SVG aspect ratio, capped. */
+.illustration {
+    width: calc(80% + 1.75vw);
+    max-width: none;
+    flex: 0 0 auto;
+    margin-left: -1.75vw;
+    margin-right: -1.75vw;
+    margin-bottom: 0.85vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.artImg {
+    width: 100%;
+    height: auto;
+    max-height: clamp(32vh, 48vw, 52vh);
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+}
+
+.cardTitle {
+    color: #fff;
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(1.05rem, 2.4vh, 1.5rem);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.35;
+    margin: 0;
+    padding: 0 0.75rem;
+    flex-shrink: 0;
+}
+
+.arrowBtn {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    pointer-events: none;
+    margin-top: 2vh;
+}
+
+.arrowBtn img {
+    width: 1.55rem;
+    height: 1.55rem;
+    object-fit: contain;
+}

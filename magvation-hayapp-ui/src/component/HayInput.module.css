@@ -1,0 +1,194 @@
+.hayInput {
+    height: 100%;
+    flex: 1
+}
+
+.popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.focused {
+    position: absolute;
+    top: 22.31vh;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.background {
+    background: #000000B3;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.label {
+    margin-bottom: 0.93vh;
+    height: 4.63vh;
+}
+
+.input {
+    position: relative;
+}
+
+.inputWrapper {
+    width: 100%;
+    height: 100%;
+    border: 0.05vw solid;
+    border-color: var(--border-color);
+    border-radius: 0.42vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: black;
+}
+
+.inputUI:focus {
+    outline: none;
+}
+
+.inputUI {
+    font-size: 1em;
+    background: transparent;
+    color: var(--border-color);
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0 0.83vw;
+}
+
+.expandImage {
+    position: absolute;
+    right: 0.52vw;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 0.46vh;
+}
+
+.completeList {
+    z-index: 2;
+    border-radius: 0.42vw;
+    background: var(--popup-background-color);
+    padding: 1.11vh 0.63vw 1.11vh 1.67vw;
+    position: relative;
+    top: 0.46vh;
+    display: flex;
+    height: 18.52vh;
+}
+
+.list {
+    flex: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.listItem {
+    padding: 0.93vh 0;
+}
+
+.pressed {
+    color: var(--secondary-color);
+}
+
+.scrollBar {
+    display: flex;
+    flex-direction: column;
+    width: 1.04vw;
+}
+
+.scrollBarInner {
+    flex: 1;
+}
+
+.scrollBarTab {
+    border-radius: 0.42vw;
+    width: 100%;
+    background-color: var(--purple);
+    position: relative;
+}
+
+.popupLabelLeft {
+    width: 17.50vw;
+    height: 27.78vh;
+    position: absolute;
+    left: 1.67vw;
+    top: 0;
+}
+
+.popupLabelTop {
+    width: 100%;
+}
+
+.keyboard {
+    display: flex;
+}
+
+.fullScreenKeyboard {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-shadow: 0 -0.37vh 1.85vh rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+}
+
+.keyboardContainer {
+    display: inline-flex;
+    padding: 0.93vh 15.31vw 0 15.31vw;
+    justify-content: center;
+    align-items: center;
+    background: #1A181B;
+}
+
+/* New Input Styles */
+.inputContainer {
+    position: relative;
+    width: 100%;
+}
+
+.inputField {
+    width: 100%;
+    height: 3.33vh;
+    padding: 3.24vh 1.56vw;
+    border-radius: 1.30vw;
+    background: #00000026;
+    border: 0.10vw solid #8d8b8d;
+    color: #fff;
+    font-size: 2.59vh;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    margin-top: 1.85vh;
+    box-sizing: border-box;
+}
+
+.inputField:focus {
+    outline: none;
+    background: #9a9ba5;
+    border-color: #fff;
+}
+
+.inputField::placeholder {
+    color: #8d8b8d;
+}
+
+.inputField:focus::placeholder {
+    color: #fff;
+    opacity: 0.7;
+}

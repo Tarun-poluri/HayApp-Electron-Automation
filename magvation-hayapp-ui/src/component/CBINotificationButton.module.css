@@ -1,0 +1,54 @@
+.notificationContainer {
+    background: #070707;
+    border: 0.10vw solid;
+    padding: 0.10vw;
+    border-radius: 1.25vw;
+}
+
+.notificationSubContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.83vw;
+    padding: 0.19vh 0.10vw;
+    border-radius: 1.04vw;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    z-index: 1000;
+    min-width: 31.25vw;
+    background-color: #F0F0F0;
+}
+
+.notificationText {
+    color: #000;
+    font-family: 'Geist', sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.iconContainer {
+    width: 5.63vw;
+    height: 10vh;
+    flex-shrink: 0;
+    border-radius: 1.04vw;
+    background: linear-gradient(135deg, #2E2D3B 0%, #3B3B45 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.48vh 0.83vw;
+    box-sizing: border-box;
+}
+
+.notificationContainer .cbiNeedleIcon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.notificationArrow {
+    width: 1.67vw;
+    height: 2.96vh;
+    flex-shrink: 0;
+    margin-right: 0.83vw;
+}

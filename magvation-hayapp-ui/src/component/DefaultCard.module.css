@@ -1,0 +1,54 @@
+.defaultCard {
+    display: flex;
+    width: 15.26vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.41vh;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    box-sizing: border-box;
+}
+
+.cardContentContainer {
+    display: flex;
+    padding: 0.74vh 0.42vw 0 0.42vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.89vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.cardContentTitle {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cardNumberText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 5.93vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.05vw;
+}
+
+.zeroValue {
+    color: var(--text-icon-dark-gray, #8D8B8D);
+}
+
+.activeMisplaced {
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Red, rgba(255, 80, 93, 0.50));
+    background: var(--Gradient-Card-Red, linear-gradient(144deg, #323655 10.57%, #E32E3C 63.68%, #FE3265 93.01%));
+}

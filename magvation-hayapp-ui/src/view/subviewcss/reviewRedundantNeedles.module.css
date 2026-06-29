@@ -1,0 +1,1078 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 12vh 50px 0 45px;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Custom header styles for this screen */
+.headerLeft {
+    gap: 2.78vh;
+}
+
+.headerTitle {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 3.70vh;
+    line-height: 100%;
+    letter-spacing: -0.09vh;
+}
+
+.mainContent {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.56vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollableList {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-top: 25px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollableList::-webkit-scrollbar {
+    display: none;
+}
+
+.tableWrapper {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 12vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tableWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+
+.headerRow {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.30vh;
+    font-weight: 500;
+}
+
+.headerCell {
+    padding: 1.48vh 1.25vw;
+    text-align: left;
+    vertical-align: bottom;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.20vh;
+    line-height: 120%;
+    letter-spacing: 0;
+    color: #AFACBC;
+    white-space: pre-line;
+}
+
+.headerCell:first-child {
+    width: 12vw;
+    text-align: left;
+    padding-left: 1.56vw;
+}
+
+.headerCell:nth-child(2) {
+    width: 5.73vw;
+}
+
+.headerCell:nth-child(3) {
+    width: 5.73vw;
+}
+
+.headerCell:nth-child(4) {
+    width: 5.73vw;
+}
+
+.headerCell:nth-child(5) {
+    width: 14.58vw;
+    vertical-align: middle;
+}
+
+.headerCell:nth-child(6) {
+    width: 8vw;
+}
+
+.headerCell:nth-child(7) {
+    width: 11.98vw;
+}
+
+.headerCell:nth-child(8) {
+    width: 7.8vw;
+}
+
+.headerCell:nth-child(9) {
+    width: 6.77vw;
+}
+
+.headerCell:nth-child(10) {
+    width: 9vw;
+}
+
+.dataRow {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(0.74vh);
+    -webkit-backdrop-filter: blur(0.74vh);
+}
+
+.oddRow {
+    background: #FFFFFF26;
+}
+
+.evenRow {
+    background: #FFFFFF0D;
+}
+
+.firstRow td:first-child {
+    border-top-left-radius: 0.62vw;
+}
+
+.firstRow td:last-child {
+    border-top-right-radius: 0.62vw;
+}
+
+.lastRow td:first-child {
+    border-bottom-left-radius: 0.62vw;
+}
+
+.lastRow td:last-child {
+    border-bottom-right-radius: 0.62vw;
+}
+
+.topRightCell {
+    border-top-right-radius: 0.62vw;
+}
+
+.bottomRightCell {
+    border-bottom-right-radius: 0.62vw;
+}
+
+.cell {
+    height: 9.26vh;
+    padding: 0 1.5vw;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.67vh;
+    font-weight: 500;
+    color: white;
+    position: relative;
+}
+
+.numericCell {
+    font-size: 2.04vh;
+}
+
+.cell:first-child {
+    padding-left: 1.56vw;
+}
+
+.cell:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    pointer-events: none;
+}
+
+.dataRow:not(.lastRow) .cell::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.5px;
+    height: 1px;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.nomenclatureCell {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.nomenclatureName {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.67vh;
+    line-height: 2.13vh;
+    letter-spacing: 0;
+    color: white;
+}
+
+.nomenclatureSubLabel {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.48vh;
+    line-height: 1.94vh;
+    letter-spacing: 0;
+    color: #AFACBC;
+    margin-top: 0.19vh;
+}
+
+.sutureUseText {
+    width: 12.5vw;
+    height: 4.26vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.48vh;
+    line-height: 130%;
+    letter-spacing: 0;
+    color: white;
+    text-align: left;
+}
+
+.boldCell {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 2.96vh;
+    line-height: 100%;
+    letter-spacing: 0;
+}
+
+.moreInfoCell {
+    text-align: center;
+}
+
+.moreInfoWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.moreInfoButton {
+    height: 5vh;
+    padding: 0 1.8vw;
+    background: rgba(119, 116, 129, 0.65);
+    border: none;
+    border-radius: 52.03vw;
+    color: white;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 1.5vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.05s ease;
+}
+
+.moreInfoButton:hover {
+    background: rgba(119, 116, 129, 0.85);
+}
+
+.moreInfoButton:active {
+    transform: scale(0.97);
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 12.69vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(12, 12, 18, 0.45);
+    backdrop-filter: blur(1.67vh);
+    -webkit-backdrop-filter: blur(1.67vh);
+    border-top: 0.09vh solid rgba(255, 255, 255, 0.08);
+    padding: 0 6.67vh calc(env(safe-area-inset-bottom)) 6.67vh;
+    z-index: 120;
+    box-sizing: border-box;
+}
+
+.continueButton {
+    height: 5.93vh;
+    min-width: 21.88vw;
+    padding: 0 3.12vw;
+    background: #ffffff;
+    color: #111111;
+    border: none;
+    border-radius: 52.03vw;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 500;
+    font-size: 2.22vh;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 1.48vh 4.07vh rgba(0, 0, 0, 0.42);
+    transition: transform 0.08s ease, filter 0.15s ease;
+}
+
+.continueButton:hover {
+    filter: brightness(0.98);
+}
+
+.continueButton:active {
+    transform: translateY(0.09vh);
+}
+
+.scrollIndicators {
+    width: 4.38vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 7vh;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.scrollRail {
+    width: 3.33vw;
+    height: 100%;
+    border-radius: 2.08vw;
+    padding: 1.11vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.30vh;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(0.74vh);
+}
+
+.scrollRailDisabled {
+    opacity: 0.45;
+}
+
+.scrollArrow {
+    width: 2.60vw;
+    height: 4.63vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.09vh solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+}
+
+.scrollArrow:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.scrollArrow:active {
+    transform: translateY(0.09vh);
+}
+
+.scrollArrowDisabled,
+.scrollArrow:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.2);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    transform: none;
+}
+
+.scrollTrack {
+    position: relative;
+    width: 2.29vw;
+    flex: 1;
+    min-height: 14.81vh;
+    border-radius: 52.03vw;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.09vh solid rgba(255, 255, 255, 0.06);
+    padding: 0.74vh 0;
+    box-sizing: border-box;
+}
+
+.scrollTrackDisabled {
+    cursor: default;
+}
+
+.scrollThumb {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.56vw;
+    height: 7.78vh;
+    border-radius: 52.03vw;
+    background: rgba(255, 255, 255, 0.18);
+    border: 0.09vh solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 6px 14px rgba(0, 0, 0, 0.30);
+    cursor: grab;
+    touch-action: none;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
+
+.scrollThumbDisabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.rowContainer {
+    display: flex;
+    width: 1705px;
+    align-items: center;
+    gap: 3px;
+}
+
+.rowLeftContainer {
+    display: flex;
+    width: 1302px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.rowLabelContainer {
+    display: flex;
+    width: 31px;
+    height: 270px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.rowLabelContent {
+    position: relative;
+    width: 31px;
+    height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rowLabel {
+    position: absolute;
+    width: 31px;
+    height: 270px;
+    object-fit: fill;
+}
+
+.rowLabelTextContainer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+}
+
+.rowLabelText {
+    color: #FFF;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    display: inline-block;
+    width: 48px;
+    text-align: center;
+}
+
+.rowLabelIcon {
+    width: 15px;
+    height: 15px;
+}
+
+.rowContentContainer {
+    display: flex;
+    width: 1259px;
+    padding: 25px;
+    align-items: flex-end;
+    gap: 25px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.rowImageContainer {
+    display: flex;
+    width: 114px;
+    height: 220px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: transparent;
+}
+
+.rowImage {
+    max-width: 114px;
+    max-height: 220px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: white;
+}
+
+.rowTableContainer {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.rowTableTopContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.rowTableTitleContainer {
+    display: flex;
+    width: 398px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rowTableTitleContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rowTableTitleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableCode {
+    display: flex;
+    padding: 4px 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.rowTableCodeText {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-overflow: ellipsis;
+
+    /* Body 3/Medium */
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    line-clamp: 1;
+}
+
+.rowTableUseContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.rowTableUseTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableUse {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.rowTableUseText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableBottomContainer {
+    display: flex;
+    height: 101px;
+    align-items: flex-end;
+    gap: 34px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.rowSutureInfoTableContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.rowSutureInfoTitleText {
+    align-self: stretch;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rowTableSutureInfoTable {
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.sutureInfoTableCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.cellHeaderText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cellTitleText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTable {
+    display: flex;
+    height: 215px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
+}
+
+.needleInfoTopTable {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.needleInfoTopCell {
+    display: flex;
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.needleInfoTopNumber {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoTopText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}
+
+
+.needleInfoBottomTitle {
+    width: 515.5px;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.needleInfoBottomTableContent {
+    display: flex;
+    height: 73px;
+    padding: 15px 20px;
+    align-items: center;
+    gap: 35px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.needleInfoBottomCell {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.tableDivider {
+    width: 12px;
+    height: 210px;
+    flex-shrink: 0;
+    fill: rgba(255, 255, 255, 0.10);
+}
+
+.confirmCardContainer {
+    display: flex;
+    width: 400px;
+    padding: 4px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    border: 3px solid var(--Background-Dark-grey, #53515A);
+}
+
+.confirmCardContainerActive {
+    border: 3px solid var(--Main-Light-Violet, #D2B2FF);
+}
+
+.confirmCardContentContainer {
+    height: 270px;
+    position: relative;
+    align-self: stretch;
+    border-radius: 25px;
+    border: 1px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+}
+
+.confirmCardText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.skipButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    height: 45px;
+    padding: 0 20px 0 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 0 23px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-Gray, #777481);
+    cursor: pointer;
+}
+
+.undoIcon {
+    width: 20px;
+    height: 20px
+}
+
+.skipText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.confirmCardButton {
+    display: flex;
+    width: 342px;
+    height: 55px;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+}
+
+.confirmButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: "Geist";
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.confirmNumberContainer {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    padding: 0 6px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    background: var(--Main-Violet, #9C42F5);
+}
+
+.confirmNumberText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.tipTypeContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tipTypeIcon{
+    width: 16px;
+    height: 16px;
+}
+
+.confirmedTitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.confirmedIcon {
+    width: 28px;
+    height: 28px;
+    aspect-ratio: 1/1;
+}
+
+.confirmedText {
+    color: #FFF;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.countsContainer {
+    display: flex;
+    width: 340px;
+    align-items: center;
+    gap: 12px;
+}
+
+.countCell {
+    display: flex;
+    padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.countNumber {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.countText {
+    align-self: stretch;
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+.proceedContainer {
+    display: flex;
+    width: 995px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 75px;
+    margin-bottom: 75px;
+    align-self: center;
+}
+
+.proceedText {
+    align-self: stretch;
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.proceedButton {
+    display: flex;
+    width: 500px;
+    height: 70px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+    background: var(--Background-White, #FFF);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.proceedButton:hover:not(:disabled) {
+    background: #f5f5f5;
+}
+
+.proceedButton:active:not(:disabled) {
+    background: #e8e8e8;
+}
+
+.proceedButton:disabled {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 0, 0, 0.15);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.proceedButtonText {
+    color: var(--text-icon-black, #000);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.proceedButton:disabled .proceedButtonText {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.proceedIcon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.proceedButton:disabled .proceedIcon {
+    opacity: 0.4;
+}

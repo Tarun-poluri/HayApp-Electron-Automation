@@ -1,0 +1,475 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/backgrounds/CIRDashboardBackground.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mainArea {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 86.09vw;
+    height: 100vh;
+    padding-left: 2.6vw;
+    padding-right: 2.6vw;
+}
+
+.countArea {
+    width: 86.09vw;
+    height: 85.65vh;
+    flex-shrink: 0;
+}
+
+.activeCaseRow {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 24.54vh;
+}
+
+.subtractedRectangleContainer {
+    width: 0.83vw;
+    height: 19.91vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtractedRectangleContainer img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill; /* Allows stretching to fill container */
+}
+
+
+.addedContainer {
+    display: flex;
+    width: 47.45vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.41vh;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(
+        --Gradient-Card-Default,
+        linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%)
+    );
+    box-sizing: border-box;
+}
+
+.addedInfo {
+    display: flex;
+    padding: 0.74vh 0.42vw 0 0.42vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.89vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.addButtonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.93vh;
+    align-self: stretch;
+}
+
+.addButton {
+    display: flex;
+    width: 13.44vw;
+    height: 5.09vh;
+    padding: 1.48vh 1.04vw 1.48vh 1.25vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    border-radius: 2.34vw;
+    border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.3));
+    background: var(--Background-Gray, #777481);
+    cursor: pointer;
+}
+
+.buttonText {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 1.67vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.subtractSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -2.23vw;
+    z-index: 1;
+    width: 19.64vw;  /* Add explicit width */
+    height: 52.78vh; /* Add explicit height */
+}
+
+.totalCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16.98vw;
+    height: 24.54vh;
+    display: flex;
+    padding: 2.59vh 1.20vw 9.35vh 1.46vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3.98vh;
+    border-radius: 1.30vw;
+    z-index: 2;
+    margin-left: 1.30vw;
+    box-sizing: border-box;
+}
+
+.overlayContainer {
+    position: relative;
+    width: 16.98vw;
+    height: 24.54vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totalTitle {
+    width: 12.60vw;
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.totalNumber {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 5.93vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.totalArrow {
+    position: absolute;
+    left: 64.69vw;
+    z-index: 3;
+    width: 1.35vw;
+    height: 3.89vh;
+    /* Remove fill - it doesn't work on img tags, only inline SVGs */
+}
+
+
+.minus {
+    width: 1.67vw;
+    height: 2.96vh;
+    margin-top: 5.74vh;
+    display: block;
+}
+
+.activeCaseMainAreaContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3.70vh;
+}
+
+.cbiBoxContainer {
+    display: flex;
+    width: 31.35vw;
+    height: 24.54vh;
+    padding: 1.85vh 1.04vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.31vh;
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+    background: var(
+        --Gradient-Card-Default,
+        linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%)
+    );
+    box-sizing: border-box;
+    position: relative;
+}
+
+.cbiBoxInfoContainer {
+    display: flex;
+    padding: 0.74vh 0.42vw 0 0.42vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.48vh;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.cbiBoxText {
+    align-self: stretch;
+    color: var(--text-icon-white, #fff);
+    font-family: "Geist", sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cbiNeedleInfoContainer {
+    display: flex;
+    height: 8.43vh;
+    align-items: flex-start;
+    gap: 0.42vw;
+    align-self: stretch;
+}
+
+.cbiNeedleInfoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.37vh;
+    flex: 1 0 0;
+}
+
+.cbiNeedleInfoText {
+    align-self: stretch;
+    color: var(--text-icon-white, #fff);
+    font-family: "Geist", sans-serif;
+    font-size: 1.48vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.captureButton {
+    display: flex;
+    height: 5.09vh;
+    padding: 1.48vh 1.04vw 1.48vh 1.25vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.63vw;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 2.34vw;
+    border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.3));
+    background: var(--Background-Gray, #777481);
+    cursor: pointer;
+}
+
+.cardContentTitle {
+    align-self: stretch;
+    color: var(--text-icon-white, #fff);
+    font-family: "Geist", sans-serif;
+    font-size: 2.04vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cardNumberText {
+    align-self: stretch;
+    color: var(--text-icon-white, #fff);
+    font-family: "Geist", sans-serif;
+    font-size: 5.93vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.verificationContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.83vw;
+}
+
+.remainingCard {
+    display: flex;
+    width: 15.26vw;
+    height: 24.54vh;
+    padding: 2.59vh 1.20vw 9.35vh 1.46vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.98vh;
+    flex-shrink: 0;
+    border-radius: 1.30vw;
+    background: rgba(255, 255, 255, 0.08);
+    margin-left: 2.08vw;
+    box-sizing: border-box;
+}
+
+.zeroValue {
+    color: var(--text-icon-dark-gray, #8d8b8d);
+}
+
+.otherSharps {
+    display: flex;
+    height: 3.33vh;
+    padding: 0.83vh 0.63vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.93vh;
+    flex: 1 0 0;
+    border-radius: 0.52vw;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.otherSharpsText {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 1.30vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.otherSharpsRow {
+    display: flex;
+    align-items: center;
+    gap: 0.21vw;
+    align-self: stretch;
+}
+
+.otherSharpsContainer {
+    display: flex;
+    width: 13.18vw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.37vh;
+}
+
+.activeMisplaced {
+    border-radius: 1.30vw;
+    border: 0.10vw solid var(--Borders-Red, rgba(255, 80, 93, 0.5));
+    background: var(--Gradient-Card-Red, linear-gradient(144deg, #323655 10.57%, #e32e3c 63.68%, #fe3265 93.01%));
+}
+
+.numberContainer {
+    display: flex;
+    height: 5.93vh;
+    align-items: center;
+    gap: 1.04vw;
+    align-self: stretch;
+}
+
+.verticalRectangle {
+    width: 0.05vw;
+    height: 4.26vh;
+    flex-shrink: 0;
+    background: var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.3));
+}
+
+.halfIcon {
+    width: 2.50vw;
+    height: 4.44vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.halfIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Maintains aspect ratio */
+}
+
+.totalReasonContainer {
+    display: flex;
+    width: 13.18vw;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.21vw;
+    margin-top: 0;
+}
+
+.totalReason {
+    display: flex;
+    height: 3.33vh;
+    padding: 0.83vh 0.63vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.52vw;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-icon-white, #fff);
+    font-family: "Geist", sans-serif;
+    font-size: 1.30vh;
+    font-weight: 500;
+    text-align: center;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.totalReasonText {
+    color: var(--text-icon-white, #fff);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 1.30vh;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.equals {
+    position: absolute;
+    left: 50%;
+    bottom: -3.24vh;
+    transform: translateX(-50%);
+    width: 1.67vw;
+    height: 2.96vh;
+    margin-top: 0;
+    display: block;
+    z-index: 3;
+}
+
+.dashboardNotificationContainer {
+    z-index: 1000;
+    position: fixed;
+    bottom: 1.39vh;
+    right: 0.78vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.11vh;
+}
+
+.removeButton {
+    display: flex;
+    width: 120px;
+    height: 50px;
+    padding: 0 21px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 1.30vw 0 1.30vw;
+    border-bottom: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.20));
+    border-left: 2px solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.20));
+    border-top: none;
+    border-right: none;
+    background: var(--Background-Black, #000);
+}
+
+.removeText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: "Geist", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

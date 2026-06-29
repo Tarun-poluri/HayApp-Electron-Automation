@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    position: relative;
+    padding-bottom: 10vh;
+}
+
+.cameraArea {
+    width: 1226px;
+    height: 655px;
+    display: block;
+}
+
+.icon {
+    width: 4.17vw;
+    height: 7.41vh;
+    opacity: 0.5;
+}
+
+.title {
+    font-size: 4.44vh;
+    font-weight: 500;
+    margin-bottom: 1.48vh;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 48px;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    position: relative;
+    z-index: 10;
+    white-space: pre-line;
+}

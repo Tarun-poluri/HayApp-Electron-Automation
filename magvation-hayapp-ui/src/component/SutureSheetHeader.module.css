@@ -1,0 +1,187 @@
+.header {
+    display: flex;
+    width: 1920px;
+    height: 154px;
+    padding: 50px;
+    align-items: center;
+    gap: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.headerInnerContainer {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    flex: 1 0 0;
+}
+
+.backButton {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 29px;
+    border: 1px solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+    background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.backArrow {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.titleTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.categoryIcon {
+    width: 52px;
+    height: 52px;
+}
+
+.titleText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1px;
+}
+
+.chipContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chip {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.chipText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.dividerText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0.2;
+}
+
+.skipText {
+    color: var(--text-icon-light-gray, #AFACBC);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.skipButton {
+    display: inline-flex;
+    height: 55px;
+    padding: 0 30px 0 35px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 55px;
+    border: 2px solid var(--Background-White, #FFF);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skipButtonText {
+    color: var(--text-icon-white, #FFF);
+    text-align: center;
+    font-family: 'Geist', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.undoIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    margin-left: auto;
+}
+
+.divider {
+    width: 44px;
+    height: 1px;
+    transform: rotate(90deg);
+    background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.helpContainer {
+    display: flex;
+    height: 55px;
+    padding: 16px 0;
+    align-items: center;
+    gap: 12px;
+}
+
+.helpIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.helpText {
+    color: var(--text-icon-white, #FFF);
+    font-family: Geist;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

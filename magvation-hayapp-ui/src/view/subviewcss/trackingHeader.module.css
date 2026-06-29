@@ -1,0 +1,335 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 3.33vh 3.12vw;
+    gap: 1.8vw;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.backButton {
+    background: linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    border-radius: 2.60vh;
+    width: 5.37vh;
+    height: 5.37vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.backButton:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.backButton img {
+    width: 2.86vh;
+    height: 2.86vh;
+}
+
+.title {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 3.70vh;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.09vh;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.stages {
+    display: flex;
+    align-items: center;
+    gap: 0.83vh;
+    margin-top: 0.46vh;
+    flex-shrink: 0;
+}
+
+.stageItem {
+    display: flex;
+    align-items: center;
+    gap: 0.83vh;
+
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.67vh;
+}
+
+.activeStage {
+    background-color: rgba(210, 178, 255, 1);
+    color: #081013;
+
+    padding: 0.65vh 0.83vw;
+    border-radius: 0.94vw;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65vh;
+
+    font-weight: 600;
+}
+
+.stageNum {
+    font-weight: 700;
+    font-size: 1.48vh;
+}
+
+.stageText {
+    font-size: 1.20vh;
+    letter-spacing: 0.02vh;
+    text-transform: none;
+}
+
+.inactiveStage {
+    padding: 0 0.10vw;
+    font-size: 1.67vh;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.stageDot {
+    margin-left: 0.10vw;
+    margin-right: 0.10vw;
+    font-size: 1.48vh;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.userInfo {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 2.04vh;
+}
+
+.divider {
+    width: 0.05vw;
+    height: 4.07vh;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.surgeonInfo {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.staffInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.74vh;
+}
+
+.userRole {
+    color: var(--text-icon-light-violet, #A7A4CC);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.48vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.userName {
+    color: white;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.48vh;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.rightSection {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+}
+
+.verticalBar {
+    width: 2.29vw;
+    height: 0.09vh;
+    transform: rotate(90deg);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.abortButton {
+    display: flex;
+    height: 5.09vh;
+    padding: 0 1.56vw;
+    justify-content: center;
+    align-items: center;
+    gap: 1.11vh;
+    border-radius: 5.09vh;
+    border: 0.19vh solid #FF7083;
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.abortButton:hover {
+    background: rgba(255, 112, 131, 0.1);
+}
+
+/* Extra separator to the left of Abort when Help is shown first (flipHelpAndAbort). */
+.abortButtonAfterFlip {
+    margin-left: 0.45vw;
+    padding-left: calc(1.56vw + 0.75vw);
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.28);
+}
+
+.abortText {
+    color: #FF7083;
+    text-align: center;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.67vh;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* ===== User Badge Styles ===== */
+/* Compact size for dual-login header fit */
+.userBadge {
+    display: flex;
+    align-items: stretch;
+    border-radius: 0.8vw;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    height: 5.2vh;
+}
+
+.badgeInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 0.9vh 1.0vw;
+    min-width: 5vw;
+    background: linear-gradient(310.08deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.085) 100%);
+}
+
+.badgeRole {
+    font-size: 1.0vh;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.4vh;
+}
+
+.badgeName {
+    font-size: 1.4vh;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    max-width: 6.5vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Logged OUT state - white background, black text */
+.badgeActionLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15vh;
+    padding: 0.6vh 0.6vw;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    background: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.badgeActionLogin:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.badgeActionLogin .badgeActionLabel {
+    color: #121212;
+}
+
+.badgeActionLogin .badgeIcon {
+    filter: none;
+}
+
+/* Logged IN state - gray background, white text */
+.badgeActionLogout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15vh;
+    padding: 0.6vh 0.6vw;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(83, 81, 90, 1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.badgeActionLogout:hover {
+    background: rgba(93, 91, 100, 1);
+}
+
+.badgeActionView {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6vh 0.6vw;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(83, 81, 90, 1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.badgeActionView:hover {
+    background: rgba(93, 91, 100, 1);
+}
+
+.badgeChevron {
+    width: 1.8vh;
+    height: 1.8vh;
+}
+
+.badgeActionLabel {
+    font-size: 0.85vh;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+}
+
+.badgeIcon {
+    width: 1.8vh;
+    height: 1.8vh;
+}
+
+/* ===== Help Button Styles ===== */
+.helpButton {
+    display: flex;
+    align-items: center;
+    gap: 0.63vw;
+    padding: 1.48vh 1.04vw;
+}
+
+.helpIcon {
+    width: 2.04vh;
+    height: 2.04vh;
+}
+
+.helpText {
+    color: var(--text-icon-white, #FFF);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.67vh;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}

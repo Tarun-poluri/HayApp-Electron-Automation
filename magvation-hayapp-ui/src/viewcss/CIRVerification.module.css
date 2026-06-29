@@ -1,0 +1,1090 @@
+.verificationContainer {
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    url('../img/CIRVerificationListBg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.backgroundBlur {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 2.60vw;
+  align-items: stretch;
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(63.849998474121094px);
+  position: relative;
+}
+
+.headerContainer {
+  width: 100%;
+  height: 14.35vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0.93vh;
+  background: var(--Main-Violet, #A454F6);
+  z-index: 10;
+}
+
+.headerItemContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.67vw;
+}
+
+.headerTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.83vw;
+  align-self: stretch;
+}
+
+.headerTitle {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 3.70vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.05vw;
+}
+
+.itemChip {
+  display: flex;
+  padding: 0.74vh 0.63vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.52vw;
+  border-radius: 0.63vw;
+  background: rgba(255, 255, 255, 0.10);
+  white-space: nowrap;
+}
+
+.itemChipText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.rightContainer {
+  display: inline-flex;
+  align-items: center;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.46vw;
+}
+
+.verticalRectangle {
+  width: 2.29vw;
+  height: 0.09vh;
+  transform: rotate(90deg);
+  background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.helpContainer {
+  display: flex;
+  height: 5.09vh;
+  padding: 1.48vh 0 1.48vh 0.42vw;
+  align-items: center;
+  gap: 0.63vw;
+}
+
+.helpIconContainer {
+  display: flex;
+  width: 1.15vw;
+  height: 2.04vh;
+  padding: 0.08vh;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.helpText {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.batteryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.74vh;
+}
+
+.batteryInfoContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.42vw;
+}
+
+.battery {
+  width: 2.08vw;
+  height: 2.04vh;
+}
+
+.batteryPercentage {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.48vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.hayScanText {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.mainArea {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1.25vw;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 0;
+}
+
+.leftArea {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+.cardScroll {
+  height: 68.33vh;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.63vw;
+  padding-bottom: 20.37vh;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cardScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 1.85vh;
+  column-gap: 1.04vw;
+}
+
+.card {
+  display: flex;
+  padding: 0.37vh 0.21vw;
+  align-items: center;
+  gap: 0.42vw;
+  height: 25.19vh;
+  width: 29.01vw;
+  border-radius: 1.15vw;
+  border: 0.10vw solid transparent;
+}
+
+.innerCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.15vw;
+  border: 0.05vw solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+  height: 24.26vh;
+  width: 28.49vw;
+}
+
+.cardImage {
+  display: flex;
+  height: 24.07vh;
+  width: 13.54vw;
+  padding: 20.65vh 2.76vw 1.48vh 0.83vw;
+  align-items: center;
+  border-radius: 1.15vw 0 0 1.15vw;
+  background: linear-gradient(128deg, rgba(119, 116, 129, 0.60) -13.74%, rgba(67, 64, 76, 0.60) 80.02%);
+}
+
+.imageTextContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.56vw;
+}
+
+.imageText {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.48vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.2;
+  white-space: nowrap;
+}
+
+.cardReview {
+  display: flex;
+  width: 14.84vw;
+  padding: 1.48vh 0.83vw;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 0 1.15vw 1.15vw 0;
+  background: linear-gradient(310deg, rgba(44, 44, 58, 0.50) 2.93%, rgba(64, 62, 77, 0.50) 100%);
+}
+
+.reviewText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  opacity: 0.2;
+}
+
+.reviewButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.48vh;
+  align-self: stretch;
+}
+
+.reviewButtonBase {
+  display: flex;
+  height: 5.09vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.42vw;
+  align-self: stretch;
+  border-radius: 2.86vw;
+  overflow: visible;
+  white-space: nowrap;
+  border: none;
+  background: linear-gradient(310deg, rgba(255, 255, 255, 0.10) 2.93%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-icon-white, #FFF);
+}
+
+.activeReviewButton {
+  border: 0.10vw solid var(--Main-Light-green, #4FE2CE);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--Main-Light-green, #4FE2CE);
+}
+
+.activeNoReviewButton {
+  border: 0.10vw solid var(--Main-Light-red, #FF7083);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--Main-Light-red, #FF7083);
+}
+
+.selected {
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30)) !important;
+  color: #fff !important;
+}
+
+.selectedYes {
+  background: var(--Gradient-Button-Green, linear-gradient(90deg, #1DA593 0%, #1B8F80 100%)) !important;
+}
+
+.selectedNo {
+  background: var(--Gradient-Button-Red, linear-gradient(94deg, #CA4958 6.52%, #CC293E 98.3%)) !important;
+}
+
+.selected img {
+  filter: brightness(0) invert(1);
+}
+
+.reviewButtonBase img {
+  width: 1.46vw;
+  height: 2.59vh;
+}
+
+.reviewButtonTextBase {
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reviewButtonText {
+  color: var(--text-icon-white, #FFF);
+  opacity: 0.1;
+}
+
+.activeReviewButtonText {
+  color: var(--Main-Light-green, #4FE2CE);
+}
+
+.activeNoReviewButtonText {
+  color: var(--Main-Light-red, #FF7083);
+}
+
+.selectedButtonText {
+  color: var(--text-icon-white, #FFF) !important;
+  opacity: 1 !important;
+}
+
+.reviewIconContainer {
+  width: 1.25vw;
+  height: 2.22vh;
+}
+
+.cardContent {
+  width: 100%;
+}
+
+.scrollbarArea {
+  width: 4.17vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footerContainer {
+  display: flex;
+  height: 12.69vh;
+  width: 100vw;
+  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: auto;
+  gap: 3.13vw;
+  align-items: center;
+  border-top: 0.09vh solid var(--Borders-Light, rgba(255, 255, 255, 0.10));
+  background: rgba(5, 7, 26);
+  backdrop-filter: blur(75px);
+  padding-left: 2.60vw;
+  padding-right: 2.60vw;
+}
+
+.footerContentContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3.13vw;
+  flex: 1 0 0;
+}
+
+.footerCountContainer {
+  display: flex;
+  align-items: center;
+  gap: 2.08vw;
+  flex: 1 0 0;
+}
+
+.footerInnerCountContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.46vw;
+}
+
+.footerCountSection {
+  display: flex;
+  align-items: center;
+  gap: 0.63vw;
+}
+
+.confirmedIcon {
+  width: 1.25vw;
+  height: 2.22vh;
+  fill: var(--Main-Green, #1DA593);
+}
+
+.countNumber {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+}
+
+.countLabel {
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.arrowContainer {
+  display: flex;
+  width: 3.13vw;
+  height: 5.56vh;
+  justify-content: center;
+  align-items: center;
+  gap: 0.52vw;
+  aspect-ratio: 1/1;
+  border-radius: 1.51vw;
+  border: 0.05vw solid var(--Borders-Active-Card-border, rgba(255, 255, 255, 0.30));
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.arrow {
+  width: 1.67vw;
+  height: 2.96vh;
+  flex-shrink: 0;
+}
+
+.confirmButton {
+  display: flex;
+  width: 26.04vw;
+  height: 6.48vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-White, #FFF);
+}
+
+.confirmButtonText {
+  color: var(--text-icon-black, #000);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.04vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.activeCard {
+  display: flex;
+  padding: 0.37vh 0.21vw;
+  align-items: center;
+  gap: 0.42vw;
+  height: 25.19vh;
+  width: 29.01vw;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Main-Light-Violet, #D2B2FF);
+}
+
+.reviewedActiveCard {
+  display: flex;
+  padding: 0.37vh 0.21vw;
+  align-items: center;
+  gap: 0.42vw;
+  height: 25.19vh;
+  width: 29.01vw;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Main-Violet, #A454F6);
+}
+
+.activeCardInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.15vw;
+  height: 24.07vh;
+  width: 28.39vw;
+}
+
+.activeCardImage {
+  display: flex;
+  height: 24.07vh;
+  width: 13.54vw;
+  padding: 20.65vh 2.76vw 1.48vh 0.83vw;
+  align-items: center;
+  border-radius: 1.15vw 0 0 1.15vw;
+}
+
+.activeImageTextContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.56vw;
+}
+
+.activeImageText {
+  color: var(--text-icon-black, #000);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.48vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.activeCardReview {
+  display: flex;
+  width: 14.84vw;
+  padding: 1.48vh 0.83vw;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 0 1.15vw 1.15vw 0;
+  background: linear-gradient(310deg, #2C2C3A 2.93%, #403E4D 100%);
+}
+
+.activeReviewText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.activeReviewButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.48vh;
+  align-self: stretch;
+}
+
+.reviewIconContainer,
+.activeReviewIconContainer {
+  width: 1.25vw;
+  height: 2.22vh;
+}
+
+.cardContent {
+  width: 100%;
+}
+
+.reviewedText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  color: var(--text-icon-dark-gray, #8D8B8D);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.enlargedCIRVerification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0D0C13;
+  background-image: 
+    url('../img/backgrounds/CIRVerificationBackground.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.enlargedContentContainer {
+  display: flex;
+  width: 94.79vw;
+  height: 81.02vh;
+  align-items: center;
+  gap: 2.60vw;
+  flex-shrink: 0;
+}
+
+.enlargedImageContainer {
+  position: relative;
+  width: 46.88vw;
+  height: 81.02vh;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+}
+
+.enlargedImage {
+  width: 46.88vw;
+  height: 81.02vh;
+  flex-shrink: 0;
+  border-radius: 1.30vw;
+  object-fit: cover;
+}
+
+.enlargedImageTextContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 44.79vw;
+  align-items: center;
+  padding: 1.85vh 1.04vw;
+  gap: 8.96vw;
+}
+
+.enlargedImageText {
+  color: var(--text-icon-black, #000);
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0.63vw;
+}
+
+.overlayButton {
+  display: flex;
+  height: 5.09vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-White, #FFF);
+}
+
+.overlayButtonText{
+  color: var(--text-icon-black, #000);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.overlayButtonHideText{
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.imageInfoTextContainer {
+  display: flex;
+  height: 2.31vh;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25vw;
+  flex: 1 0 0;
+}
+
+.imageInfoText {
+  color: var(--text-icon-black, #000);
+  font-family: 'Geist', sans-serif;
+  font-size: 1.67vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.needleInfoContainer {
+  display: flex;
+  width: 45.31vw;
+  padding: 4.63vh 2.60vw;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.70vh;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.needleInfoContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.70vh;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.detailsText {
+  align-self: stretch;
+  color: var(--text-icon-white, #FFF);
+  font-family: 'Geist', sans-serif;
+  font-size: 4.44vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.05vw;
+}
+
+.needleInfoContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7.41vh;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.needleInfoTable {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.59vh;
+  align-self: stretch;
+}
+
+.needleInfoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.42vw;
+  align-self: stretch;
+}
+
+.needleInfoRowTitle {
+  flex: 1 0 0;
+  color: var(--text-icon-dark-gray, #8D8B8D);
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.98;
+}
+
+.needleInfoRowValue {
+  color: var(--text-icon-white, #FFF);
+  text-align: right;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.59vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.needleInfoTableDivider {
+  height: 0.09vh;
+  align-self: stretch;
+  background: var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+}
+
+.needleInfoButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.67vw;
+  align-self: stretch;
+}
+
+.needleInfoNoButton {
+  display: flex;
+  height: 6.48vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  flex: 1 0 0;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Main-Light-red, #FF7083);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.needleInfoYesButton {
+  display: flex;
+  height: 6.48vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  flex: 1 0 0;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Main-Light-green, #4FE2CE);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.needleInfoNoText {
+  color: var(--Main-Light-red, #FF7083);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.22vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.needleInfoYesText {
+  color: var(--Main-Light-green, #4FE2CE);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.22vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.enlargedIcon {
+  width: 1.46vw;
+  height: 2.59vh;
+}
+
+.progressRectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0.93vh;
+  background: var(--Main-Violet, #A454F6);
+  z-index: 10;
+  transition: width 0.3s;
+}
+
+.gridOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.confirmButtonDisabled {
+  display: flex;
+  width: 26.04vw;
+  height: 6.48vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: #53515A;
+  cursor: not-allowed;
+}
+
+.overlayButtonHide {
+  display: flex;
+  height: 5.09vh;
+  padding: 0 1.56vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-Gray, #777481);
+}
+
+.warningBackground {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.70);
+  backdrop-filter: blur(25px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+}
+
+.warningContainer {
+  display: flex;
+  width: 41.09vw;
+  padding: 4.63vh 2.60vw;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.59vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1.30vw;
+  border: 0.10vw solid var(--Borders-Default-Card-Border, rgba(255, 255, 255, 0.15));
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.warningCircle {
+  display: flex;
+  width: 5.21vw;
+  height: 9.26vh;
+  justify-content: center;
+  align-items: center;
+  gap: 0.52vw;
+  aspect-ratio: 1/1;
+  border-radius: 2.86vw;
+  background: var(--Gradient-Card-Default-Card, linear-gradient(310deg, rgba(255, 255, 255, 0.17) 2.93%, rgba(255, 255, 255, 0.09) 100%));
+}
+
+.warningIcon {
+  width: 3.13vw;
+  height: 5.56vh;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+}
+
+.warningContentContainer {
+  display: flex;
+  width: 36.46vw;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4.63vh;
+}
+
+.warningText {
+  align-self: stretch;
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 3.70vh;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.05vw;
+}
+
+.warningButtonContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.67vw;
+  align-self: stretch;
+}
+
+.leaveButton {
+  display: flex;
+  height: 6.48vh;
+  padding: 0 1.56vw 0 1.82vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  flex: 1 0 0;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-Gray, #777481);
+}
+
+.leaveText {
+  color: var(--text-icon-white, #FFF);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.22vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.stayText {
+  color: var(--text-icon-black, #000);
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  font-size: 2.22vh;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.stayButton {
+  display: flex;
+  height: 6.48vh;
+  padding: 0 1.56vw 0 1.82vw;
+  justify-content: center;
+  align-items: center;
+  gap: 0.63vw;
+  flex: 1 0 0;
+  border-radius: 2.86vw;
+  border: 0.10vw solid var(--Borders-Buttons-Border, rgba(0, 0, 0, 0.30));
+  background: var(--Background-White, #FFF);
+}
+
+.progressBarContainer {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 105.21vw;
+  height: 1.39vh;
+  margin-left: -2.60vw;
+  margin-right: -2.60vw;
+  z-index: 10;
+  padding: 0 2.60vw;
+}
+
+.progressBarSection {
+  flex: 1 1 0;
+  height: 1.39vh;
+  opacity: 0.3;
+  background: var(--Background-White, #FFF);
+}
+
+.progressBarSectionActive {
+  flex: 1 1 0;
+  height: 1.39vh;
+  background: #A454F6; /* Main Violet */
+}
+
+.inactiveZoom {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: rgba(0, 0, 0, 0.60);
+  opacity: 0.2;
+}
+
+.activeZoom {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2px;
+  stroke: rgba(0, 0, 0, 0.60);
+}

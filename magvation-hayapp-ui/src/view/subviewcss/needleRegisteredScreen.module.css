@@ -1,0 +1,113 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.contentArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.78vh;
+    padding: 0 3.12vw 5vh;
+}
+
+/* ===== Illustration ===== */
+.illustrationContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustrationImage {
+    width: 36vw;
+    height: 40vh;
+    object-fit: contain;
+}
+
+.illustrationImageExtra {
+    position: relative;
+    left: 1.5vw;
+    top: -0.5vh;
+}
+
+.illustrationImageMisplaced {
+    position: relative;
+    left: 3.5vw;
+    top: -1.75vh;
+}
+
+.illustrationCount {
+    position: absolute;
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14vh;
+    font-weight: 600;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* ===== Title ===== */
+.titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleText {
+    color: #FFF;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 4.44vh;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05vw;
+    text-align: center;
+}
+
+.extraBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(144.5deg, #323655 10.57%, #E32E3C 63.68%, #FE3265 93.01%);
+    border: none;
+    border-radius: 2.22vh;
+    padding: 0.74vh 1.25vw;
+    margin: 0 0.52vw;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 4.44vh;
+}
+
+/* ===== OK Button ===== */
+.okButton {
+    display: flex;
+    width: 19.22vw;
+    height: 6.48vh;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 6.48vh;
+    background: #FFF;
+    color: #1A1A2E;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 2.04vh;
+    font-weight: 500;
+    line-height: 100%;
+    margin-top: 1.85vh;
+}
+
+.okButton:hover {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+/* Invisible spacer matching button height so centering aligns with CIR */
+.buttonSpacer {
+    height: 6.48vh;
+    margin-top: 1.85vh;
+}
