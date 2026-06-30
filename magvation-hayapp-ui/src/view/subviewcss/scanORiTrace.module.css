@@ -39,3 +39,11 @@
     z-index: 10;
     white-space: pre-line;
 }
+
+.bypassHint {
+    margin-top: 24px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    letter-spacing: 0.05em;
+}
