@@ -1,0 +1,37 @@
+name: Build Windows Installer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: magvation-hayapp-ui/package-lock.json
+
+      - name: Install dependencies
+        working-directory: magvation-hayapp-ui
+        run: npm ci
+
+      - name: Build Windows installer
+        working-directory: magvation-hayapp-ui
+        run: npm run make
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: HayApp-Windows-Installer
+          path: magvation-hayapp-ui/out/make/squirrel.windows/x64/
+          retention-days: 14
+          if-no-files-found: error
