@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -35,9 +37,17 @@ jobs:
           npm install
           npm run build
 
-      - name: Build Windows installer
+      - name: Build installer (branch push — for testing)
+        if: "!startsWith(github.ref, 'refs/tags/')"
         working-directory: magvation-hayapp-ui
         run: npm run make
+
+      - name: Publish to GitHub Releases (version tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        working-directory: magvation-hayapp-ui
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASES_TOKEN }}
+        run: npm run publish
 
       - name: List build output
         if: always()
@@ -50,7 +60,8 @@ jobs:
             Write-Host "No out/ directory — build did not produce output"
           }
 
-      - name: Upload installer artifact
+      - name: Upload artifact (branch push only)
+        if: "!startsWith(github.ref, 'refs/tags/')"
         uses: actions/upload-artifact@v4
         with:
           name: HayApp-Windows-Installer

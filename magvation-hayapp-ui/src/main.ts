@@ -3,6 +3,7 @@ import path from "node:path";
 import started from "electron-squirrel-startup";
 import fs from "fs";
 import { ChildProcess, spawn, spawnSync } from "node:child_process";
+import { updateElectronApp, UpdateSourceType } from "update-electron-app";
 
 const OPEN_DEVTOOLS = process.env.OPEN_DEVTOOLS === "true";
 
@@ -134,6 +135,16 @@ ipcMain.on("finalCountVerified", () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
+    if (app.isPackaged) {
+        updateElectronApp({
+            updateSource: {
+                type: UpdateSourceType.ElectronPublicUpdateService,
+                repo: "Tarun-poluri/HayApp-Releases",
+            },
+            updateInterval: "1 hour",
+            notifyUser: true,
+        });
+    }
     createWindow();
     createSecondWindow();
 });
