@@ -69,7 +69,7 @@ export const ScanORiTrace: React.FC<ScanORiTraceProps> = ({
     }, [manualNav, onScanSuccess]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onScanSuccess} style={{ cursor: "pointer" }}>
             <TrackingHeader
                 stage={stage}
                 title={t("setup.scanORiTrace.headerTitle") || "Scan Room"}
@@ -90,6 +90,7 @@ export const ScanORiTrace: React.FC<ScanORiTraceProps> = ({
                 {t("setup.scanORiTrace.subtitle") ||
                     "Please scan the room's iTrace code to link this case to the correct operating room."}
             </div>
+            <div className={styles.bypassHint}>Tap anywhere to continue</div>
         </div>
     );
 };
