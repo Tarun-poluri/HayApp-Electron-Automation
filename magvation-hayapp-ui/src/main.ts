@@ -141,7 +141,7 @@ app.on("ready", () => {
                 type: UpdateSourceType.ElectronPublicUpdateService,
                 repo: "Tarun-poluri/HayApp-Releases",
             },
-            updateInterval: "1 hour",
+            updateInterval: "1 minute",
             notifyUser: true,
         });
     }
