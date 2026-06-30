@@ -29,6 +29,12 @@ jobs:
         working-directory: magvation-hayapp-ui
         run: npm ci
 
+      - name: Build parlay.js local package
+        working-directory: magvation-hayapp-ui/parlay.js
+        run: |
+          npm install
+          npm run build
+
       - name: Build Windows installer
         working-directory: magvation-hayapp-ui
         run: npm run make
