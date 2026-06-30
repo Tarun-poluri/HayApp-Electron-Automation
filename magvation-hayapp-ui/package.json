@@ -1,7 +1,7 @@
 {
   "name": "magvation-hayapp-ui",
   "productName": "HayApp",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "Magvation HayApp UI",
   "main": ".vite/build/main.js",
   "scripts": {
