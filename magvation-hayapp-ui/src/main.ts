@@ -4,6 +4,7 @@ import started from "electron-squirrel-startup";
 import fs from "fs";
 import { ChildProcess, spawn, spawnSync } from "node:child_process";
 import { updateElectronApp, UpdateSourceType } from "update-electron-app";
+import { autoUpdater } from "electron";
 
 const OPEN_DEVTOOLS = process.env.OPEN_DEVTOOLS === "true";
 
@@ -136,6 +137,12 @@ ipcMain.on("finalCountVerified", () => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
     if (app.isPackaged) {
+        autoUpdater.on("checking-for-update", () => console.log("[updater] Checking for update..."));
+        autoUpdater.on("update-available", () => console.log("[updater] Update available"));
+        autoUpdater.on("update-not-available", () => console.log("[updater] No update available"));
+        autoUpdater.on("update-downloaded", () => console.log("[updater] Update downloaded"));
+        autoUpdater.on("error", (err) => console.error("[updater] Error:", err.message));
+
         updateElectronApp({
             updateSource: {
                 type: UpdateSourceType.ElectronPublicUpdateService,
