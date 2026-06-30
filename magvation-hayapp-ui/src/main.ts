@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, screen } from "electron";
+import { app, BrowserWindow, ipcMain, screen, dialog } from "electron";
 import path from "node:path";
 import started from "electron-squirrel-startup";
 import fs from "fs";
@@ -137,11 +137,22 @@ ipcMain.on("finalCountVerified", () => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
     if (app.isPackaged) {
-        autoUpdater.on("checking-for-update", () => console.log("[updater] Checking for update..."));
-        autoUpdater.on("update-available", () => console.log("[updater] Update available"));
-        autoUpdater.on("update-not-available", () => console.log("[updater] No update available"));
-        autoUpdater.on("update-downloaded", () => console.log("[updater] Update downloaded"));
-        autoUpdater.on("error", (err) => console.error("[updater] Error:", err.message));
+        const logPath = path.join(app.getPath("userData"), "update-events.log");
+        const logUpdate = (msg: string) => {
+            const line = `[${new Date().toISOString()}] ${msg}\n`;
+            fs.appendFileSync(logPath, line);
+        };
+
+        logUpdate(`App started — version ${app.getVersion()}`);
+
+        autoUpdater.on("checking-for-update", () => logUpdate("Checking for update..."));
+        autoUpdater.on("update-available", () => logUpdate("Update available — downloading..."));
+        autoUpdater.on("update-not-available", () => logUpdate("No update available"));
+        autoUpdater.on("update-downloaded", () => logUpdate("Update downloaded — dialog shown"));
+        autoUpdater.on("error", (err) => {
+            logUpdate(`ERROR: ${err.message}`);
+            dialog.showErrorBox("Update Error", err.message);
+        });
 
         updateElectronApp({
             updateSource: {
