@@ -148,10 +148,33 @@ app.on("ready", () => {
         autoUpdater.on("checking-for-update", () => logUpdate("Checking for update..."));
         autoUpdater.on("update-available", () => logUpdate("Update available — downloading..."));
         autoUpdater.on("update-not-available", () => logUpdate("No update available"));
-        autoUpdater.on("update-downloaded", () => logUpdate("Update downloaded — dialog shown"));
         autoUpdater.on("error", (err) => {
             logUpdate(`ERROR: ${err.message}`);
-            dialog.showErrorBox("Update Error", err.message);
+        });
+
+        autoUpdater.on("update-downloaded", () => {
+            logUpdate("Update downloaded — showing restart dialog");
+            // Exit fullscreen so the dialog is visible (app runs fullscreen on both displays)
+            if (mainWindow) mainWindow.setFullScreen(false);
+            if (secondWindow) secondWindow.setFullScreen(false);
+
+            dialog.showMessageBox({
+                type: "info",
+                buttons: ["Restart Now", "Later"],
+                defaultId: 0,
+                title: "Update Ready",
+                message: "A new version of HayApp has been downloaded.",
+                detail: "Restart the application to apply the update.",
+            }).then((result) => {
+                if (result.response === 0) {
+                    logUpdate("User chose Restart — applying update");
+                    autoUpdater.quitAndInstall();
+                } else {
+                    logUpdate("User chose Later — restoring fullscreen");
+                    if (mainWindow) mainWindow.setFullScreen(true);
+                    if (secondWindow) secondWindow.setFullScreen(true);
+                }
+            });
         });
 
         updateElectronApp({
@@ -160,7 +183,7 @@ app.on("ready", () => {
                 repo: "Tarun-poluri/HayApp-Releases",
             },
             updateInterval: "5 minutes",
-            notifyUser: true,
+            notifyUser: false,
         });
     }
     createWindow();
