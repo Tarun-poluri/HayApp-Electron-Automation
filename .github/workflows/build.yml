@@ -43,14 +43,6 @@ jobs:
           npm install
           npm run build
 
-      - name: Configure SSH for private Bitbucket dependency
-        shell: bash
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.BITBUCKET_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
-
       - name: Build Python backend (HayAppBroker)
         working-directory: hayapp_backend
         shell: pwsh
@@ -58,8 +50,8 @@ jobs:
           $ErrorActionPreference = 'Stop'
           python -m venv venv
           .\venv\Scripts\python -m pip install --upgrade pip --quiet
-          .\venv\Scripts\pip install -r requirements.txt
-          if ($LASTEXITCODE -ne 0) { throw "pip install failed — check BITBUCKET_SSH_KEY secret" }
+          .\venv\Scripts\pip install -r requirements-ci.txt
+          if ($LASTEXITCODE -ne 0) { throw "pip install failed" }
           .\venv\Scripts\pip install pyinstaller==6.18.0 --quiet
           .\venv\Scripts\python -m scripts.create_version_meta
 
