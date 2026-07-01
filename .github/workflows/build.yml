@@ -50,6 +50,7 @@ jobs:
           $ErrorActionPreference = 'Stop'
           python -m venv venv
           .\venv\Scripts\python -m pip install --upgrade pip --quiet
+          .\venv\Scripts\pip install -e parlay_stub --quiet
           .\venv\Scripts\pip install -r requirements-ci.txt
           if ($LASTEXITCODE -ne 0) { throw "pip install failed" }
           .\venv\Scripts\pip install pyinstaller==6.18.0 --quiet
