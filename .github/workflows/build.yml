@@ -43,41 +43,72 @@ jobs:
           npm install
           npm run build
 
+      - name: Configure SSH for private Bitbucket dependency
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.BITBUCKET_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
+
       - name: Build Python backend (HayAppBroker)
         working-directory: hayapp_backend
         shell: pwsh
         run: |
+          $ErrorActionPreference = 'Stop'
           python -m venv venv
           .\venv\Scripts\python -m pip install --upgrade pip --quiet
-          .\venv\Scripts\pip install -r requirements.txt --quiet
+          .\venv\Scripts\pip install -r requirements.txt
+          if ($LASTEXITCODE -ne 0) { throw "pip install failed — check BITBUCKET_SSH_KEY secret" }
           .\venv\Scripts\pip install pyinstaller==6.18.0 --quiet
           .\venv\Scripts\python -m scripts.create_version_meta
-          .\venv\Scripts\pyinstaller `
-            --onedir --noconfirm --clean `
-            --collect-all autobahn `
-            --hidden-import=twisted.internet.utils `
-            --add-data "venv\Lib\site-packages\parlay\server\config.json;parlay\server" `
-            --name "HayAppBroker" `
-            --version-file "version_meta.txt" `
-            --icon "hayapp.ico" `
-            hayapp_python\hayapp_broker.py
+
+          # Build pyinstaller command — parlay config.json is optional
+          $parlayConfig = "venv\Lib\site-packages\parlay\server\config.json"
+          $addDataArg = if (Test-Path $parlayConfig) {
+            "--add-data `"$parlayConfig;parlay\server`""
+          } else { "" }
+
+          $cmd = ".\venv\Scripts\pyinstaller --onedir --noconfirm --clean " +
+                 "--collect-all autobahn --hidden-import=twisted.internet.utils " +
+                 "$addDataArg --name HayAppBroker " +
+                 "--version-file version_meta.txt --icon hayapp.ico " +
+                 "hayapp_python\hayapp_broker.py"
+          Invoke-Expression $cmd
+          if ($LASTEXITCODE -ne 0) { throw "PyInstaller failed" }
+
+          # Verify HayAppBroker.exe was produced
+          if (-not (Test-Path "dist\HayAppBroker\HayAppBroker.exe")) {
+            throw "HayAppBroker.exe was not produced by PyInstaller"
+          }
+          Write-Host "HayAppBroker.exe built successfully"
+
+          # Move HayAppBroker folder contents up to dist/
           robocopy dist\HayAppBroker dist /E /MOVE /R:2 /W:5
-          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          if ($LASTEXITCODE -ge 8) { throw "robocopy move failed: $LASTEXITCODE" }
+          $global:LASTEXITCODE = 0
+
+          # Copy additional asset folders
           robocopy needle_detector dist\needle_detector /E /R:2 /W:5
-          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
-          robocopy image_decoder dist\image_detector /E /R:2 /W:5
-          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          if ($LASTEXITCODE -ge 8) { throw "robocopy needle_detector failed: $LASTEXITCODE" }
+          $global:LASTEXITCODE = 0
+          robocopy image_decoder dist\image_decoder /E /R:2 /W:5
+          if ($LASTEXITCODE -ge 8) { throw "robocopy image_decoder failed: $LASTEXITCODE" }
+          $global:LASTEXITCODE = 0
           if (Test-Path local_user_data) {
             robocopy local_user_data dist\local_user_data /E /R:2 /W:5
-            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+            if ($LASTEXITCODE -ge 8) { throw "robocopy local_user_data failed" }
+            $global:LASTEXITCODE = 0
           }
           if (Test-Path ParlayUI) {
             robocopy ParlayUI dist\ParlayUI /E /R:2 /W:5
-            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+            if ($LASTEXITCODE -ge 8) { throw "robocopy ParlayUI failed" }
+            $global:LASTEXITCODE = 0
           }
           if (Test-Path stm32flash) {
             robocopy stm32flash dist\stm32flash /E /R:2 /W:5
-            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+            if ($LASTEXITCODE -ge 8) { throw "robocopy stm32flash failed" }
+            $global:LASTEXITCODE = 0
           }
           $vir = Get-ChildItem -Path 'vir' -Filter '*.zip' | Sort-Object Name | Select-Object -Last 1
           if ($vir) {
