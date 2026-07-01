@@ -1,0 +1,511 @@
+{
+    "2DMI": {
+        "DecodeImage": {
+            "PreProcess": {
+                "smallImageYN": 0,
+                "smallImageWidth": 10000,
+                "smallImageHeight": 10000,
+                "contrast": -1,
+                "brightness": -1,
+                "desiredBrightness": 0.75,
+                "addWeighted": 0,
+                "rotateImageToHomeLine": 0,
+                "correctPerspective": 1,
+                "pixelsPerMM": 71.1679,
+                "physicalMarkSize": 5.00,
+                "expectedAreaPercent": 0.6,
+                "thresholdMethod": "bernsen",
+                "bwThreshold": 128,
+                "markBorderPercent": 0.2,
+                "aspectRatioCorrectionLimit": 0.015,
+                "dilateValue": 1,
+                "minimumImageBrightness": 0.15,
+                "maximumImageBrightness": 0.89,
+                "correctDistortionYN": 0,
+                "cropDistortion": 1,
+                "distortionFillValuesRGB": [255,255,255],
+                "distortionCorrectionMatrixFilename": "out_camera_data.json",
+                "cropBorderYN": 0,
+                "cropBorderMethod": "percent",
+                "cropBorderPercent": 0,
+                "cropBorderLocation": {
+                    "tlx": 0,
+                    "tly": 0,
+                    "trx": 4500,
+                    "try": 0,
+                    "brx": 4500,
+                    "bry": 4500,
+                    "blx": 0,
+                    "bly": 4500
+                },
+                "cropMarkYN": 1,
+                "cropMarkLocations": [{
+                    "tlx": 0,
+                    "tly": 0,
+                    "trx": 800,
+                    "try": 0,
+                    "brx": 800,
+                    "bry": 800,
+                    "blx": 0,
+                    "bly": 800
+                },
+                {
+                    "tlx": 3700,
+                    "tly": 3700,
+                    "trx": 4500,
+                    "try": 3700,
+                    "brx": 4500,
+                    "bry": 4500,
+                    "blx": 3700,
+                    "bly": 4500
+                }]                
+            }           
+        },
+        "ValidateImage": {
+            "General": {},
+            "PreProcess": {
+                "Validate": {
+                    "smallImageWidth": 1280,
+                    "smallImageHeight": 720,
+                    "contrast": -1,
+                    "brightness": -1,
+                    "desiredBrightness": 0.75,
+                    "pixelsPerMM": 71.1679,
+                    "physicalMarkSize": 5.48,
+                    "expectedAreaPercent": 1,
+                    "bwThreshold": 128,
+                    "markBorderPercent": 0.15,
+                    "addWeighted": 1,
+                    "rotateImageToHomeLine": 0,
+                    "correctPerspective": 1,
+                    "useAdaptiveThreshold": 0,
+                    "aspectRatioCorrectionLimit": 0.015,
+                    "dilateValue": 1,
+                    "minimumImageBrightness": 0.15,
+                    "maximumImageBrightness": 0.89                
+                },
+                "Register": {
+                    "smallImageWidth": 1280,
+                    "smallImageHeight": 720,
+                    "contrast": -1,
+                    "brightness": -1,
+                    "desiredBrightness": 0.75,
+                    "pixelsPerMM": 71.1679,
+                    "physicalMarkSize": 5.48,
+                    "expectedAreaPercent": 1,
+                    "bwThreshold": 128,
+                    "markBorderPercent": 0.15,
+                    "addWeighted": 1,
+                    "rotateImageToHomeLine": 0,
+                    "correctPerspective": 1,
+                    "useAdaptiveThreshold": 0,
+                    "aspectRatioCorrectionLimit": 0.015,
+                    "dilateValue": 1,
+                    "minimumImageBrightness": 0.15,
+                    "maximumImageBrightness": 0.89                
+                }
+            },
+            "Matching": {
+                "contrast": -1,
+                "brightness": -1,
+                "desiredBrightness": 0.95,
+                "bwThreshold": 128,
+                "subRectAmount": 0.05,
+                "psnrTriggerValue": 35,
+                "minXORContourSize": 150,
+                "minSSIMContourSize": 150
+            },
+            "AlignImages": {
+                "goodMatchPercent": 0.15
+            },
+            "System": {
+                "useAIOutput": 1,
+                "jsonResultOutput": 1,
+                "minimumImageBrightness": 0.15,
+                "maximumImageBrightness": 0.89
+            },
+            "ImageValidationScoreParams": {
+                "GoodMatchAverageDist": {
+                    "Range1": {
+                        "high": 10000,
+                        "low": 400,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 399.999,
+                        "low": 20,
+                        "result": 1
+                    },
+                    "Range3": {
+                        "high": 19.999,
+                        "low": -1,
+                        "result": 2
+                    }
+                },
+                "XORSimilarity": {
+                    "Range1": {
+                        "high": 100,
+                        "low": 96.0,
+                        "result": 3
+                    },
+                    "Range2": {
+                        "high": 95.999,
+                        "low": 93,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 92.999,
+                        "low": -1,
+                        "result": 0
+                    }
+                },
+                "XORLargeContourCount": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 6,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 5.999,
+                        "low": 3.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 2.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "XORLargeContourArea": {
+                    "Range1": {
+                        "high": 1000000,
+                        "low": 1600,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 1599.999,
+                        "low": 500.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 499.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "XORBlobCount": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 160,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 159.999,
+                        "low": 100.0,
+                        "result": 0
+                    },
+                    "Range3": {
+                        "high": 99.999,
+                        "low": -1,
+                        "result": 0
+                    }
+                },
+                "XORBlobArea": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 1000,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 999.999,
+                        "low": 600.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 599.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "XORBlobMedian": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 100,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 99.999,
+                        "low": 19.0,
+                        "result": 1
+                    },
+                    "Range3": {
+                        "high": 18.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "PSNR": {
+                    "Range1": {
+                        "high": 100,
+                        "low": 20.5,
+                        "result": 3
+                    },
+                    "Range2": {
+                        "high": 20.499,
+                        "low": 20.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 19.999,
+                        "low": -1,
+                        "result": 0
+                    }
+                },
+                "SSIMLargeContourCount": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 7,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 6.999,
+                        "low": 4.0,
+                        "result": 1
+                    },
+                    "Range3": {
+                        "high": 3.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "SSIMLargeContourArea": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 2500,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 2499.999,
+                        "low": 1500.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 1499.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "SIMBlobCount": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 500,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 499.999,
+                        "low": 100.00,
+                        "result": 0
+                    },
+                    "Range3": {
+                        "high": 99.999,
+                        "low": -1,
+                        "result": 0
+                    }
+                },
+                "SSIMBlobArea": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 1000,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 999.999,
+                        "low": 500.0,
+                        "result": 1
+                    },
+                    "Range3": {
+                        "high": 499.999,
+                        "low": -1,
+                        "result": 2
+                    }
+                },
+                "SSIMBlobMedian": {
+                    "Range1": {
+                        "high": 100000,
+                        "low": 100,
+                        "result": 0
+                    },
+                    "Range2": {
+                        "high": 99.999,
+                        "low": 10.0,
+                        "result": 1
+                    },
+                    "Range3": {
+                        "high": 9.999,
+                        "low": -1,
+                        "result": 3
+                    }
+                },
+                "SSIMAvgRGB": {
+                    "Range1": {
+                        "high": 100,
+                        "low": 80,
+                        "result": 3
+                    },
+                    "Range2": {
+                        "high": 79.999,
+                        "low": 70.0,
+                        "result": 2
+                    },
+                    "Range3": {
+                        "high": 69.999,
+                        "low": -1,
+                        "result": 0
+                    }
+                },
+                "OverallImageValidaion": {
+                    "Range1": {
+                        "high": 34,
+                        "low": 20.0,
+                        "response": "Authentic"
+                    },
+                    "Range2": {
+                        "high": 19.999,
+                        "low": 15.5,
+                        "response": "Suspect"
+                    },
+                    "Range3": {
+                        "high": 15.499,
+                        "low": -1,
+                        "response": "Not Authentic"
+                    }
+                },
+                "AIOverallImageValidaion": {
+                    "Range1": {
+                        "high": 1.0,
+                        "low": 0.80,
+                        "response": "Authentic"
+                    },
+                    "Range2": {
+                        "high": 0.7999,
+                        "low": 0.4,
+                        "response": "Suspect"
+                    },
+                    "Range3": {
+                        "high": 0.3999,
+                        "low": -1,
+                        "response": "Not Authentic"
+                    }
+                }
+            }
+        },
+        "ValidateImageAI": {
+            "activation": 0,
+            "architecture": "16,5,1",
+            "epochCount": 242.0,
+            "learningRate": 0.05,
+            "maxDataValue": 355000.0,
+            "maxValues": [
+                2140.8037900797526,
+                91.52012823534305,
+                91.5590705592313,
+                91.49677800899282,
+                30.582,
+                98.49137480834068,
+                52.78110885620117,
+                687.0,
+                47.0,
+                348341.0,
+                4849.357421875,
+                86.06156039237976,
+                567.0,
+                36.0,
+                359573.0,
+                3610.4990234375
+            ],
+            "minValues": [
+                0.06666666666666667,
+                0.05588821435368907,
+                0.05236449618616447,
+                0.052668559971983685,
+                4.498,
+                -14.45038747374181,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                5.221193790435791,
+                1.0,
+                0.0,
+                0.0,
+                6.107411861419678
+            ],
+            "weights": "  -1.14035   -1.63698    0.12456   0.153391   0.305734  0.0841439\n  -1.72963   -2.43357   -1.24952  -0.323535  -0.792948  -0.559611\n -0.490333   -3.08502  -0.652276  -0.248082  0.0599857  -0.568053\n  -1.08747   -2.39239  -0.424826 -0.0785605  -0.173534  -0.569643\n -0.875922   -1.75874  -0.348073  -0.532398  -0.398556  -0.432766\n   -1.7899    -2.7422   -1.15735    0.18902   0.834349   -0.55671\n  -1.04224   0.225784   0.176218    1.08976  -0.214974 -0.0352464\n -0.229559  -0.781521   0.558464      1.157 -0.0990238  -0.269345\n 0.0131818   -1.47746   0.722124  -0.403336   0.374341   0.080755\n  0.714094    -1.3607    1.03395    1.02153   -1.29521  -0.116737\n -0.424619  -0.324064    1.40471    0.34455   0.453344 -0.0370512\n  0.032087  -0.443269  -0.149312   0.281604   0.286875  0.0489867\n  0.138786   -1.06793   0.671463 -0.0954834   0.609273  -0.180865\n  -1.27023 -0.0546101    1.02625    1.15978   -1.10675  -0.138912\n -0.784969   0.720753   0.301254    0.13398   -1.07063 -0.0317317\n -0.427424   -2.05415   0.677789 -0.0563339  0.0521702 -0.0664998\n -0.855618   -3.79063   0.604727  -0.310596   0.373833   0.349545,\n -0.380316\n   -1.1901\n  -1.82931\n  0.170854\n-0.0758779\n-0.0123872\n"
+        },
+        "MagvationNeedle": {
+            "Haystat": {
+                "requestHaystat": 0,
+                "transitionPointWindow": 6,
+                "transitionPointThreshold": 5.5
+            },
+            "Measurement": {
+                "measurePointStepSize": 15,
+                "degreePointStepStepSize": 15,
+                "nonNeedleWidthRatio": 0.095
+            },
+            "Cut": {
+                "tipTailIgnorePercent": 0.15,
+                "transitionPointSlidingWindow": 8,
+                "transitionPointThresholdUpper": 1.2,
+                "transitionPointThresholdLower": 0.8
+            },
+            "Debug": {
+                "outputSortedMeasurementCSV": 1,
+                "outputRawMeasurementCSV": 1
+            }
+        }
+    },
+    "Notes": [
+        {
+            "index": 0,
+            "createdAt": "07/3/2024",
+            "reference": "",
+            "tags": "",
+            "description": "Merged Decode Image and Decode Image Haystack properties into single Config so we can make sure we aren't missing any properties, then extract any client specific properties and house them in an extended library libConfigForCustomer",
+            "author": "Kieran Guller"
+        },
+        {
+            "index": 1,
+            "createdAt": "07/24/2024",
+            "reference": "",
+            "tags": "",
+            "description": "Moved ImageValidationScoreParams into Validate, added a validate vs register preprocessor block",
+            "author": "Kieran Guller"
+        },
+        {
+            "index": 2,
+            "createdAt": "10/22/2024",
+            "reference": "",
+            "tags": "addition",
+            "description": "Removed legacy blocks from Decode and ported everything into Decode.PreProcessor.  Added new property 'thresholdMethod' to Decode.PreProcessor",
+            "author": "Kieran Guller"
+        },
+        {
+            "index": 3,
+            "createdAt": "12/3/2025",
+            "reference": "",
+            "tags": "",
+            "description": "Disabled distortion correction",
+            "author": "Corey McCrea"
+        },
+        {
+            "index": 4,
+            "createdAt": "12/18/2025",
+            "reference": "",
+            "tags": "",
+            "description": "Updated crop border location to be 4500x4500",
+            "author": "iTrace Team"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+[run]
+source = ./hayapp_python/
+omit =
+    *__init__*
+    tests/*
+    hayapp_python/version.py

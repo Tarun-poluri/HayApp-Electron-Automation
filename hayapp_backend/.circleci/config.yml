@@ -1,0 +1,152 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/reference/configuration-reference
+
+# For a detailed guide to building and testing with Python, read the docs:
+# https://circleci.com/docs/language-python/ for more details
+version: 2.1
+
+references:
+ decode_gdc_environment_variable: &decode_gdc_environment_variable
+    run:
+      name: Decode ENV Variable to Config file
+      command: |
+        ENCODED_GDC=$(echo $GOOGLE_DRIVE_CREDENTIAL | base64 -d)
+        echo "$ENCODED_GDC" > ".\scripts\config.txt"
+      shell: bash.exe
+ decode_google_drive_credential: &decode_google_drive_credential
+    run:
+      name: Decode and Create Google Drive Credential File
+      command: |
+        certutil -decode .\scripts\config.txt .\scripts\google-drive-cicd-ac5b4a1bbf34.json
+
+# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/orbs/use/orb-intro/
+orbs:
+  # See the Python orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
+  # python: circleci/python@2.1.1
+  win: circleci/windows@5.1 # Use the latest version for the best support
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#jobs-overview & https://circleci.com/docs/reference/configuration-reference/#jobs
+jobs:
+  install_and_test:
+    executor:
+      name: win/server-2022
+      size: "medium"
+
+    environment:
+      PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
+
+    # Add steps to the job
+    # See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#steps-overview & https://circleci.com/docs/reference/configuration-reference/#steps
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+
+      - run:
+          name: Install Make, Python 3.11 and Create Alias
+          command: |
+            choco install make -y --no-progress
+            # Remove existing python to prevent conflicts
+            choco uninstall python -y
+            choco install python --version=3.11.9 -y --no-progress
+            # Update path for the current session
+            $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+            $pythonPath = (Get-Command python.exe).Source
+            $pythonDir = Split-Path $pythonPath
+            # Create a copy named python3.11.exe in the same folder
+            Copy-Item "$pythonDir\python.exe" "$pythonDir\python3.11.exe"
+
+      - run:
+          name: Install Packages
+          command: make install 
+
+      - run:
+          name: Run Lint Checks
+          command:  |
+            echo "Running Lint checks"
+            make lint
+
+      - run:
+          name: Run Tests
+          command:  |
+            echo "Running tests"
+            make test
+
+
+  build_exe:
+    executor:
+      name: win/server-2022
+      size: "medium"
+    steps:
+      - checkout
+
+      - run:
+          name: Install Make, Python 3.11 and Create Alias
+          command: |
+            choco install make -y --no-progress
+            # Remove existing python to prevent conflicts
+            choco uninstall python -y
+            choco install python --version=3.11.9 -y --no-progress
+            # Update path for the current session
+            $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+            $pythonPath = (Get-Command python.exe).Source
+            $pythonDir = Split-Path $pythonPath
+            # Create a copy named python3.11.exe in the same folder
+            Copy-Item "$pythonDir\python.exe" "$pythonDir\python3.11.exe"
+
+      - run:
+          name: Install Dependencies
+          command: |
+            make install-prod
+
+      - run:
+          name: Build And Bundle Application
+          command: |
+            make build BUILDNUM=$env:CIRCLE_BUILD_NUM
+
+      - *decode_gdc_environment_variable
+      - *decode_google_drive_credential
+
+      - run:
+          name: Upload Artifacts to Google Drive
+          command: |
+             gem install google-apis-drive_v3 googleauth
+             $filename = (Get-ChildItem .\artifacts).Name
+             ruby .\scripts\uploadArtifactToGdrive.rb $filename $env:CIRCLE_BRANCH
+
+      - run:
+          name: Create and Push Tag
+          command: |
+            $appVersion = $(python3.11 hayapp_python\version.py).Trim()
+            
+            git config user.email "fflkhcw7hq853ljcust9715x15ypyq@bots.bitbucket.org"
+            git config user.name "CircleCI Automation"
+            
+            # Add Buildnumber to the tag to prevent possibility of collision
+            $tagName = "$appVersion.$env:CIRCLE_BUILD_NUM"
+            if ($env:CIRCLE_BRANCH -eq "develop") {
+              $tagName = "dev-$tagName"
+            }
+            git tag -a $tagName $env:CIRCLE_SHA1 -m "Automated tag from CircleCI"
+
+            # 'x-token-auth' is a required literal string for Bitbucket token auth
+            git push https://x-token-auth:${env:BITBUCKET_ACCESS_TOKEN}@bitbucket.org/${env:CIRCLE_PROJECT_USERNAME}/${env:CIRCLE_PROJECT_REPONAME}.git $tagName
+
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/guides/orchestrate/workflows/ & https://circleci.com/docs/reference/configuration-reference/#workflows
+workflows:
+  pr_and_push: # This is the name of the workflow
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      # Circle CI is configured to only run for pull requests in the project settings
+      - install_and_test
+
+      # Build EXE only after push to develop or master
+      - build_exe:
+          filters:
+            branches:
+              only:
+                - develop
+                - master

@@ -1,0 +1,7 @@
+git+ssh://git@bitbucket.org/promenade/hayapp_parlay.git@dev
+httpx
+keyring
+platformdirs
+pydantic
+tinydb
+wmi
