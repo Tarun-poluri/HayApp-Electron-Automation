@@ -1,0 +1,1873 @@
+"""
+
+pcom_serial.py
+
+This protocol enables Parlay to interact with embedded devices. This class handles the passing of messages
+between Parlay and embedded devices.
+
+
+"""
+
+from twisted.internet.serialport import SerialPort
+from twisted.protocols.basic import LineReceiver
+from twisted.internet import defer
+from twisted.internet import reactor
+from twisted.internet.protocol import connectionDone
+
+from parlay.items.parlay_standard import ParlayStandardItem, INPUT_TYPES
+from parlay.protocols.base_protocol import BaseProtocol
+from parlay.protocols.utils import message_id_generator, MessageQueue
+
+from serial.tools import list_ports
+
+import logging
+
+from .serial_encoding import *
+from .enums import *
+
+import time
+import json
+from traceback import print_exc
+
+# Constants used in converting format chars to
+# Parlay input types
+PCOM_SERIAL_NUMBER_INPUT_CHARS = "BbHhIiQqfd"
+PCOM_SERIAL_STRING_INPUT_CHARS = "csx"
+PCOM_SERIAL_BOOL_INPUT_CHARS= "?"
+PCOM_SERIAL_ARRAY_INPUT_CHARS = '*'
+MD5_LENGTH = 32
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
+
+
+class DiscoveryLookupMaps:
+    """
+    Class that will hold the different maps needed for translating between binary and JSON messages. These maps
+    are filled during discovery.
+    """
+    def __init__(self, commands, properties, command_names, property_names, item_names, error_codes, stream_names,
+                 subsystem_parlay_ids):
+        """
+
+        :param commands: Map of Item IDs -> Command ID -> Command Objects found during discovery.
+        :param properties: Map of Item IDs -> Property ID -> Format string found during discovery
+        :param command_names: Map of Item IDs -> Command ID -> Command Names found during discovery
+        :param property_names: Map of Item IDs -> Property ID -> Property Names found during discovery
+        :param item_names: Map of Item IDs -> Embedded Item Names found during discovery
+        :param error_codes: Map of Error Code IDs -> Error Code Strings found during discovery
+        :param stream_names: Map of Item IDs -> Stream ID -> Stream Names found during discovery
+        :param subsystem_parlay_ids: Map of subsystem ID -> Parlay ID found during discovery.
+        """
+        self.command_map = commands
+        self.property_map = properties
+        self.command_name_map = command_names
+        self.property_name_map = property_names
+        self.item_name_map = item_names
+        self.error_code_map = error_codes
+        self.stream_name_map = stream_names
+        self.subsystem_parlay_id_map = subsystem_parlay_ids
+
+
+class PCOMSerial(BaseProtocol, LineReceiver):
+
+    # Constant number of retries before another message is sent out
+    # after not receiving an ACK
+    NUM_RETRIES = 3
+
+    # The item ID of the protocol during discovery.
+    DISCOVERY_CODE = 0xfefe
+    PCOM_RESET_ID = 0xfefe
+
+    # The minimum event ID. Some event IDs may need to be reserved
+    # in the future.
+    MIN_EVENT_ID = 0
+
+    # The number of bits reserved for the event ID in the serialized
+    # event protocol. Eg. if two bytes are reserved this number should be 16.
+    NUM_EVENT_ID_BITS = 16
+
+    # Item ID of the embedded reactor
+    EMBD_REACTOR_ID = 0
+    BROADCAST_SUBSYSTEM_ID = 0x8000
+    SUBSYSTEM_SHIFT = 8
+    SUBSYSTEM_ID_MASK = 0xFF00
+    ITEM_ID_MASK = 0xFF
+
+    # Number of bits we have for sequence number
+    SEQ_BITS = 4
+
+    # Default cache if the user does not supply one on a updated embedded board with the GET_PROJECT_HASH command.
+    DEFAULT_DISCOVERY_CACHE = "__discovery_cache.json"
+
+    # baud rate of communication over serial line
+    BAUD_RATE = 115200
+
+    STM_VCP_STRING = "STM32 Virtual ComPort"
+    USB_SERIAL_CONV_STRING = "USB Serial Converter"
+    STLINK_STRING = "Link"
+
+    FTDI_VENDOR_ID = "=0403"
+    ST_VENDOR_ID = "=0483"
+    ST_SNR = "SNR="
+
+    # ACK window size
+    WINDOW_SIZE = 4
+
+    # timeout before resend in secs
+    ACK_TIMEOUT = .5
+
+    ERROR_STATUS = DISCOVERY_CODE << 16
+    DISCOVERY_TIMEOUT_ID = (DISCOVERY_CODE + 1) << 16
+    MESSAGE_TIMEOUT_ERROR_ID = (DISCOVERY_CODE + 2) << 16
+
+    INVALID_SUBSYSTEM_ID = 0xFF
+
+    SUBSYSTEM_NAME_DELIMITER = "."
+
+    @classmethod
+    def open(cls, adapter, port=None, discovery_file=None, low_speed=False):
+        """
+        :param cls: The class object
+        :param adapter: current adapter instance used to interface with broker
+        :param port: the serial port device to use. Leave this parameter empty if autoconnect is desired.
+        :param low_speed: limits discovery messaging to one at a time for slower devices
+        :return: returns the instantiated protocol object
+        '"""
+
+        # Make sure port is not a list
+        port = port[0] if isinstance(port, list) else port
+
+        if not port:
+            # If our port filter did not return only 1 available port, we cannot automatically connect.
+            # Raise exception and tell user to specify port manually.
+            default_args = cls.get_open_params_defaults()
+            if len(default_args['port']) != 1:
+                raise Exception('No port provided and filtered port list contained multiple entries: '
+                                '{}'.format(default_args['port']))
+
+            port = default_args['port'][0]
+
+        if low_speed:
+            cls.WINDOW_SIZE = 1
+
+        # Default to a discovery file if one is not provided for backwards compatibility.
+        if not discovery_file:
+            discovery_file = PCOMSerial.DEFAULT_DISCOVERY_CACHE
+
+        protocol = PCOMSerial(adapter, port)
+        protocol.discovery_file = discovery_file
+        protocol._open_port()
+
+        if not protocol.is_port_attached:
+            raise Exception("Unable to find connected embedded device.")
+
+        return protocol
+
+    def _open_port(self):
+        """
+        Opens a SerialPort on <self._port> using <self.adapter>. If opening the port fails the error will be logged to
+        the logger.
+
+        :return: None
+        """
+        try:
+            self._opened_port = SerialPort(self, self._port, self.adapter.reactor, baudrate=PCOMSerial.BAUD_RATE)
+            self.is_port_attached = True
+            self.clearLineBuffer()
+        except Exception as E:
+            logger.error("[PCOM] Unable to open port because of error (exception): {0}".format(E))
+
+    @staticmethod
+    def _filter_com_ports(potential_com_ports):
+        """
+        Filters the provided list of COM ports based on the string descriptor provided by the USB connection.
+        If the string descriptor matches those provided generally by ST Micro the port will be added to the filtered
+        list. If no new filtered ports are found the old list is returned.
+        :param potential_com_ports: list of potential COM ports found using list_ports.comports() (from serial.tools)
+        :return:
+        """
+
+        def _is_valid_port(port_name):
+            return PCOMSerial.STM_VCP_STRING in port_name[1] or PCOMSerial.USB_SERIAL_CONV_STRING in port_name[1] or \
+                   PCOMSerial.FTDI_VENDOR_ID in port_name[2] or (PCOMSerial.ST_VENDOR_ID in port_name[2] and
+                                                                 PCOMSerial.STLINK_STRING not in port_name[1]) or \
+                   PCOMSerial.ST_VENDOR_ID in port_name[2] and PCOMSerial.ST_SNR in port_name[2]
+
+        result_list = []
+        try:
+            for port in potential_com_ports:
+                logger.info("PORT:")
+                logger.info(port)
+                if _is_valid_port(port):
+                    result_list.append(port)
+
+        except Exception as e:
+            logger.error("[PCOM] Could not filter ports because of exception: {0}".format(e))
+            return potential_com_ports
+
+        return result_list if result_list else potential_com_ports
+
+    @classmethod
+    def get_open_params_defaults(cls):
+        """
+        Returns a list of parameters defaults. These will be displayed in the UI.
+        :return: default args: the default arguments provided to the user in the UI
+        """
+
+        cls.default_args = BaseProtocol.get_open_params_defaults()
+        logger.info("[PCOM] Available COM ports: {0}".format(list_ports.comports()))
+
+        filtered_comports = cls._filter_com_ports(list_ports.comports())
+        logger.info("[PCOM]: filtered_comports:")
+        logger.info(filtered_comports)
+        potential_serials = [port_list[0] for port_list in filtered_comports]
+        cls.default_args['port'] = potential_serials
+
+        return cls.default_args
+
+    def reset(self):
+        """
+        Resets the information relevant to layer 2 communications (event ID generator, ACK window).
+        :return: None
+        """
+        self._event_id_generator = message_id_generator((2 ** self.NUM_EVENT_ID_BITS))
+        self._seq_num = message_id_generator((2 ** self.SEQ_BITS))
+
+        self._ack_window.reset_window()
+        self._discovery_msg_ids = {}
+
+        self._ack_table = {seq_num: defer.Deferred() for seq_num in range(2**self.SEQ_BITS)}
+        self._ack_window = SlidingACKWindow(self.WINDOW_SIZE, self.NUM_RETRIES, self)
+
+    def close(self):
+        """
+        Simply close the connection
+        :return:
+        """
+        self.reset()
+        self.transport.loseConnection()
+        return defer.succeed(None)
+
+    def write_to_port(self, buf):
+        """
+        Helper function used to write to the COM port. If a valid port is not attached it attempts to reopen it first.
+        :param buf: Buffer that is going to be written to the COM port
+        :return: None
+        """
+        if not self.is_port_attached:
+            self._open_port()
+
+        self.transport.write(buf)
+
+    def connectionLost(self, reason=connectionDone):
+        """
+        Overridden function that is called when the connected port is disconnected. Simply sets the
+        self.is_port_attached flag to False so that we know we have been disconnected from the target embedded
+        board.
+        :param reason: Reason for disconnection. Of Twisted failure type.
+        :return:
+        """
+        self.is_port_attached = False
+        LineReceiver.connectionLost(self, reason)
+
+    def __str__(self):
+        """
+        Overloaded __str__ function used to print out a PCOM instance.
+        :return:
+        """
+        return "PCOM @ " + str(self._port)
+
+    def __init__(self, adapter, port):
+        """
+        Initializer function.
+        :param adapter: The adapter that will serve as an interface for interacting with the broker
+        :param port: port that we will be connecting to (Eg. "/dev/tty.usbmodem1111" on MacOS)
+        """
+
+        self._port = port
+        # A list of items that we will need to discover for.
+        # The base protocol will use this dictionary to feed items to
+        # the UI
+        self.items = {}
+        self._loaded_from_file = False
+
+        BaseProtocol.__init__(self)
+
+        # Set the LineReceiver to line mode. This causes lineReceived to be called
+        # when data is sent to the serial port. We will get a line whenever the END_BYTE
+        # appears in the buffer
+        self.setLineMode()
+        self.delimiter = END_BYTE_STR
+
+        # The buffer that we will be storing the data that arrives via the serial connection
+        self._binary_buffer = bytearray()
+        self._subsystem_ids = []
+
+        self.adapter = adapter
+
+        # Event IDs are 16-bit (2 byte) numbers so we need a radix
+        # of 65535 or 0xFFFF in hex
+        # NOTE: The number of bits in an event ID is subject to change,
+        # the constant NUM_EVENT_ID_BITS can easily be changed to accommodate this.
+        self._event_id_generator = message_id_generator((2**self.NUM_EVENT_ID_BITS))
+
+        # From parlay.utils, calls _message_queue_handler() whenever
+        # a new message is added to the MessageQueue object
+        self._message_queue = MessageQueue(self._message_queue_handler)
+        self._attached_item_d = None
+
+        # Dictionary that maps ID # to Deferred object
+        self._discovery_msg_ids = {}
+
+        # Sequence number is a nibble as of now, so the domain should be
+        # 0 <= seq number <= 15
+        # which means the radix will be 16, but to be safe I'll do
+        # 2^SEQ_BITS where SEQ_BITS is a member constant that can easily be changed
+        self._seq_num = message_id_generator((2**self.SEQ_BITS))
+
+        # ACKs should be deferred objects because you want to catch them on the way
+        # back via asynchronous communication.
+        self._ack_deferred = defer.Deferred()
+
+        # Store discovered item IDs so that we do not push duplicates to the
+        # item requesting the discovery
+
+        self._discovery_in_progress = False
+        self._discovery_deferred = None
+
+        self._ack_table = {seq_num: defer.Deferred() for seq_num in range(2**self.SEQ_BITS)}
+
+        self._ack_window = SlidingACKWindow(self.WINDOW_SIZE, self.NUM_RETRIES, self)
+
+        self._discovery_file = None
+
+        self._opened_port = None
+
+        self.is_port_attached = False
+
+        self._parlay_id = ""
+
+        # Store a map of Item IDs -> Command ID -> Command Objects
+        # Command objects will store the parameter -> format mapping
+        self.command_map = {}
+
+        # Store a map of properties. We must keep track of a
+        # name -> format mapping in order to serialize data
+        self.property_map = {}
+
+        # Store a map of command names to IDs
+        # item ID -> Command name -> ID
+        self.command_name_map = {}
+
+        # Map of error codes to their string name equivalent
+        self.error_code_map = {}
+
+        # Store a map of property names to IDs
+        # item ID -> Property name -> ID
+        self.property_name_map = {}
+
+        # Store a map of stream names
+        # item ID -> Stream name -> Stream ID
+        self.stream_name_map = {}
+
+        # Store a map of item ID to item names
+        # item ID -> item name
+        self.item_name_map = {}
+
+        # Map of subsystem IDs to Parlay IDs. Parlay IDs are retrieved through the command
+        # get_parlay_id() to the Reactor.
+        self.subsystem_parlay_id_map = {}
+
+        # The md5 hash of the embedded board's project.cc file
+        self.project_hash = None
+
+        # The subsystem ids on the board.
+        self._subsystem_ids = []
+
+        self.id_lookup_maps = DiscoveryLookupMaps(commands=self.command_map, properties=self.property_map,
+                                                  command_names=self.command_name_map, property_names=self.property_name_map,
+                                                  item_names=self.item_name_map, error_codes=self.error_code_map,
+                                                  subsystem_parlay_ids=self.subsystem_parlay_id_map,
+                                                  stream_names=self.stream_name_map)
+
+    def send_error_message(self, original_message, message_status, description=''):
+        """
+        Sends a notification error to the destination ID.
+
+        :param original_message: PCOM Message object that holds the IDs of the sender and receiver
+        :param message_status: Message status code that translates to an error message.
+        :param description: description for the error message to be thrown in CONTENTS
+        :return:
+        """
+        try:
+            response_type = MessageCategory.Order_Response << CATEGORY_SHIFT
+            error_msg = pcom_message.PCOMMessage(to=original_message.from_, from_=original_message.to,
+                                                 msg_status=message_status, msg_id=original_message.msg_id,
+                                                 msg_type=response_type, description=description)
+            json_msg = error_msg.to_json_msg(self.id_lookup_maps)
+            self.adapter.publish(json_msg)
+        except Exception as e:
+            logger.error("[PCOM] Unhandled exception in function: to_json_msg(): {0}", e)
+
+    def broadcast_error_message(self, error_id, description, info):
+        """
+        Broadcasts an error message to the broker. This is mainly used to signal a failed discovery.
+
+        :param error_id: ID of the error message
+        :param description: description that will be placed under contents
+        :param info: info that will be placed under contents
+        :return: None
+        """
+        json_msg = {
+            "TOPICS": {
+                "TX_TYPE": "BROADCAST",
+                "MSG_TYPE": "EVENT",
+                "MSG_STATUS": "ERROR",
+                "MSG_ID": next(self._event_id_generator),
+                "FROM": self.DISCOVERY_CODE,
+            },
+            "CONTENTS": {
+                "EVENT": error_id,
+                "ERROR_CODE": error_id,
+                "DESCRIPTION": description,
+                "INFO": info
+            }}
+        self.adapter.publish(json_msg)
+
+    def _message_queue_handler(self, message):
+        """
+        This is the callback function given to the MessageQueue object that is called
+        whenever a new message is added to the queue.
+
+        This function does the actual writing to the serial port.
+
+        :type message dict
+        :param message: dictionary message received from Parlay
+
+
+        """
+
+        # this function should return a fired deferred, so set one up
+        d = defer.Deferred()
+
+        try:
+            s = pcom_message.PCOMMessage.from_json_msg(message, self.id_lookup_maps)
+        except Exception as e:
+            logger.error("[PCOM] Could not translate JSON message to PCOM equivalent because of "
+                         "exception: {0}".format(e))
+            logger.error("[PCOM] Message that caused PCOM translation error: {0}".format(message))
+            d.errback(e)
+            return d
+
+        # Serialize the message and prepare for protocol wrapping.
+        try:
+            packet = encode_pcom_message(s, self.id_lookup_maps)
+        except Exception as e:
+            logger.error("[PCOM] Unable to encode pcom message")
+            logger.error("[PCOM] Exception: {0}".format(e))
+            self.send_error_message(original_message=s, message_status=self.ERROR_STATUS,
+                                    description="Unable to encode message: {0} because of "
+                                                "exception: {1}".format(message, e))
+            d.errback(e)
+            return d
+
+        need_ack = True
+
+        # Get the next sequence number and then wrap the protocol with
+        # the desired low level byte wrapping and send down serial line
+        sequence_num = next(self._seq_num)
+        try:
+            packet = bytes(wrap_packet(packet, sequence_num, need_ack))
+
+        except ValueError as v:
+            logger.error("[PCOM] Fatal error: created packet with invalid checksum, aborting send.")
+            d.errback(v)
+            return d
+        except Exception as e:
+            d.errback(e)
+            return d
+
+        d.callback(None)
+
+        disc_msg_deferred = self._discovery_msg_ids[s.msg_id] if self._discovery_in_progress else None
+        self._ack_window.add(ACKInfo(sequence_num, 0, packet, self.ack_timeout_handler,
+                                     disc_msg_deferred))
+        return d
+
+    def ack_timeout_handler(self):
+        """
+        Called when an ACK fails to send
+        :return: None
+        """
+        error_id = self.DISCOVERY_TIMEOUT_ID if self._discovery_in_progress else self.MESSAGE_TIMEOUT_ERROR_ID
+        self.broadcast_error_message(error_id, "Message send failed at transport layer.", "Connection failed. Please"
+                                               " verify connection with embedded board.")
+
+    def _discovery_listener(self, msg):
+        """
+        We need did this function to fire the deferred objects based on the msg we receive.
+        If the message ID matches an ID in the dictionary, fire the deferred.
+
+        :type msg PCOMMessage
+
+        """
+        # Return if there aren't any IDs left
+        if len(self._discovery_msg_ids) == 0:
+            return
+
+        if msg.category() == MessageCategory.Order_Response and msg.sub_type() == ResponseSubType.Command and msg.msg_id in self._discovery_msg_ids:
+            # If the message was a response and matched an ID in the dictionary, remove it and fire the
+            # corresponding Deferred object.
+            deferred = self._discovery_msg_ids.pop(msg.msg_id)
+            if not deferred.called:
+                deferred.callback(msg)
+            return
+
+        return
+
+    @defer.inlineCallbacks
+    def get_property_name(self, to, requested_property_id):
+        """
+        Sends a message down the serial line requesting the command name of a given command ID,
+        used in discovery protocol
+        :param to: destination item ID
+        :param requested_property_id: property ID that we want to know the name of
+        :return: name of the property from Embedded Core
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_PROPERTY_NAME, params=["property_id"],
+                                               data=[requested_property_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find property name for property {0} because of exception: {1}".format(
+                requested_property_id, e))
+            defer.returnValue(None)
+
+        # The data in the response message will be a list,
+        # the property name should be in the 0th position
+        # and strip the NULL byte.
+        try:
+            defer.returnValue(response.data[0])
+        except IndexError:
+            logger.error("Response from embedded board during discovery sequence did not return data in "
+                         "expect format. Expected at least one data field, received: {0}".format(response.data))
+            defer.returnValue(None)
+
+    @defer.inlineCallbacks
+    def get_property_desc(self, to, requested_property_id):
+        """
+        Sends a message to the embedded board requesting the property description for a specified
+        property ID
+
+        :param to: item ID to send the message to
+        :param requested_property_id: property ID to get the description of
+        :return:
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_PROPERTY_DESC, params=["property_id"],
+                                               data=[requested_property_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find property description for property {0} in item {1} because of exception:"
+                         "{2}".format(requested_property_id, to, e))
+            defer.returnValue(None)
+        try:
+            defer.returnValue(response.data[0])
+        except IndexError:
+            logger.error("Response from embedded board during discovery sequence did not return data in expect format."
+                         " Expected at least one data field, received: {0}".format(response.data))
+            defer.returnValue(None)
+
+    @defer.inlineCallbacks
+    def get_command_name(self, to, requested_command_id):
+        """
+        Sends a messge down the serial line requesting the property name of a given property ID,
+        used in discovery protocol
+        :param to: destination ID
+        :param requested_command_id: command ID that we want to know the name of
+        :return: name from Embedded Core
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_COMMAND_NAME, params=["command_id"],
+                                               data=[requested_command_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command name for command {0} in item {1} because of exception:"
+                         "{2}".format(requested_command_id, to, e))
+            defer.returnValue(None)
+
+        # The data in the response message will be a list,
+        # the command name should be in the 0th position
+        try:
+            defer.returnValue(response.data[0])
+        except IndexError:
+            logger.error("Response from embedded board during discovery sequence did not return data in expect format."
+                         " Expected at least one data field, received: {0}".format(response.data))
+            defer.returnValue(None)
+
+    @defer.inlineCallbacks
+    def get_command_input_param_format(self, to, requested_command_id):
+        """
+        Given a command ID and item ID, sends a message to the item ID requesting
+        the format of its input parameters. This functions should return a string
+        that describes each parameter. NOTE: variable arrays are indicated with a *.
+        Eg. A list of ints would be "*i". See format string details for character->byte
+        translation.
+        :param to: destination item ID
+        :param requested_command_id: command ID that we want the parameter format of
+        :return: format string describing input parameters
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_COMMAND_INPUT_PARAM_FORMAT, params=["command_id"],
+                                               data=[requested_command_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command input format for command {0} in item {1} because of exception:"
+                         "{2}".format(requested_command_id, to, e))
+            defer.returnValue(None)
+
+        r_val = '' if len(response.data) == 0 else response.data[0]
+        defer.returnValue(r_val)
+
+    @defer.inlineCallbacks
+    def get_command_output_param_format(self, to, requested_command_id):
+        """
+        Given a command ID and item ID, sends a message to the item ID requesting
+        the format of its output parameters. This functions should return a string
+        that describes each parameter. NOTE: variable arrays are indicated with a *.
+        Eg. A list of ints would be "*i". See format string details for character->byte
+        translation.
+        :param to: destination item ID
+        :param requested_command_id: command ID that we want the parameter format of
+        :return: format string describing output parameters
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_COMMAND_OUTPUT_PARAM_FORMAT, params=["command_id"],
+                                               data=[requested_command_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command output format for command {0} in item {1} because of exception:"
+                         "{2}".format(requested_command_id, to, e))
+            defer.returnValue(None)
+
+        r_val = '' if len(response.data) == 0 else response.data[0]
+        defer.returnValue(r_val)
+
+    @defer.inlineCallbacks
+    def get_all_embedded_project_hashes(self):
+        """
+        Gets the project hash of every subsystem. Querying the embedded boards subsystems is deterministic, so
+        appending and checking for where they are in the CSV is not needed at the time of writing.
+        :return: The resulting csv string of all hashes.
+        """
+        all_hashes = ""
+        for system in self._subsystem_ids:
+            system_hash = yield self.get_embedded_project_hash(system)
+            # If any of them error out we're going to return None. Since this signifies that one of the boards
+            # does not support caching. This also has the nice effect of bubbling up the error from
+            if system_hash is None or system_hash == '':
+                defer.returnValue(system_hash)
+            else:
+                all_hashes += str(system_hash) + ":" + str(system) + ","
+
+        # Return the full length of all project hashes.
+        defer.returnValue(all_hashes)
+
+    @defer.inlineCallbacks
+    def get_embedded_project_hash(self, subsystem=1):
+        """
+        Sends a message to the reactor requesting the hash code for the project.cc. This functions should return a
+        hash code in string format that is specific to a board's project.cc file. Note that even a slight change in
+        the project.cc file will lead to a new hash string.
+        :param subsystem The subsystem we are
+        :return: hash code in string format
+        """
+        # This means we were passed the raw subsystem (range 0 - 255) and need to shift.
+        logger.debug(f"Getting hash, subsystem: {subsystem}")
+        if subsystem < 2 ** SUBSYSTEM_SHIFT:
+            subsystem = subsystem << SUBSYSTEM_SHIFT
+        try:
+            response = yield self.send_command(subsystem, command_id=GET_PROJECT_HASH)
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command project hash for command {0} in item {1} because of exception:"
+                         "{2}".format(GET_PROJECT_HASH, self._subsystem_ids, e))
+            defer.returnValue(None)
+
+        # If we did not get a valid MD5 hash back, do not automate the cache.
+        r_val = '' if len(response.data) == 0 or len(response.data[0]) != MD5_LENGTH else response.data[0]
+        defer.returnValue(r_val)
+
+    @defer.inlineCallbacks
+    def get_command_input_param_names(self, to, requested_command_id):
+        """
+        Given an item ID and a command ID, requests the parameter names of the command from the item.
+        Returns a list of names (comma delimited) that represent the parameter names.
+
+        TODO: change return value to string?
+
+        Eg. "frequency,duty cycle"
+        :param to: destination item ID
+        :param requested_command_id: command id to find the parameter names of
+        :return: a list of parameter names
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_COMMAND_INPUT_PARAM_NAMES, params=["command_id"],
+                                               data=[requested_command_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command input parameter names for command {0} in item {1} because of "
+                         "exception: {2}".format(requested_command_id, to, e))
+            defer.returnValue(None)
+
+        param_names = [] if len(response.data) == 0 else [x.strip() for x in response.data[0].split(',')]
+        defer.returnValue(param_names)
+
+    @defer.inlineCallbacks
+    def get_command_output_parameter_desc(self, to, requested_command_id):
+        """
+        Given an item ID and a command ID, requests the output description
+        Returns a list of names (comma delimited) that represent the output names
+
+        TODO: change return value to string?
+
+        Eg. "frequency,duty cycle"
+        :param to: destination item ID
+        :param requested_command_id: command id to find the parameter names of
+        :return: a list of parameter names
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_COMMAND_OUTPUT_PARAM_DESC, params=["command_id"],
+                                               data=[requested_command_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find command output parameter description for command {0} in item {1}"
+                         " because of exception: {2}".format(requested_command_id, to, e))
+            defer.returnValue(None)
+
+        list_of_names = [] if len(response.data) == 0 else [x.strip() for x in response.data[0].split(',')]
+        defer.returnValue(list_of_names)
+
+    @defer.inlineCallbacks
+    def get_property_type(self, to, requested_property_id):
+        """
+        Given a property ID, requests the property's type from the item ID.
+        Gets back a format string.
+
+        :param to: destination item ID
+        :param requested_property_id: property ID that we want the type of
+        :return: format string describing the type
+        """
+        try:
+            response = yield self.send_command(to, command_id=GET_PROPERTY_TYPE, params=["property_id"],
+                                               data=[requested_property_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to find property type for property {0} in item {1} because of exception: "
+                         "{2}".format(requested_property_id, to, e))
+            defer.returnValue(None)
+
+        r_val = '' if len(response.data) == 0 else response.data[0]
+        defer.returnValue(r_val)
+
+    def send_command(self, to=None, tx_type="DIRECT", command_id=0, msg_status="INFO", response_req=True, params=[], data=[]):
+        """
+                Send a command and return a deferred that will succeed on a response and with the response
+
+        :param to: destination item ID
+        :param tx_type: DIRECT or BROADCAST
+        :param command_id: ID of the command
+        :param msg_status: status of the message: ERROR, WARNING, INFO, PROGRESS, or OK
+        :param response_req: boolean whether or not a response is required
+        :param params: command parameters
+        :param data: data that corresponds to each parameter
+        :return:
+        """
+
+        # Increment the event ID
+        event_id = next(self._event_id_generator)
+
+        # Construct the message based on the parameters
+
+        # For now "FROM:" will always be the discovery code,
+        # this needs to change in the future.
+        # Build the TOPICS portion
+        topics = {
+            "MSG_ID": event_id,
+            "TX_TYPE": tx_type,
+            "MSG_TYPE": "COMMAND",
+            "RESPONSE_REQ": response_req,
+            "MSG_STATUS": msg_status,
+            # NOTE: Change this to handle sending and receiving across subsystems.
+            "FROM": self.DISCOVERY_CODE
+        }
+
+        if to is not None:
+            topics["TO"] = to
+
+        # Build the CONTENTS portion
+        contents = {
+            "COMMAND": command_id,
+        }
+
+        # If data was given via function arguments we need to pack it
+        # into the contents portion of the message to resemble a JSON message.
+        for parameter, data_val in zip(params, data):
+            contents[parameter] = data_val
+
+        # If we need to wait the result should be a deferred object.
+        if response_req:
+            result = defer.Deferred()
+            result.addErrback(self.msg_timeout_errback)
+            # Add the correct mapping to the dictionary
+            self._discovery_msg_ids[event_id] = result
+        else:
+            return defer.succeed(None)
+
+        # Message will be added to event queue and
+        # sent down serial line (via callback function _message_queue_handler())
+        self._message_queue.add({"TOPICS": topics, "CONTENTS": contents})
+
+        # Return the Deferred object if we need to
+        return result
+
+    def msg_timeout_errback(self, failure):
+        """
+        Errback attached to a message that is called if it fails to send.
+
+        :param failure:
+        :return: defer.failure.Failure object
+        """
+
+        logger.warning("[PCOM] Message timeout")
+
+        # If discovery is in progress and a message fails to send, then timeout discovery
+        # This is to ensure discovery does not wait forever for a response from the board
+        if not self._discovery_deferred.called and self._discovery_in_progress:
+            self._discovery_deferred.errback(defer.failure.Failure(Exception(print_exc())))
+            self.reset()
+
+        return failure
+
+    def connectionMade(self):
+        """
+        The initializer for the protocol. This function is called when a connection to the server
+        (broker in our case) has been established.
+        """
+        return
+
+    @defer.inlineCallbacks
+    def _get_connected_subsystem_ids(self):
+        """
+        Populates self.items with all attached item IDs
+        NOTE: This is a subroutine of the discovery process. This method should be lightweight because
+        it also going to be called upon connection establishment. We don't want the user waiting around forever
+        when their device is connected.
+
+        :return:
+        """
+
+        # If we have stored systems, return them first
+        while self._attached_item_d is not None:
+            yield self._attached_item_d
+
+        # Create a new deferred object because this is an asynchronous operation.
+        self._attached_item_d = defer.Deferred()
+
+        # Ask the system we're connected to for a list all of the attached subsystems that we can address
+        try:
+            response = yield self.send_command(to=self.BROADCAST_SUBSYSTEM_ID, command_id=0, tx_type="BROADCAST")
+            self._subsystem_ids = [x for x in response.data if type(x) is int]
+        except Exception as e:
+            logger.error("Exception occurred when trying to find available subsystems: {0}".format(e))
+
+        d = self._attached_item_d
+        self._attached_item_d = None
+        if not d.called:
+            d.callback(None)
+
+    def load_discovery_from_file(self):
+        """
+        Loads discovery info from PCOMSerial.discovery_file that was passed in at protocol open.
+
+        :return: discovery message that should be sent to broker
+        """
+        discovery_msg = {}
+
+        try:
+            with open(self.discovery_file) as discovery_file:
+                data = json.load(discovery_file)
+                if len(data) == 0:
+                    logger.error("[PCOM] No data loaded from JSON file")
+                    discovery_file.close()
+                else:
+                    discovery_msg = self.process_data_file(data)
+
+        except Exception as e:
+            logger.error("[PCOM] Could not open discovery file because of exception: {0}".format(e))
+
+        return discovery_msg
+
+    def process_data_file(self, data):
+        """
+        Given the data from the discovery file, fills in the corresponding maps.
+        :param data: data produces from JSON file
+        :return: discovery message to produce
+        """
+
+        def _convert_item_ids_to_int(_map):
+            return {int(k): v for k, v in list(_map.items())}
+
+        def _convert_command_and_prop_ids(_map):
+            for k, v in list(_map.items()):
+                for command_id, cmd_info in list(v.items()):
+                    if command_id.isdigit():
+                        _map[k][int(command_id)] = cmd_info
+                        del _map[k][command_id]
+
+        # Get the project hash key
+        self.project_hash = data.get("PROJECT_HASH", None)
+        self.command_map = data["PCOM_COMMAND_MAP"]
+        self.command_map = _convert_item_ids_to_int(self.command_map)
+        _convert_command_and_prop_ids(self.command_map)
+
+        self.property_map = data["PCOM_PROPERTY_MAP"]
+        self.property_map = _convert_item_ids_to_int(self.property_map)
+        _convert_command_and_prop_ids(self.property_map)
+
+        self.command_name_map = data["PCOM_COMMAND_NAME_MAP"]
+        self.command_name_map = _convert_item_ids_to_int(self.command_name_map)
+
+        self.error_code_map = data["PCOM_ERROR_CODE_MAP"]
+        self.error_code_map = _convert_item_ids_to_int(self.error_code_map)
+
+        self.property_name_map = data["PCOM_PROPERTY_NAME_MAP"]
+        self.property_name_map = _convert_item_ids_to_int(self.property_name_map)
+
+        self.stream_name_map = data["PCOM_STREAM_NAME_MAP"]
+        self.stream_name_map = _convert_item_ids_to_int(self.stream_name_map)
+
+        self.item_name_map = data["PCOM_ITEM_NAME_MAP"]
+        self.item_name_map = _convert_item_ids_to_int(self.item_name_map)
+
+        try:
+            self.subsystem_parlay_id_map = data["PCOM_SUBSYSTEM_PARLAY_ID_MAP"]
+            self.subsystem_parlay_id_map = _convert_item_ids_to_int(self.subsystem_parlay_id_map)
+        except Exception as e:
+            logger.warning("[PCOM] Unable to load Parlay ID map from file due to exception {0}. "
+                           "Will use legacy ID mode.".format(e))
+
+        discovery_msg = data["DISCOVERY"]
+
+        self.id_lookup_maps = DiscoveryLookupMaps(commands=self.command_map, properties=self.property_map,
+                                                  command_names=self.command_name_map,
+                                                  property_names=self.property_name_map,
+                                                  item_names=self.item_name_map, error_codes=self.error_code_map,
+                                                  subsystem_parlay_ids=self.subsystem_parlay_id_map,
+                                                  stream_names=self.stream_name_map)
+
+        # recursively enumerate all items so we can subsucribe to them
+        def subscribe_to_subtree(item_info):
+            if "ID" in item_info:
+                self.adapter.subscribe(self.add_message_to_queue, TO=item_info["ID"])
+            if "CHILDREN" in item_info:
+                for item in item_info["CHILDREN"]:
+                    subscribe_to_subtree(item)
+
+        # start at root
+        subscribe_to_subtree(discovery_msg)
+
+        return discovery_msg
+
+    def write_discovery_info_to_file(self, file_name, discovery_msg):
+        """
+        Given a discovery message and file name, writes the necessary discovery information to the file.
+
+        This includes several maps and the discovery message itself so that it does not need to be generated.
+
+        :param file_name: discovery file name
+        :param discovery_msg: discovery message to be pushed to broker
+        :return:
+        """
+        try:
+            discovery_file = open(file_name, "w")
+        except Exception as e:
+            logger.error("Could not open file: {0} because of exception: {1}".format(file_name, e))
+            return
+
+        dict_to_write = dict()
+        dict_to_write["PCOM_COMMAND_MAP"] = self.command_map
+        dict_to_write["PCOM_PROPERTY_MAP"] = self.property_map
+        dict_to_write["PCOM_COMMAND_NAME_MAP"] = self.command_name_map
+        dict_to_write["PCOM_ERROR_CODE_MAP"] = self.error_code_map
+        dict_to_write["PCOM_PROPERTY_NAME_MAP"] = self.property_name_map
+        dict_to_write["PCOM_STREAM_NAME_MAP"] = self.stream_name_map
+        dict_to_write["PCOM_ITEM_NAME_MAP"] = self.item_name_map
+        dict_to_write["PCOM_SUBSYSTEM_PARLAY_ID_MAP"] = self.subsystem_parlay_id_map
+        if self.project_hash is not None:
+            dict_to_write["PROJECT_HASH"] = self.project_hash
+        dict_to_write["DISCOVERY"] = discovery_msg
+        json.dump(dict_to_write, discovery_file)
+        logger.info("Discovery written to: {0}".format(file_name))
+        discovery_file.close()
+
+    @staticmethod
+    def build_command_info(i_format, input_params, output_params, o_format=""):
+        """
+        Builds the command info (dictionary) for a command when given the format, input parameters,
+        and output parameters.
+
+        :param i_format: input format string (eg. "fff")
+        :param o_format: output format string (eg. "fff")
+        :param input_params: list of parameter names (eg. ["rate", "height", "weight"])
+        :param output_params: list of output parameter names (eg. ["Rick", "and", "Morty"])
+        :return: the command info dictionary
+        """
+        return {"input format": i_format, "input params": input_params, "output params": output_params,
+                "output format": o_format}
+
+    def initialize_command_maps(self, item_id):
+        """
+        Creates the discovery command entries in the command map for the specified item ID.
+        :param item_id: Item ID found during discovery.
+        :return: None
+        """
+
+        # initialize the maps for this item
+
+        # If reactor, don't re-initialize the command map because reactor specific commands have been initialized
+        # in _initialize_reactor_command_map
+        if item_id & 0xFF != 0:
+            self.command_map[item_id] = {}
+        self.property_map[item_id] = {}
+        self.command_name_map[item_id] = {}
+        self.property_name_map[item_id] = {}
+        self.stream_name_map[item_id] = {}
+
+        self.command_map[item_id][RESET_ITEM] = PCOMSerial.build_command_info("", [], [], "")
+        self.command_map[item_id][GET_ITEM_NAME] = PCOMSerial.build_command_info("", [], ["Item name"], "H")
+        self.command_map[item_id][GET_ITEM_TYPE] = PCOMSerial.build_command_info("", [], ["Item type"], "H")
+        self.command_map[item_id][GET_COMMAND_IDS] = PCOMSerial.build_command_info("", [], ["Command IDs[]"], "*H")
+        self.command_map[item_id][GET_PROPERTY_IDS] = PCOMSerial.build_command_info("", [], ["Property IDs[]"], "*H")
+        self.command_map[item_id][GET_COMMAND_NAME] = \
+            PCOMSerial.build_command_info("H", ["command_id"], ["Command name"], "H")
+        self.command_map[item_id][GET_COMMAND_INPUT_PARAM_FORMAT] = \
+            PCOMSerial.build_command_info("H", ["command_id"], ["Command input format"], "H")
+        self.command_map[item_id][GET_COMMAND_INPUT_PARAM_NAMES] = \
+            PCOMSerial.build_command_info("H", ["command_id"], ["Command input names[]"], "*s")
+        self.command_map[item_id][GET_COMMAND_OUTPUT_PARAM_DESC] = \
+            PCOMSerial.build_command_info("H", ["command_id"], ["Command input output description"], "H")
+        self.command_map[item_id][GET_COMMAND_OUTPUT_PARAM_FORMAT] = \
+            PCOMSerial.build_command_info("H", ["command_id"], ["Command output format"], "H")
+        self.command_map[item_id][GET_PROPERTY_NAME] = \
+            PCOMSerial.build_command_info("H", ["property_id"], ["Property name"], "s")
+        self.command_map[item_id][GET_PROPERTY_TYPE] = \
+            PCOMSerial.build_command_info("H", ["property_id"], ["Property type"], "H")
+        self.command_map[item_id][GET_PROPERTY_DESC] = \
+            PCOMSerial.build_command_info("H", ["property_id"], ["Property desc"], "s")
+
+        self.command_map[item_id]["reset_item"] = RESET_ITEM
+        self.command_map[item_id]["get_item_name"] = GET_ITEM_NAME
+        self.command_map[item_id]["get_item_type"] = GET_ITEM_TYPE
+        self.command_map[item_id]["get_command_ids"] = GET_COMMAND_IDS
+        self.command_map[item_id]["get_property_ids"] = GET_PROPERTY_IDS
+        self.command_map[item_id]["get_command_name"] = GET_COMMAND_NAME
+        self.command_map[item_id]["get_command_input_param_format"] = GET_COMMAND_INPUT_PARAM_FORMAT
+        self.command_map[item_id]["get_command_input_param_names"] = GET_COMMAND_INPUT_PARAM_NAMES
+        self.command_map[item_id]["get_command_output_param_desc"] = GET_COMMAND_OUTPUT_PARAM_DESC
+        self.command_map[item_id]["get_command_output_param_format"] = GET_COMMAND_OUTPUT_PARAM_FORMAT
+        self.command_map[item_id]["get_property_name"] = GET_PROPERTY_NAME
+        self.command_map[item_id]["get_property_type"] = GET_PROPERTY_TYPE
+        return
+
+    @defer.inlineCallbacks
+    def _create_item_hierarchy(self):
+        """
+        Converts self.items to a hierarchical tree where each item has children.
+
+        :return: None
+        """
+        ""
+
+        # Loop through all item IDs and find their children
+        for item_id in list(self.items.keys()):
+            try:
+                children = yield self._fetch_children_from_embedded_dev(item_id)
+                self._add_children_to_item_discovery(item_id, children)
+            except Exception as e:
+                logger.error("Could not find children for item " + str(item_id) + " because of exception: " + str(e))
+
+        # Flatten our items dictionary into a list as expected by the Broker
+        self.items = [x for x in list(self.items.values())]
+
+    @defer.inlineCallbacks
+    def _fetch_children_from_embedded_dev(self, item_id):
+        """
+        Queries the embedded device for the children of <item_id>
+        :param item_id: u16 short representing the ID of the item.
+        :return: list of children IDs
+        """
+
+        # Reactor will ways be item 0 on the subsystem. If our item ID is 277 the reactor is 256.
+        # 256 = 277 & 0xFF00
+        reactor_mask = 0xFF00
+
+        # First determine our Reactor's ID. We need to query it in order to find the children of
+        # the item we are at.
+        reactor_id = item_id & reactor_mask
+
+        # Invalid reactor ID
+        if reactor_id == 0:
+            defer.returnValue([])
+            return
+
+        # Query the Reactor for the children of our item ID
+        try:
+            response = yield self.send_command(to=reactor_id, command_id=GET_CHILDREN, tx_type="DIRECT",
+                                           params=["item_id"], data=[item_id])
+        except Exception as e:
+            logger.error("[PCOM] Unable to retrieve children from item {0} because of exception {1}".format(item_id,
+                                                                                                            str(e)))
+            defer.returnValue([])
+            return
+
+        # Save our children IDs from our response data
+        defer.returnValue([int(child_id) for child_id in response.data])
+
+    def _add_children_to_item_discovery(self, item_id, children):
+        """
+        Adds the children <children> to discovery information for item_id.
+        :return: None
+        """
+        # Iterate through each ID found from Reactor query. We are going to add the child to our
+        # Parlay item and then save the child ID so that we can delete it from the top level
+        # of self.items after we are done.
+        for child_id in children:
+
+            # Check condition where we have listed ourselves as an item.
+            if child_id == item_id:
+                logger.warning("[PCOM] Item ID" + str(item_id) + " has itself has a child.")
+                continue
+
+            # Check for condition where we have not discovered the child ID
+            if child_id not in list(self.items.keys()):
+                logger.warning("[PCOM] Child ID " + str(child_id) + " for parent item " + str(item_id) + " could not be"
+                                                                                                         " found.")
+                continue
+
+            # Add child to our dictionary in the correct spot
+            self.items[item_id].add_child(self.items[child_id])
+
+    def get_discovery(self):
+        """
+        Hitting the "discovery" button on the UI triggers this generator.
+
+        Run a discovery for everything connected to this protocol and return a list of of all connected:
+        items, messages, and endpoint types
+        """
+
+        def _deferred_reset(value):
+            # Copy in pointer to instance variable
+            local_deferred = self._discovery_deferred
+            # Reset instance discovery variable
+            self._discovery_deferred = None
+            # Fire deferred chain. Important to reset _discovery_deferred prior.
+            # If deferred chain comes back to this function we want the
+            # self._discovery_deferred variable to be equal to None
+            if not local_deferred.called:
+                local_deferred.callback(value)
+
+        # If a discovery is already in progress and the deferred has not been called,
+        # simply return a deferred that will be fired later
+        if self._discovery_deferred is not None and not self._discovery_deferred.called:
+            return self._discovery_deferred
+
+        # Create new deferred
+        d = self._discovery_deferred = defer.Deferred()
+        # Fetch information after
+        self._get_discovery_helper().addCallback(_deferred_reset)
+        # Return discovery dictionary
+        return d
+
+    @defer.inlineCallbacks
+    def _get_discovery_helper(self):
+        """
+        Helper function used for handling the embedded discovery sequence. Utilizes defer.inlineCallbacks to reduce the amount
+        of necessary callbacks.
+        :return: discovery message dictionary
+        """
+
+        self._discovery_in_progress = True
+        yield self._get_connected_subsystem_ids()
+
+        logger.debug("Finished getting subsystem IDs")
+
+        if not self.is_port_attached:
+            if not self._port:
+                logger.error("[PCOM] Failed to discover. No port connected.")
+                self.send_command(tx_type="BROADCAST", msg_status="ERROR",
+                                  data=["No Serial Port connected to Parlay. Open serial port before discovering"])
+                defer.returnValue(BaseProtocol.get_discovery(self))
+                return
+            self._open_port()
+
+        current_project_hashes = yield self.get_all_embedded_project_hashes()
+
+        # Always load the file.
+        discovery_msg = self.load_discovery_from_file()
+        if discovery_msg != {} and current_project_hashes == self.project_hash:
+            self._loaded_from_file = True
+            self._discovery_in_progress = False
+            defer.returnValue(discovery_msg)
+
+        # Assigns hash value if board supports it
+        if self.project_hash is None and current_project_hashes is not None:
+            self.project_hash = current_project_hashes
+
+        self._loaded_from_file = False
+
+        logger.info("Unable to load discovery from file, fetching items from embedded system...")
+
+        t1 = time.time()
+
+        # If there is a deferred item, yield that first
+        if self._attached_item_d is not None:
+            yield self._attached_item_d
+
+        self.items = {}
+        for subsystem_id in self._subsystem_ids:
+            if subsystem_id != self.INVALID_SUBSYSTEM_ID and type(subsystem_id) is int:
+                try:
+                    yield self._get_item_discovery_info(subsystem_id)
+                except Exception as e:
+                    logger.error("Exception while discovering! Skipping subsystem: {0}\n     {1}".format(subsystem_id, str(e)))
+        if not self._discovery_deferred.called:
+            yield self._create_item_hierarchy()
+        self._discovery_in_progress = False
+
+        t2 = time.time()
+
+        logger.info("Discovery took {0} seconds".format(str(t2-t1)))
+        # At this point self.items should be populated with
+        # the ParlayStandardItem objects that represent the items we discovered.
+        # By calling BaseProtocol's get_discovery() function we can get that information
+        # to the adapter and furthermore to the broker.
+        discovery_msg = BaseProtocol.get_discovery(self)
+
+        if current_project_hashes == '' and self.discovery_file == PCOMSerial.DEFAULT_DISCOVERY_CACHE:
+            # Do nothing we are an old board with no hash, do not cache unless user specifies a file.
+            pass
+        elif self._loaded_from_file is False:
+            # Update the hash before writing to the file.
+            self.project_hash = current_project_hashes
+            self.write_discovery_info_to_file(self.discovery_file, discovery_msg)
+
+        defer.returnValue(discovery_msg)
+
+    def command_cb(self, command_info_list, item_id, command_id, command_dropdowns, command_subfields, parlay_item,
+                   hidden=False):
+        """
+        Callback function used to update the command map and parlay item dropdown menu when the command info
+        is retrieved from the embedded device during discovery. This function is called using gatherResults
+        which will only callback once all deferreds have been fired.
+
+        :param command_info_list: Stores the command name, command input format, command output format,
+        command input names, and command output description. This information will be used to populate the
+        ParlayStandardItem.
+        :param item_id: 2 byte item ID of the ParlayStandardItem we will be populating
+        :param command_id: 2 byte command ID of the command we have the information for
+        :param command_dropdowns: dropdown field for the ParlayStandardItem
+        :param command_subfields: subfields for each dropdown option of the ParlayStandardItem
+        :param parlay_item: ParlayStandardItem that we will be updating
+        :param hidden: whether or not the command will be hidden from UI
+        :return:
+        """
+        expected_command_info_list_length = 4
+
+        local_subfields = []
+
+        # Ensure that the command_info_list contains at least <expected #> fields
+        if len(command_info_list) < expected_command_info_list_length:
+            logger.error("Error in discovering command information for:"
+                         "-- Item: {0}\n"
+                         "-- Command: {1}".format(item_id, command_id))
+
+        c_name = command_info_list[0]
+        c_input_format = expand_fmt_string(command_info_list[1])
+        c_input_names = [x for x in command_info_list[2]]
+        c_output_desc = [x for x in command_info_list[3]]
+        c_output_format = "" if len(command_info_list) <= 4 else expand_fmt_string(command_info_list[4])
+
+        self.command_map[item_id][command_id] = PCOMSerial.build_command_info(c_input_format, c_input_names,
+                                                                              c_output_desc, c_output_format)
+
+        self.command_name_map[item_id][c_name] = command_id
+
+        if not hidden:
+            command_dropdowns.append((c_name, command_id))
+
+            PCOMSerial.build_parlay_item_subfields(c_input_format, c_input_names, local_subfields, parlay_item)
+
+            command_subfields.append(local_subfields)
+        return
+
+    @staticmethod
+    def build_property_data(name, fmt):
+        """
+        Builds property dictionary consisting of the name and format of the property.
+
+        :param name: property name (eg. "Butterbot")
+        :param fmt: format string for the property (eg. "f")
+        :return: dictionary representing information about the property
+        """
+        return {"name": name, "format": fmt}
+
+    @staticmethod
+    def tokenize_format_char_string(format_chars):
+        """
+        Given a format string, returns a list of tokens.
+
+        Eg.
+
+        "bB*i" -> ["b", "B", "*i"]
+        :param format_chars:
+        :return:
+        """
+        if type(format_chars) == bytes:
+            format_chars = format_chars.decode("utf8")
+
+        token = ""
+        tokenized_list = []
+        for i in format_chars:
+            token += i
+            if token != "*":
+                tokenized_list.append(token)
+                token = ""
+        return tokenized_list
+
+    @staticmethod
+    def build_parlay_item_subfields(c_input_format, c_input_names, local_subfields, parlay_item):
+        """
+        Builds up Parlay items to be pushed to discoverer
+
+        :param c_input_format: format string Eg. "bBIq"
+        :param c_input_names: list of string names representing the input parameters Eg. ["hello", "hello"]
+        :param local_subfields: subfields of the Parlay item
+        :param parlay_item: the Parlay item to be built up
+        :return:
+        """
+
+        format_tokens = PCOMSerial.tokenize_format_char_string(c_input_format)
+
+        for parameter, format_token in zip(c_input_names, expand_fmt_string(format_tokens)):
+            local_subfields.append(parlay_item.create_field(msg_key=parameter, label=parameter,
+                                                            input=PCOMSerial._get_input_type(format_token), required=True))
+
+
+    @staticmethod
+    def _get_input_type(format_char):
+        """
+         Given a format character, returns the corresponding Parlay input type
+
+         :param format_char:
+         :return:
+         """
+
+        if len(format_char) == 0:
+            return INPUT_TYPES.STRING
+        if len(format_char) > 1:
+            return INPUT_TYPES.ARRAY
+
+        if format_char in PCOM_SERIAL_NUMBER_INPUT_CHARS:
+            return INPUT_TYPES.NUMBER
+        elif format_char[0] == PCOM_SERIAL_ARRAY_INPUT_CHARS:
+            return INPUT_TYPES.ARRAY
+        elif format_char in PCOM_SERIAL_STRING_INPUT_CHARS:
+            return INPUT_TYPES.STRING
+        elif format_char in PCOM_SERIAL_BOOL_INPUT_CHARS:
+            return INPUT_TYPES.BOOLEAN
+        else:
+            logger.warn("Invalid format character {0} defaulting to INPUT TYPE STRING".format(format_char))
+
+        return INPUT_TYPES.STRING
+
+    def property_cb(self, property_info_list, item_id, property_id, parlay_item):
+        """
+
+        Callback function that populates the ParlayStandardItem parlay_item with
+        the designated property information.
+
+        :param property_info_list: Property name and property type obtained from the embedded device
+        :param item_id: 2 byte item ID that we will be populating the ParlayStandardItem of
+        :param property_id: 2 byte property ID that represents the property we will updating
+        :param parlay_item: ParlayStandardItem object
+        :return:
+        """
+
+        expected_property_info_list_length = 3
+
+        if len(property_info_list) < expected_property_info_list_length:
+            logger.error("Error in discovering property information for:"
+                         "-- Item: {0}\n"
+                         "-- Property: {1}".format(item_id, property_id))
+
+        # set variable to positions in the list for readability
+        property_name = property_info_list[0]
+        property_type = property_info_list[1]
+
+        self.property_name_map[item_id][property_name] = property_id
+        self.stream_name_map[item_id][property_name] = property_id
+
+        self.property_map[item_id][property_id] = PCOMSerial.build_property_data(property_name, property_type)
+
+        parlay_item.add_property(property_id, name=property_name, attr_name=property_name, input=PCOMSerial._get_input_type(property_type))
+        parlay_item.add_datastream(property_name, name=property_name, attr_name=property_name)
+
+        return
+
+    def _initialize_reactor_command_map(self, reactor):
+        """
+        Inserts entries for the reactor into the PCOM_COMMAND_MAP used for message translation.
+
+        :param reactor: reactor ID
+        :return: None
+        """
+        self.command_map[reactor] = {}
+        self.command_map[reactor][0] = PCOMSerial.build_command_info("", [], [], "")
+        self.command_map[reactor][GET_ERROR_CODES] = PCOMSerial.build_command_info("", [], ["codes"], "H")
+        self.command_map[reactor][GET_ERROR_STRING] = PCOMSerial.build_command_info("H", ["code"], ["string"], "H")
+        self.command_map[reactor][GET_CHILDREN] = PCOMSerial.build_command_info("H", ["item_id"], ["Item IDs[]"], "*H")
+        self.command_map[reactor][GET_PROJECT_HASH] = PCOMSerial.build_command_info("", [], ["hash_string"], "H")
+
+    @defer.inlineCallbacks
+    def _get_item_discovery_info(self, subsystem):
+        """
+        The discovery protocol for the embedded core:
+
+        GET SUBSYSTEMS ID
+        GET PARLAY ID
+        GET ITEM IDS
+        GET ERROR CODE INFO
+        GET ITEM INFORMATION
+
+        Where ITEM INFORMATION is:
+            GET ITEM NAME
+            GET ITEM TYPE
+            GET COMMAND IDS
+            GET PROPERTY IDS
+
+            For each command:
+                GET COMMAND NAME
+                GET COMMAND INPUT PARAM FORMAT
+                GET COMMAND INPUT PARAM NAMES
+                GET COMMAND OUTPUT PARAM DESCRIPTION
+                GET COMMAND OUTPUT PARAM FORMAT
+
+            For each property:
+                GET PROPERTY NAME
+                GET PROPERTY TYPE
+
+        :param subsystem: The subsystem we will be getting the item IDs from
+        :return:
+        """
+
+        # Subsystem ID is the high byte of the item ID
+        subsystem_id = subsystem
+
+        discovery = {"Subsystem ID": subsystem_id}
+
+        logger.info("Fetching items from subsystem ID: {0}".format(subsystem_id))
+
+        REACTOR = subsystem_id << self.SUBSYSTEM_SHIFT
+        # Fetch error codes
+        self._initialize_reactor_command_map(REACTOR)
+        self.item_name_map[REACTOR] = "REACTOR"
+        try:
+            response = yield self.send_command(to=REACTOR, tx_type="DIRECT")
+            item_ids = [int(item_id) for item_id in response.data]
+
+            response = yield self.send_command(to=REACTOR, tx_type="DIRECT", command_id=GET_ERROR_CODES)
+            error_codes = [int(error_code) for error_code in response.data]
+
+            for error_code in error_codes:
+                response = yield self.send_command(to=REACTOR, tx_type="DIRECT", command_id=GET_ERROR_STRING,
+                                                   params=["code"], data=[error_code])
+                error_code_string = response.data[0]
+                self.error_code_map[error_code] = error_code_string
+
+            logger.info("---> ITEM IDS FOUND: {0}".format(item_ids))
+
+            for item_id in item_ids:
+                self.initialize_command_maps(item_id)
+
+            for item_id in item_ids:
+                response = yield self.send_command(item_id, command_id=GET_ITEM_NAME, tx_type="DIRECT")
+                embedded_item_name = "" if len(response.data) == 0 else response.data[0]
+
+                self.item_name_map[item_id] = embedded_item_name
+
+                self.adapter.subscribe(self.add_message_to_queue, TO=item_id)
+                parlay_item = ParlayStandardItem(item_id=item_id, name=embedded_item_name)
+
+                response = yield self.send_command(item_id, command_id=GET_ITEM_TYPE, tx_type="DIRECT")
+                item_type = int(response.data[0])
+
+                response = yield self.send_command(item_id, command_id=GET_COMMAND_IDS, tx_type="DIRECT")
+                command_ids = response.data
+
+                command_dropdowns = []
+                command_subfields = []
+
+                parlay_item.add_field('COMMAND', INPUT_TYPES.DROPDOWN,
+                                      dropdown_options=command_dropdowns,
+                                      dropdown_sub_fields=command_subfields)
+
+                def placeholder(failure):
+                    return failure
+
+                discovered_command = defer.DeferredList([])
+                discovered_command.addErrback(placeholder)
+
+                for command_id in command_ids:
+                    # Loop through the command IDs and build the Parlay Item object for each one
+
+                    command_name = self.get_command_name(item_id, command_id)
+                    command_input_format = self.get_command_input_param_format(item_id, command_id)
+                    command_input_param_names = self.get_command_input_param_names(item_id, command_id)
+                    command_output_desc = self.get_command_output_parameter_desc(item_id, command_id)
+                    command_output_format = self.get_command_output_param_format(item_id, command_id)
+
+                    if not command_name or not command_input_format or not command_input_param_names or \
+                            not command_output_desc or not command_output_format:
+
+                        discovered_command.errback(defer.failure.Failure(Exception("")))
+                        raise Exception("[PCOM] Unable to fetch command info for item:", item_id)
+
+                    # stores values into a deferred list to be resolved later on in command_cb
+                    # order matters for the arguments, it will change how you access them later on for
+                    # command_info_list inside the command_cb function.
+                    discovered_command = defer.gatherResults([command_name, command_input_format,
+                                                              command_input_param_names, command_output_desc,
+                                                              command_output_format])
+
+                    discovered_command.addCallback(self.command_cb, item_id=item_id, command_id=command_id,
+                                                   command_subfields=command_subfields,
+                                                   command_dropdowns=command_dropdowns,
+                                                   parlay_item=parlay_item, hidden=(command_id in DISCOVERY_MESSAGES))
+
+                yield discovered_command
+
+                response = yield self.send_command(item_id, command_id=GET_PROPERTY_IDS, tx_type="DIRECT")
+                property_ids = response.data
+
+                discovered_property = defer.DeferredList([])
+                discovered_property.addErrback(placeholder)
+
+                for property_id in property_ids:
+
+                    property_name = self.get_property_name(item_id, property_id)
+                    property_type = self.get_property_type(item_id, property_id)
+                    property_desc = self.get_property_desc(item_id, property_id)
+
+                    if not property_name or not property_type or not property_desc:
+                        discovered_property.errback(defer.failure.Failure(Exception("")))
+                        raise Exception("[PCOM] Unable to fetch property info for item:", item_id)
+
+                    discovered_property = defer.gatherResults([property_name, property_type, property_desc])
+                    discovered_property.addCallback(self.property_cb, item_id=item_id, property_id=property_id,
+                                                    parlay_item=parlay_item)
+
+                yield discovered_property
+
+                if item_type != ITEM_TYPE_HIDDEN:
+                    self.items[item_id] = parlay_item
+
+                logger.info("[PCOM] Finished ITEM: {0}".format(embedded_item_name))
+
+        except Exception as e:
+            logger.error("[PCOM]: Could not fetch discovery info due to exception: {0}".format(e))
+            raise e
+
+        logger.info("[PCOM] Finished subsystem: {0}".format(subsystem))
+        defer.returnValue(discovery)
+
+    def _send_broadcast_message(self):
+        """
+        Sends broadcast message to the broadcast subsystem ID stored in
+        self.BROADCAST_SUBSYSTEM_ID
+        :return:
+        """
+
+        # The subsystem ID for the broadcast message is 0x80
+        # The high byte of the destination ID is the subsystem ID, so we should insert
+        # 0x80 into the high byte.
+        destination_id = self.BROADCAST_SUBSYSTEM_ID + self.EMBD_REACTOR_ID
+
+        # The response code, event type, event attributes, and format string are all zero for a
+        # broadcast message
+        return self.send_command(to=destination_id, command_id=0, tx_type="BROADCAST")
+
+    def add_message_to_queue(self, message):
+        """
+        This will send a packet down the serial line. Subscribe to messages using the adapter
+
+        :param message : A parlay dictionary message
+        """
+
+        # add the message to the queue
+        self._message_queue.add(message)
+
+    def rawDataReceived(self, data):
+        """
+        This function is called whenever data appears on the serial port and raw mode is turned on.
+        Since this protocol uses line receiving, this function should never be called, so raise an
+        excpetion if it is.
+
+        :param data:
+        :return:
+        """
+
+        raise Exception('Using line received!')
+
+    def _is_reset_msg(self, msg):
+
+        if "CONTENTS" in msg:
+            if "EVENT" in msg["CONTENTS"]:
+                if msg["CONTENTS"]["EVENT"] == self.PCOM_RESET_ID:
+                    return True
+
+        return False
+
+    def _on_packet(self, sequence_num, ack_expected, is_ack, is_nak, msg):
+        """
+        This will get called with every new serial packet.
+        The parameters are the expanded tuple given from unstuff_packet
+        :param sequence_num: the sequence number of the received packet
+        :param ack
+        _expected: Is an ack expected to this message?
+        :param is_ack : Is this an ack?
+        :param is_nak: Is this a nak?
+        :param msg: The pcom message (if it is one and not an ack/nak)
+        :type msg : PCOMMessage
+        """
+
+        if is_ack:
+            logger.debug(f"[PCOM] ACK recieved for seq num {sequence_num}")
+            self._ack_window.remove(sequence_num)
+            return
+        elif is_nak:
+            return  # Ignore, timeout should handle the resend.
+
+        parlay_msg = msg.to_json_msg(self.id_lookup_maps)
+        if self._is_reset_msg(parlay_msg):
+            self.reset()
+            logger.info("[PCOM] Reset message received! Resetting... ")
+
+        # If we need to ack, ACK!
+        if ack_expected:
+            ack = bytes(p_wrap(ack_nak_message(sequence_num, True)))
+            self.write_to_port(ack)
+
+        self.adapter.publish(parlay_msg, self.transport.write)
+
+        # also send it to discovery listener locally
+        self._discovery_listener(msg)
+
+    def lineReceived(self, line):
+        """
+        If this function is called we have received a <line> on the serial port
+        that ended in 0x03.
+
+        :param line:
+        :return:
+        """
+
+        # Using byte array so unstuff can use numbers instead of strings
+        buf = bytearray()
+        start_byte_index = line.rfind(START_BYTE_STR)
+        if start_byte_index == -1:
+            logger.error("[PCOM] Received packet not starting with 0x02. ")
+            self.clearLineBuffer()
+            self._opened_port.flushInput()
+            self._opened_port.flushOutput()
+            return
+
+        start_byte_index += 1  # move to next byte
+        buf += line
+
+        try:
+            packet_tuple = unstuff_packet(buf[start_byte_index:])
+            self._on_packet(*packet_tuple)
+        except FailedChecksum:
+            logger.error("[PCOM] Failed Checksum. Message buffer:" + str([hex(x) for x in line]))
+        except Exception as e:
+            logger.error("[PCOM] Could not decode message {1} because of exception: {0}".format(str(e), str([hex(x) for x in line])))
+
+
+class ACKInfo:
+    """
+    Stores ACK information: deferred and number of retries
+    """
+
+    def __init__(self, sequence_number, num_retries, packet, failure_function, msg_deferred):
+        self.deferred = defer.Deferred()
+        self.num_retries = num_retries
+        self.sequence_number = sequence_number
+        self.packet = packet
+        self.failure_function = failure_function
+        self.msg_deferred = msg_deferred
+
+
+class SlidingACKWindow:
+    """
+    Represents an ACK window
+    """
+
+    TIMEOUT = 1000
+    EXPIRED = 1001
+
+    def __init__(self, window_size, num_retries, _protocol):
+        self._window = {}
+        self._queue = []
+        self.WINDOW_SIZE = window_size
+        self.NUM_RETRIES = num_retries
+        self.MAX_ACK_SEQ = 16
+        self.ACK_WAIT_DURATION = 5
+        self.last_removed_ack = time.time()
+        self.protocol = _protocol
+        # Initialize lack_acked_map so that none of the first ACKs think they are
+        # duplicates. -1 works because no ACK has sequence number -1
+        self._last_acked_map = {seq_num: -1 for seq_num in range(int(self.MAX_ACK_SEQ/2))}
+
+    def ack_received_callback(self, sequence_number):
+        """
+        Callback for the deferred objects in the sliding ACK window.
+
+        When an ACK is received we should remove it from the window and then
+        move one ACK from the queue into the window
+        :return:
+        """
+
+        # Check for duplicate ack
+        if sequence_number != self.TIMEOUT:
+
+            if sequence_number != self.EXPIRED:
+                del self._window[sequence_number]
+                if len(self._queue) > 0:
+                    ack_to_add = self._queue.pop(0)
+                    self.add_to_window(ack_to_add)
+
+    def reset_window(self):
+
+        # remove all deferreds
+        for seq_num in list(self._window.keys()):
+            if self._window[seq_num].deferred and not self._window[seq_num].deferred.called:
+                self._window[seq_num].deferred.callback(seq_num)
+
+        self._window = {}
+        self._queue = []
+        self._last_acked_map = {seq_num: -1 for seq_num in range(self.WINDOW_SIZE)}
+
+    def ack_timeout_errback(self, timeout_failure):
+        """
+        Errback that is called on ACK timeout
+        :param timeout_exception: TimeoutException object that holds the ACK sequence number that timed out
+        :return:
+        """
+
+        if timeout_failure.value.sequence_number not in self._window:
+            return self.EXPIRED
+
+        ack_to_send = self._window[timeout_failure.value.sequence_number]
+        if ack_to_send.num_retries < self.NUM_RETRIES:
+            logger.warning("[PCOM] TIMEOUT SEQ NUM {0} RESENDING...".format(timeout_failure.value.sequence_number))
+            self.protocol.write_to_port(ack_to_send.packet)
+            ack_to_send.num_retries += 1
+            d = defer.Deferred()
+            d.addErrback(self.ack_timeout_errback)
+            d.addCallback(self.ack_received_callback)
+            ack_to_send.deferred = d
+            self.ack_timeout(ack_to_send.deferred, PCOMSerial.ACK_TIMEOUT, ack_to_send.sequence_number)
+            return self.TIMEOUT
+
+        if self._window[timeout_failure.value.sequence_number].msg_deferred:
+            self._window[timeout_failure.value.sequence_number].msg_deferred.errback(defer.failure.Failure
+                                                                                     (Exception('Timeout Error')))
+            return self.TIMEOUT
+        self._window[timeout_failure.value.sequence_number].failure_function()
+        del self._window[timeout_failure.value.sequence_number]
+        return self.EXPIRED
+
+    def add_to_window(self, ack_info):
+        """
+        Adds <ack_info> to the window
+        :param ack_info: ACKInfo object that will be added
+        :return:
+        """
+
+        logger.debug(f"[PCOM] Requesting ack for seq num {ack_info.sequence_number}")
+
+        ack_info.deferred.addCallback(self.ack_received_callback)
+        ack_info.deferred.addErrback(self.ack_timeout_errback)
+        self._window[ack_info.sequence_number] = ack_info
+        self.ack_timeout(ack_info.deferred, PCOMSerial.ACK_TIMEOUT, ack_info.sequence_number)
+        self.protocol.write_to_port(ack_info.packet)
+
+    def add(self, ack_info):
+        """
+        Adds ack_info to the window if there is room, or to the queue if there isn't any room
+        :param ack_info: ACKInfo object
+        :return:
+        """
+
+        if len(self._window) < self.WINDOW_SIZE:
+            self.add_to_window(ack_info)
+        else:
+            self._queue.append(ack_info)
+
+    def remove(self, sequence_number):
+        """
+        Removes ack_info from the window
+        There is also a callLater that will check if discovery is hanging every 5 seconds(hanging is usually caused by
+        the window size being to large for the board)
+        :param sequence_number: sequence number of the ACK to remove from window
+        :return:
+        """
+        self.last_removed_ack = time.time()
+        reactor.callLater(self.ACK_WAIT_DURATION, self.check_if_hanging)
+        if sequence_number in self._window and not self._window[sequence_number].deferred.called:
+            self._window[sequence_number].deferred.callback(sequence_number)
+
+    def check_if_hanging(self):
+        """
+        Checks to determine if discovery is hanging for more than 5 seconds. If so then discovery will be experience a
+        timeout, allowing for the user to rediscover
+        """
+        if time.time() - self.last_removed_ack > self.ACK_WAIT_DURATION and self.protocol._discovery_in_progress:
+            logger.error(f"[PCOM] Discovery is hanging. Last ack: {self.last_removed_ack}")
+            self.protocol._discovery_deferred.cancel()
+
+    def ack_timeout(self, d, seconds, sequence_number):
+        """
+        An extension of the timeout() function from Parlay utils. Calls the errback of d
+        in <seconds> seconds if d is not called. In this case we will be passing a TimeoutException
+        with the ACK sequence number so that we can remove it from the table.
+        """
+        if seconds is None:
+            return d
+
+        def cancel():
+            if not d.called:
+                d.errback(TimeoutException(sequence_number))
+
+        timer = reactor.callLater(seconds, cancel)
+
+        # clean up the timer on success
+        def clean_up_timer(result):
+            if timer.active():
+                timer.cancel()
+            return result  # pass through the result
+        d.addCallback(clean_up_timer)
+
+
+class TimeoutException(Exception):
+    """
+    A custom exception used to be passed to the timeout errback for ACKs.
+    The sequence number needs to be stored so that the errback can lookup the correct
+    ACK in the sliding window.
+    """
+
+    def __init__(self, sequence_number):
+        self.sequence_number = sequence_number

@@ -1,0 +1,12 @@
+{
+  "version_prefix": "",
+  "protocols": [
+    {
+      "name": "PCOMSerial",
+      "arguments": {}
+    }
+  ],
+  "ui": {
+    "workspaces": {}
+  }
+}
