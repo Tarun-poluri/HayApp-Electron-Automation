@@ -218,8 +218,8 @@ let backendStopping = false;
 
 function resolveBackendLaunchConfig(): BackendLaunchConfig {
     if (app.isPackaged) {
-        // extraResource places broker/ inside resources/ directory
-        const backendDir = path.join(process.resourcesPath, "broker");
+        // broker/ is placed alongside HayApp.exe by extraResource
+        const backendDir = path.join(path.dirname(process.execPath), "broker");
         return {
             command: path.join(backendDir, "HayAppBroker.exe"),
             args: [],
@@ -279,21 +279,33 @@ function startBackendProcess() {
         return;
     }
 
+    const brokerLogPath = path.join(app.getPath("userData"), "broker-startup.log");
+    const logBroker = (msg: string) => {
+        const line = `[${new Date().toISOString()}] ${msg}\n`;
+        try { fs.appendFileSync(brokerLogPath, line); } catch (_) { /* ignore */ }
+    };
+
     const launchConfig = resolveBackendLaunchConfig();
     const fullCommandPath = path.resolve(launchConfig.command);
     const fullCwdPath = path.resolve(launchConfig.cwd);
 
+    logBroker(`execPath: ${process.execPath}`);
+    logBroker(`brokerDir: ${fullCwdPath}`);
+    logBroker(`brokerExe: ${fullCommandPath}`);
+    logBroker(`cwdExists: ${fs.existsSync(fullCwdPath)}`);
+    logBroker(`exeExists: ${fs.existsSync(fullCommandPath)}`);
+
     if (!fs.existsSync(fullCwdPath)) {
-        console.error(`Backend folder does not exist: ${fullCwdPath}`);
+        logBroker("ERROR: broker folder not found — backend will not start");
         return;
     }
 
     if (!fs.existsSync(fullCommandPath)) {
-        console.error(`Backend executable does not exist: ${fullCommandPath}`);
+        logBroker("ERROR: HayAppBroker.exe not found — backend will not start");
         return;
     }
 
-    console.log(`Starting backend from ${fullCommandPath}`);
+    logBroker(`Starting backend from ${fullCommandPath}`);
     backendProcess = spawn(fullCommandPath, launchConfig.args, {
         cwd: fullCwdPath,
         stdio: "inherit",
@@ -302,12 +314,14 @@ function startBackendProcess() {
     });
 
     backendProcess.on("exit", (code, signal) => {
-        console.log(`Backend exited with code=${code} signal=${signal}`);
+        const brokerLogPath = path.join(app.getPath("userData"), "broker-startup.log");
+        try { fs.appendFileSync(brokerLogPath, `[${new Date().toISOString()}] Backend exited code=${code} signal=${signal}\n`); } catch (_) { /* ignore */ }
         backendProcess = null;
     });
 
     backendProcess.on("error", (error) => {
-        console.error("Backend failed to start:", error);
+        const brokerLogPath = path.join(app.getPath("userData"), "broker-startup.log");
+        try { fs.appendFileSync(brokerLogPath, `[${new Date().toISOString()}] Backend error: ${error.message}\n`); } catch (_) { /* ignore */ }
     });
 }
 
