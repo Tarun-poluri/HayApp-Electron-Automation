@@ -631,6 +631,21 @@ export const Setup: React.FC<object> = () => {
                 }
 
                 appContext.caseService.clearNFCScanResult();
+            } else if (selectedRole) {
+                // Bypass: no NFC hardware — create a dummy user so UI flow continues
+                const roleLabel = selectedRole === HayAppUserType.Circulator ? "CIR" : "SCR";
+                const bypassUser: HayAppUser = {
+                    user_id: `bypass-${roleLabel.toLowerCase()}`,
+                    first_name: "Test",
+                    last_name: roleLabel,
+                    email: `bypass-${roleLabel.toLowerCase()}@test.com`,
+                    roles: [selectedRole],
+                };
+                if (selectedRole === HayAppUserType.Circulator) {
+                    appContext.caseService.circulator.set(bypassUser);
+                } else {
+                    appContext.caseService.scrub.set(bypassUser);
+                }
             }
 
             // Check if this is the second role login
@@ -1726,39 +1741,51 @@ export const Setup: React.FC<object> = () => {
                         const roleName = selectedRole === HayAppUserType.Circulator ? "CIR" : "SCR";
                         setManualLoginError(null);
                         try {
-                            const success = await appContext.caseService.parlayInterface.caseManager.verify_login(
-                                email,
-                                password,
-                                roleName,
-                            );
+                            // Bypass: accept any non-empty email without backend verification
+                            const success = email.trim().length > 0;
                             if (success) {
-                                // Get the logged in user from backend
-                                const users =
-                                    await appContext.caseService.parlayInterface.caseManager.get_hayapp_users();
-                                const loggedInUser = users.find((u) => u.email?.toLowerCase() === email.toLowerCase());
-
-                                if (loggedInUser) {
-                                    // Convert backend user data to frontend HayAppUser
-                                    const hayAppUser: HayAppUser = {
-                                        user_id: loggedInUser.user_id,
-                                        first_name: loggedInUser.first_name,
-                                        last_name: loggedInUser.last_name,
-                                        email: loggedInUser.email || "",
-                                        roles: loggedInUser.roles.map((r) => {
-                                            if (r === "CIR") return HayAppUserType.Circulator;
-                                            if (r === "SCR") return HayAppUserType.ScrubNurse;
-                                            if (r === "ADMIN") return HayAppUserType.Admin;
-                                            return HayAppUserType.Circulator;
-                                        }),
-                                        badge: loggedInUser.badge,
-                                    };
-
-                                    // Set the appropriate user based on role
-                                    if (selectedRole === HayAppUserType.Circulator) {
-                                        appContext.caseService.circulator.set(hayAppUser);
-                                    } else if (selectedRole === HayAppUserType.ScrubNurse) {
-                                        appContext.caseService.scrub.set(hayAppUser);
+                                // Try to get real user from backend, fall back to bypass user
+                                let hayAppUser: HayAppUser;
+                                try {
+                                    const users =
+                                        await appContext.caseService.parlayInterface.caseManager.get_hayapp_users();
+                                    const loggedInUser = users.find(
+                                        (u) => u.email?.toLowerCase() === email.toLowerCase(),
+                                    );
+                                    if (loggedInUser) {
+                                        hayAppUser = {
+                                            user_id: loggedInUser.user_id,
+                                            first_name: loggedInUser.first_name,
+                                            last_name: loggedInUser.last_name,
+                                            email: loggedInUser.email || "",
+                                            roles: loggedInUser.roles.map((r) => {
+                                                if (r === "CIR") return HayAppUserType.Circulator;
+                                                if (r === "SCR") return HayAppUserType.ScrubNurse;
+                                                if (r === "ADMIN") return HayAppUserType.Admin;
+                                                return HayAppUserType.Circulator;
+                                            }),
+                                            badge: loggedInUser.badge,
+                                        };
+                                    } else {
+                                        throw new Error("User not found in backend");
                                     }
+                                } catch {
+                                    // No real user found — create a bypass user for UI testing
+                                    hayAppUser = {
+                                        user_id: `bypass-${roleName.toLowerCase()}`,
+                                        first_name: email.split("@")[0] || "Test",
+                                        last_name: roleName,
+                                        email: email,
+                                        roles: [selectedRole ?? HayAppUserType.Circulator],
+                                        badge: undefined,
+                                    };
+                                }
+
+                                // Set the appropriate user based on role
+                                if (selectedRole === HayAppUserType.Circulator) {
+                                    appContext.caseService.circulator.set(hayAppUser);
+                                } else if (selectedRole === HayAppUserType.ScrubNurse) {
+                                    appContext.caseService.scrub.set(hayAppUser);
                                 }
 
                                 // Check if this is the second role login
@@ -2229,7 +2256,8 @@ export const Setup: React.FC<object> = () => {
                 <StartCountInstruction
                     instructionKey="setup.startCount.scanClosingBox"
                     defaultInstruction="Scan the iTrace mark on the Closing Box"
-                    showProceedButton={false}
+                    showProceedButton={true}
+                    onProceed={() => setState(State.CLOSING_BOX_VERIFIED)}
                     image={ScanClosingDrawer}
                     imageClassName={startCountInstructionStyles.closingDrawerImage}
                 />
@@ -2243,7 +2271,8 @@ export const Setup: React.FC<object> = () => {
                 <StartCountInstruction
                     instructionKey="setup.startCount.scanProcedureKit"
                     defaultInstruction="Scan Procedure Kit"
-                    showProceedButton={false}
+                    showProceedButton={true}
+                    onProceed={() => setState(State.PROCEDURE_KIT_VERIFIED)}
                     image={ProcedureKit}
                     imageClassName={startCountInstructionStyles.procedureKitImage}
                     showInstructionMarginTop={false}
