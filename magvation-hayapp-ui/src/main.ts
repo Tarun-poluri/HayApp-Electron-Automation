@@ -218,8 +218,8 @@ let backendStopping = false;
 
 function resolveBackendLaunchConfig(): BackendLaunchConfig {
     if (app.isPackaged) {
-        const executableRoot = path.dirname(process.execPath);
-        const backendDir = path.join(executableRoot, "broker");
+        // extraResource places broker/ inside resources/ directory
+        const backendDir = path.join(process.resourcesPath, "broker");
         return {
             command: path.join(backendDir, "HayAppBroker.exe"),
             args: [],

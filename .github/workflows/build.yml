@@ -22,12 +22,18 @@ jobs:
           cache: 'npm'
           cache-dependency-path: magvation-hayapp-ui/package-lock.json
 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Show environment
         run: |
           node --version
           npm --version
+          python --version
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         working-directory: magvation-hayapp-ui
         run: npm ci
 
@@ -37,7 +43,58 @@ jobs:
           npm install
           npm run build
 
-      - name: Build installer
+      - name: Build Python backend (HayAppBroker)
+        working-directory: hayapp_backend
+        shell: pwsh
+        run: |
+          python -m venv venv
+          .\venv\Scripts\python -m pip install --upgrade pip --quiet
+          .\venv\Scripts\pip install -r requirements.txt --quiet
+          .\venv\Scripts\pip install pyinstaller==6.18.0 --quiet
+          .\venv\Scripts\python -m scripts.create_version_meta
+          .\venv\Scripts\pyinstaller `
+            --onedir --noconfirm --clean `
+            --collect-all autobahn `
+            --hidden-import=twisted.internet.utils `
+            --add-data "venv\Lib\site-packages\parlay\server\config.json;parlay\server" `
+            --name "HayAppBroker" `
+            --version-file "version_meta.txt" `
+            --icon "hayapp.ico" `
+            hayapp_python\hayapp_broker.py
+          robocopy dist\HayAppBroker dist /E /MOVE /R:2 /W:5
+          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          robocopy needle_detector dist\needle_detector /E /R:2 /W:5
+          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          robocopy image_decoder dist\image_detector /E /R:2 /W:5
+          if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          if (Test-Path local_user_data) {
+            robocopy local_user_data dist\local_user_data /E /R:2 /W:5
+            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          }
+          if (Test-Path ParlayUI) {
+            robocopy ParlayUI dist\ParlayUI /E /R:2 /W:5
+            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          }
+          if (Test-Path stm32flash) {
+            robocopy stm32flash dist\stm32flash /E /R:2 /W:5
+            if ($LASTEXITCODE -le 7) { $global:LASTEXITCODE = 0 }
+          }
+          $vir = Get-ChildItem -Path 'vir' -Filter '*.zip' | Sort-Object Name | Select-Object -Last 1
+          if ($vir) {
+            New-Item -ItemType Directory -Path 'dist\vir' -Force | Out-Null
+            Expand-Archive -Path $vir.FullName -DestinationPath 'dist\vir' -Force
+          }
+          Write-Host "Backend build complete. dist/ contents:"
+          Get-ChildItem dist | Select-Object Name
+
+      - name: Copy backend into broker folder for Electron bundling
+        shell: pwsh
+        run: |
+          Copy-Item -Path "hayapp_backend\dist" -Destination "magvation-hayapp-ui\broker" -Recurse -Force
+          Write-Host "broker/ folder ready:"
+          Get-ChildItem "magvation-hayapp-ui\broker" | Select-Object Name
+
+      - name: Build Windows installer
         working-directory: magvation-hayapp-ui
         run: npm run make
 

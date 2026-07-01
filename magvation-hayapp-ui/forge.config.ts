@@ -14,6 +14,7 @@ const config: ForgeConfig = {
         executableName: "HayApp",
         icon: "assets/app-icon.ico",
         appCopyright: "© 2026 Magvation. All rights reserved.",
+        extraResource: ["broker"],
         win32metadata: {
             CompanyName: "Magvation",
             ProductName: "HayApp",
