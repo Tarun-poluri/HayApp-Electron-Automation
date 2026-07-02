@@ -1024,8 +1024,23 @@ export const SCRSetupScreen: React.FC = () => {
         if (next) setStep(next);
     };
 
+    const showBypassButton = step in bypassStepMap;
+
     return (
-        <div className={styles.screenContainer} onClick={handleBypassClick}>
+        <div className={styles.screenContainer}>
+            {showBypassButton && (
+                <button
+                    onClick={handleBypassClick}
+                    style={{
+                        position: "fixed", bottom: "32px", right: "32px", zIndex: 9999,
+                        background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)",
+                        borderRadius: "8px", color: "rgba(255,255,255,0.6)", fontSize: "13px",
+                        padding: "8px 16px", cursor: "pointer",
+                    }}
+                >
+                    Skip →
+                </button>
+            )}
             <DashboardHeader
                 title={step === SetupStep.MismatchConfirm ? "Add Suture Needles" : t("scrSetupScreen.title")}
                 showLit={false}

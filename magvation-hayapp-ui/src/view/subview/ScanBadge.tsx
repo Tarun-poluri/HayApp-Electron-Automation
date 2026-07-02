@@ -55,7 +55,7 @@ export const ScanBadge: React.FC<ScanBadgeProps> = ({ role, onScan, onManualLogi
     const badgeImage = role === HayAppUserType.Circulator ? CIRBadgeScanImg : SCRBadgeScanImg;
 
     return (
-        <div className={styles.container} onClick={() => onScan(true)} style={{ cursor: "pointer" }}>
+        <div className={styles.container}>
             <img src={badgeImage} className={styles.scanArea} alt="Scan Badge" />
             <div className={styles.instruction}>
                 {isReloginForCirSetup
@@ -63,16 +63,22 @@ export const ScanBadge: React.FC<ScanBadgeProps> = ({ role, onScan, onManualLogi
                     : t("setup.scanBadge.instruction", { role: roleName }) ||
                       `Scan the badge to enter as a ${roleName}`}
             </div>
-            <div style={{ marginTop: "12px", fontSize: "16px", color: "rgba(255,255,255,0.4)", textAlign: "center" }}>
-                Tap anywhere to bypass
-            </div>
-            <div className={styles.orCircle} onClick={(e) => e.stopPropagation()}>
-                {t("setup.scanBadge.or", { defaultValue: "Or" })}
-            </div>
-            <button className={styles.manualLoginButton} onClick={(e) => { e.stopPropagation(); onManualLogin(); }}>
+            <div className={styles.orCircle}>{t("setup.scanBadge.or", { defaultValue: "Or" })}</div>
+            <button className={styles.manualLoginButton} onClick={onManualLogin}>
                 {t("setup.scanBadge.manualLogin", { defaultValue: "Log In Using Username and Password" })}
             </button>
             {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+            <button
+                onClick={() => onScan(true)}
+                style={{
+                    position: "fixed", bottom: "32px", right: "32px",
+                    background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)",
+                    borderRadius: "8px", color: "rgba(255,255,255,0.6)", fontSize: "13px",
+                    padding: "8px 16px", cursor: "pointer",
+                }}
+            >
+                Skip →
+            </button>
         </div>
     );
 };
