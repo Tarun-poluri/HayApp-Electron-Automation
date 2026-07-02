@@ -310,6 +310,20 @@ function startBackendProcess() {
         spawnSync("taskkill", ["/F", "/IM", "HayAppBroker.exe"], { stdio: "ignore" });
     }
 
+    // Auto-create config file if missing — required on fresh systems
+    const configDir = path.join(app.getPath("appData"), "..", "Local", "Magvation", "HayApp");
+    const configFile = path.join(configDir, "hayapp_config.ini");
+    const bundledConfig = path.join(fullCwdPath, "local_user_data", "hayapp_config.ini");
+    if (!fs.existsSync(configFile) && fs.existsSync(bundledConfig)) {
+        try {
+            fs.mkdirSync(configDir, { recursive: true });
+            fs.copyFileSync(bundledConfig, configFile);
+            logBroker(`Created config at: ${configFile}`);
+        } catch (err) {
+            logBroker(`Failed to create config: ${err}`);
+        }
+    }
+
     logBroker(`Starting backend from ${fullCommandPath}`);
     backendProcess = spawn(fullCommandPath, launchConfig.args, {
         cwd: fullCwdPath,
