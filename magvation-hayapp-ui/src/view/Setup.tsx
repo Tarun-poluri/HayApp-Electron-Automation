@@ -2125,12 +2125,7 @@ export const Setup: React.FC<object> = () => {
                     onCaseTypeWithoutSheetSelected={handleCaseTypeWithoutSheetSelected}
                 />
             );
-        } else if (state == State.NEEDLE_DETAIL) {
-            if (!selectedNeedleItem) {
-                // Bypass: no item selected — go back to summary sheet
-                setState(State.SUMMARY_SHEET);
-                return null;
-            }
+        } else if (state == State.NEEDLE_DETAIL && selectedNeedleItem) {
             return (
                 <NeedleDetail
                     item={selectedNeedleItem}
