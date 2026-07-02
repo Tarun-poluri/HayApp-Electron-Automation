@@ -656,28 +656,32 @@ export const Setup: React.FC<object> = () => {
                 const scrub = appContext.caseService.scrub.value;
 
                 if (surgeon && circulator && scrub) {
+                    // Step 1: Try to save staff (may fail with bypass user IDs)
                     try {
-                        // Save all staff to backend
                         await appContext.caseService.setCaseStaff(
                             surgeon.surgeon_id,
                             circulator.user_id,
                             scrub.user_id,
                         );
+                    } catch (error) {
+                        console.error("setCaseStaff failed (bypass IDs):", error);
+                    }
 
-                        // Set CIR screen state (secondary renderer will navigate)
+                    // Step 2: Broadcast screen state to both windows independently
+                    // These don't depend on user IDs so they work even in bypass mode
+                    try {
                         await appContext.parlayWrapper.caseManager.set_current_cir_screen("cirSetupScreen");
-
-                        // Set SCR screen state (main renderer will navigate)
+                    } catch (error) {
+                        console.error("set_current_cir_screen failed:", error);
+                    }
+                    try {
                         await appContext.parlayWrapper.caseManager.set_current_scr_screen("scrSetupScreen");
                     } catch (error) {
-                        console.error("Failed to set screen states (bypass — navigating anyway):", error);
+                        console.error("set_current_scr_screen failed:", error);
                     }
-                    // Always navigate to CIR setup — bypass users have non-real IDs so backend may fail
-                    appContext.navigate({ path: "cirSetupScreen" });
-                } else {
-                    // Bypass: no real staff — navigate anyway so UI flow continues
-                    appContext.navigate({ path: "cirSetupScreen" });
                 }
+                // Step 3: Always navigate CIR window regardless of backend success
+                appContext.navigate({ path: "cirSetupScreen" });
                 setPreviousState(null);
             } else if (appContext.caseService.shouldReturnToCirSetup.value) {
                 // Returning to CIR setup after logout
@@ -1823,17 +1827,25 @@ export const Setup: React.FC<object> = () => {
                                                 circulator.user_id,
                                                 scrub.user_id,
                                             );
+                                        } catch (error) {
+                                            console.error("setCaseStaff failed (bypass):", error);
+                                        }
+                                        try {
                                             await appContext.parlayWrapper.caseManager.set_current_cir_screen(
                                                 "cirSetupScreen",
                                             );
+                                        } catch (error) {
+                                            console.error("set_current_cir_screen failed:", error);
+                                        }
+                                        try {
                                             await appContext.parlayWrapper.caseManager.set_current_scr_screen(
                                                 "scrSetupScreen",
                                             );
                                         } catch (error) {
-                                            console.error("Failed to set screen states (bypass):", error);
+                                            console.error("set_current_scr_screen failed:", error);
                                         }
                                     }
-                                    // Always navigate — bypass users may fail backend calls
+                                    // Always navigate CIR window
                                     appContext.navigate({ path: "cirSetupScreen" });
                                     setPreviousState(null);
                                 } else if (appContext.caseService.shouldReturnToCirSetup.value) {
