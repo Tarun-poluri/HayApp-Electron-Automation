@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+﻿import React, { useContext, useState, useEffect } from "react";
 import styles from "../viewcss/CIRSetupScreen.module.css";
 import { TrackingHeader } from "./subview/TrackingHeader";
 import { LogoutPopup } from "./subview/LogoutPopUp";
@@ -348,7 +348,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
         };
     }, [step, confirmedTotal, appContext]);
 
-    // Listen for HayStack connection at Plug step → move to SelfTest
+    // Listen for HayStack connection at Plug step â†’ move to SelfTest
     useEffect(() => {
         if (step !== SetupStep.Plug) return;
 
@@ -366,7 +366,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
         };
     }, [step, appContext.caseService.parlayInterface.hayStack]);
 
-    // Auto-transition from SelfTest → Connected after 5 seconds
+    // Auto-transition from SelfTest â†’ Connected after 5 seconds
     // (haystack_post_result event listener removed)
     useEffect(() => {
         if (step !== SetupStep.SelfTest) return;
@@ -1085,7 +1085,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     instructionTitle: "cirSetupScreen.plugTitle",
                     step1: "cirSetupScreen.plugStep1",
                     step2: "cirSetupScreen.plugStep2",
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onButtonClick: () => setStep(SetupStep.SelfTest),
                     step3: "cirSetupScreen.plugStep3",
                     image: CIRPlug,
@@ -1097,7 +1097,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     image: WaitHayStack,
                     imageStyle: { width: "1000px", height: "600px" },
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.Connected),
                 })}
             {step === SetupStep.Connected &&
@@ -1106,7 +1106,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     image: ConnectedHayStack,
                     imageStyle: { width: "1000px", height: "600px" },
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.HaytrayWait),
                 })}
             {step === SetupStep.Failed &&
@@ -1124,7 +1124,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     waitText: "cirSetupScreen.haytrayWait",
                     showHeader: false,
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.HaytrayTest),
                 })}
             {step === SetupStep.HaytrayTest &&
@@ -1133,7 +1133,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     image: WaitHayTray,
                     imageStyle: { width: "1000px", height: "600px" },
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.HaytrayConnected),
                 })}
             {step === SetupStep.HaytrayConnected &&
@@ -1142,7 +1142,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     image: ConnectedHayTray,
                     imageStyle: { width: "1000px", height: "600px" },
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.Assemble),
                 })}
             {step === SetupStep.HaytrayFailed &&
@@ -1210,7 +1210,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                     image: ProcedureKit,
                     titleKey: "cirSetupScreen.scanNewCaseKit",
                     showBack: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.ProcedureKitVerified),
                 })}
             {step === SetupStep.ProcedureKitFailed && (
@@ -1279,7 +1279,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                         image: ScanWrapperImg,
                         titleKey: "cirSetupScreen.scanPrompt",
                         showBack: false,
-                        buttonText: "Tap to continue",
+                        buttonText: "Skip →",
                         onClick: () => setStep(SetupStep.Pickup),
                     })}
                     <button
@@ -1312,7 +1312,7 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
                 renderWaitScreen({
                     waitText: "cirSetupScreen.waitSCR",
                     showHeader: false,
-                    buttonText: "Tap to continue",
+                    buttonText: "Skip →",
                     onClick: () => setStep(SetupStep.Total),
                 })}
             {/* Logout toast notification */}
@@ -1346,3 +1346,4 @@ export const CIRSetupScreen: React.FC<{ startAtStep?: string }> = ({ startAtStep
         </>
     );
 };
+
