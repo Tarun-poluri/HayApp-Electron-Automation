@@ -1379,6 +1379,27 @@ export const Setup: React.FC<object> = () => {
         } catch (err) {
             console.error("buildSummarySheetItems failed (bypass mode — continuing anyway):", err);
         }
+        // If backend returned no items (bypass/no real case data), build mock summary
+        // items from the redundant needle items already displayed on screen
+        if (summarySheetItems.length === 0 && redundantNeedleItems.length > 0) {
+            const mockItems: EnrichedSutureSheetItem[] = redundantNeedleItems.map((item, idx) => ({
+                id: `bypass-summary-${idx}`,
+                cptCode: null,
+                product_code: item.subLabel,
+                nomenclature: item.nomenclature,
+                needles_per_pack: item.needlesPerPack,
+                suture_gauge: "",
+                suture_type: item.nomenclature,
+                needle_name: "",
+                fda_gudid: item.fdaGudid || 0,
+                suture_needle_use: Array.isArray(item.sutureNeedleUse)
+                    ? item.sutureNeedleUse
+                    : [item.sutureNeedleUse || ""],
+                suture_needle_category: item.sutureNeedleCategory,
+                num_packs: Math.max(0, item.packsToOpen - item.potentialRedundantPack),
+            }));
+            setSummarySheetItems(mockItems);
+        }
         setState(State.SUMMARY_SHEET);
     };
 
