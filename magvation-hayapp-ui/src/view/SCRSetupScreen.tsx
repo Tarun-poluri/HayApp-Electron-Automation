@@ -1020,11 +1020,18 @@ export const SCRSetupScreen: React.FC = () => {
     };
 
     const handleBypassClick = () => {
+        // ConfirmTotal ends setup — navigate to SCR dashboard
+        if (step === SetupStep.ConfirmTotal || step === SetupStep.MismatchConfirm) {
+            appContext.navigate({ path: "scrDashboard" });
+            return;
+        }
         const next = bypassStepMap[step];
         if (next) setStep(next);
     };
 
-    const showBypassButton = step in bypassStepMap;
+    const showBypassButton = step in bypassStepMap ||
+        step === SetupStep.ConfirmTotal ||
+        step === SetupStep.MismatchConfirm;
 
     return (
         <div className={styles.screenContainer}>

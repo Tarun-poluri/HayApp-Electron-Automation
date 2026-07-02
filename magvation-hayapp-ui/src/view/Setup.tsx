@@ -669,18 +669,14 @@ export const Setup: React.FC<object> = () => {
 
                         // Set SCR screen state (main renderer will navigate)
                         await appContext.parlayWrapper.caseManager.set_current_scr_screen("scrSetupScreen");
-
-                        // Navigate the current renderer to the appropriate screen based on who just logged in
-                        appContext.navigate({ path: "cirSetupScreen" });
                     } catch (error) {
-                        console.error("Failed to set screen states:", error);
+                        console.error("Failed to set screen states (bypass — navigating anyway):", error);
                     }
+                    // Always navigate to CIR setup — bypass users have non-real IDs so backend may fail
+                    appContext.navigate({ path: "cirSetupScreen" });
                 } else {
-                    console.error("Cannot navigate to setup: missing staff selections", {
-                        surgeon: !!surgeon,
-                        circulator: !!circulator,
-                        scrub: !!scrub,
-                    });
+                    // Bypass: no real staff — navigate anyway so UI flow continues
+                    appContext.navigate({ path: "cirSetupScreen" });
                 }
                 setPreviousState(null);
             } else if (appContext.caseService.shouldReturnToCirSetup.value) {
@@ -1821,19 +1817,24 @@ export const Setup: React.FC<object> = () => {
                                     const scrub = appContext.caseService.scrub.value;
 
                                     if (surgeon && circulator && scrub) {
-                                        await appContext.caseService.setCaseStaff(
-                                            surgeon.surgeon_id,
-                                            circulator.user_id,
-                                            scrub.user_id,
-                                        );
-                                        await appContext.parlayWrapper.caseManager.set_current_cir_screen(
-                                            "cirSetupScreen",
-                                        );
-                                        await appContext.parlayWrapper.caseManager.set_current_scr_screen(
-                                            "scrSetupScreen",
-                                        );
-                                        appContext.navigate({ path: "cirSetupScreen" });
+                                        try {
+                                            await appContext.caseService.setCaseStaff(
+                                                surgeon.surgeon_id,
+                                                circulator.user_id,
+                                                scrub.user_id,
+                                            );
+                                            await appContext.parlayWrapper.caseManager.set_current_cir_screen(
+                                                "cirSetupScreen",
+                                            );
+                                            await appContext.parlayWrapper.caseManager.set_current_scr_screen(
+                                                "scrSetupScreen",
+                                            );
+                                        } catch (error) {
+                                            console.error("Failed to set screen states (bypass):", error);
+                                        }
                                     }
+                                    // Always navigate — bypass users may fail backend calls
+                                    appContext.navigate({ path: "cirSetupScreen" });
                                     setPreviousState(null);
                                 } else if (appContext.caseService.shouldReturnToCirSetup.value) {
                                     // Returning to CIR setup after logout during counting
