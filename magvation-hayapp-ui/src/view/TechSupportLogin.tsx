@@ -170,6 +170,19 @@ export const TechSupportLogin: React.FC = () => {
                 </button>
             </div>
 
+            {/* Bypass: skip tech support and go to CIR/SCR login */}
+            <button
+                onClick={() => appContext.navigate({ path: "setup" })}
+                style={{
+                    position: "fixed", bottom: "32px", right: "32px",
+                    background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)",
+                    borderRadius: "8px", color: "rgba(255,255,255,0.6)", fontSize: "13px",
+                    padding: "8px 16px", cursor: "pointer",
+                }}
+            >
+                Skip →
+            </button>
+
             <div className={styles.bottomSection}>
                 <div className={styles.keyboardArea}>
                     <VirtualKeyboard onKeyPress={onKeyClicked} />
