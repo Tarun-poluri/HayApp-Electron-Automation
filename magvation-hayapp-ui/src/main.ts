@@ -305,12 +305,25 @@ function startBackendProcess() {
         return;
     }
 
+    // Kill any existing HayAppBroker from dev environment before starting ours
+    if (process.platform === "win32") {
+        spawnSync("taskkill", ["/F", "/IM", "HayAppBroker.exe"], { stdio: "ignore" });
+    }
+
     logBroker(`Starting backend from ${fullCommandPath}`);
     backendProcess = spawn(fullCommandPath, launchConfig.args, {
         cwd: fullCwdPath,
-        stdio: "inherit",
+        stdio: ["ignore", "pipe", "pipe"],  // capture stdout/stderr for logging
         windowsHide: true,
         shell: false,
+    });
+
+    // Capture stdout/stderr so errors are visible in log on any system
+    backendProcess.stdout?.on("data", (data: Buffer) => {
+        logBroker(`stdout: ${data.toString().trim()}`);
+    });
+    backendProcess.stderr?.on("data", (data: Buffer) => {
+        logBroker(`stderr: ${data.toString().trim()}`);
     });
 
     backendProcess.on("exit", (code, signal) => {
