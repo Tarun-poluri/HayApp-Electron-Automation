@@ -86,8 +86,18 @@ export const SCRWaiting: React.FC = () => {
     }
 
     return (
-        <div className={styles.screenContainer}>
+        <div
+            className={styles.screenContainer}
+            onClick={() => {
+                appContext.caseService.setRole("SCR");
+                appContext.navigate({ path: "scrSetupScreen" });
+            }}
+            style={{ cursor: "pointer" }}
+        >
             <img src={LogoPlusText} alt="Magvation" className={styles.logoImage} />
+            <div style={{ marginTop: "24px", fontSize: "16px", color: "rgba(255,255,255,0.4)", textAlign: "center" }}>
+                Tap anywhere to bypass
+            </div>
         </div>
     );
 };

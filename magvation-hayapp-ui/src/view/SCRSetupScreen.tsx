@@ -985,8 +985,47 @@ export const SCRSetupScreen: React.FC = () => {
         );
     }
 
+    // Bypass map: every step that waits for CIR broadcast or hardware → next step
+    const bypassStepMap: Partial<Record<SetupStep, SetupStep>> = {
+        // Instruction steps (CIR-driven, no SCR button)
+        [SetupStep.Open]:                SetupStep.CBIHandoff,
+        [SetupStep.CBIHandoff]:          SetupStep.RemoveHaystack,
+        [SetupStep.RemoveHaystack]:      SetupStep.Verify,
+        [SetupStep.Verify]:              SetupStep.Drape,
+        [SetupStep.Drape]:               SetupStep.Mount,
+        [SetupStep.Mount]:               SetupStep.Plug,
+        [SetupStep.Plug]:                SetupStep.Assemble,
+        [SetupStep.Assemble]:            SetupStep.SelfTest,
+        // Hardware-waiting steps
+        [SetupStep.SelfTest]:            SetupStep.ButtonTest,
+        [SetupStep.ButtonTest]:          SetupStep.ActuatorTest,
+        [SetupStep.ButtonTestFailed]:    SetupStep.ButtonTest,
+        [SetupStep.Connected]:           SetupStep.Haytray,
+        [SetupStep.Failed]:              SetupStep.SelfTest,
+        [SetupStep.Haytray]:             SetupStep.HaytrayTest,
+        [SetupStep.HaytrayTest]:         SetupStep.HaytrayConnected,
+        [SetupStep.HaytrayConnected]:    SetupStep.Assemble,
+        [SetupStep.HaytrayFailed]:       SetupStep.HaytrayTest,
+        [SetupStep.WaitCIRScanCaseKit]:  SetupStep.RetrieveNewCaseKit,
+        [SetupStep.RetrieveNewCaseKit]:  SetupStep.ActuatorTest,
+        [SetupStep.ActuatorTest]:        SetupStep.CIRWait,
+        [SetupStep.ActuatorTestFailed]:  SetupStep.ActuatorTest,
+        [SetupStep.CIRWait]:             SetupStep.CIRWaitStartCount,
+        [SetupStep.CIRWaitStartCount]:   SetupStep.Hayloft,
+        [SetupStep.Hayloft]:             SetupStep.CountTypes,
+        [SetupStep.CountTypes]:          SetupStep.Total,
+        [SetupStep.Total]:               SetupStep.ConfirmTotal,
+        [SetupStep.Mismatch]:            SetupStep.MismatchConfirm,
+        [SetupStep.TotalRecount]:        SetupStep.ConfirmTotal,
+    };
+
+    const handleBypassClick = () => {
+        const next = bypassStepMap[step];
+        if (next) setStep(next);
+    };
+
     return (
-        <div className={styles.screenContainer}>
+        <div className={styles.screenContainer} onClick={handleBypassClick}>
             <DashboardHeader
                 title={step === SetupStep.MismatchConfirm ? "Add Suture Needles" : t("scrSetupScreen.title")}
                 showLit={false}
