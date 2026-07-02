@@ -1374,7 +1374,11 @@ export const Setup: React.FC<object> = () => {
 
     const handleReviewRedundantNeedlesContinue = async () => {
         // Build summary sheet items from redundant needle items with JIT adjustments
-        await buildSummarySheetItems();
+        try {
+            await buildSummarySheetItems();
+        } catch (err) {
+            console.error("buildSummarySheetItems failed (bypass mode — continuing anyway):", err);
+        }
         setState(State.SUMMARY_SHEET);
     };
 
@@ -2121,7 +2125,12 @@ export const Setup: React.FC<object> = () => {
                     onCaseTypeWithoutSheetSelected={handleCaseTypeWithoutSheetSelected}
                 />
             );
-        } else if (state == State.NEEDLE_DETAIL && selectedNeedleItem) {
+        } else if (state == State.NEEDLE_DETAIL) {
+            if (!selectedNeedleItem) {
+                // Bypass: no item selected — go back to summary sheet
+                setState(State.SUMMARY_SHEET);
+                return null;
+            }
             return (
                 <NeedleDetail
                     item={selectedNeedleItem}
@@ -2332,7 +2341,8 @@ export const Setup: React.FC<object> = () => {
                 <StartCountInstruction
                     instructionKey="setup.startCount.scanBadgeEntry"
                     defaultInstruction="Scan the badge to enter as CIR."
-                    showProceedButton={false}
+                    showProceedButton={true}
+                    onProceed={() => setState(State.PROCEDURE_KIT_VERIFIED)}
                 />
             );
         } else if (state == State.ABORTED_CASE) {
